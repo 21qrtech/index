@@ -662,7 +662,7 @@ footer {
       <div class="c-info-box">
         <h3 data-i18n="contact.infoTitle">고객 지원 센터</h3>
         <div class="c-row"><span class="label" data-i18n="contact.lPhone">대표 전화</span><span class="val"><a href="tel:+821046685357">010-4668-5357</a></span></div>
-        <div class="c-row"><span class="label" data-i18n="contact.lEmail">이메일</span><span class="val"><a href="/cdn-cgi/l/email-protection#1e6f6c6a7b7d765e6f6c6a7b7d7630756c"><span class="__cf_email__" data-cfemail="fa8b888e9f9992ba8b888e9f9992d49188">[email&#160;protected]</span></a></span></div>
+        <div class="c-row"><span class="label" data-i18n="contact.lEmail">이메일</span><span class="val"><a href="#" class="js-mail" id="contactMail" data-u="qrtech" data-d="qrtech.kr"></a></span></div>
         <div class="c-row"><span class="label" data-i18n="contact.lAddr">본사 주소</span><span class="val" data-i18n="contact.addr">서울특별시 송파구 백제고분로42길 37, 지하1층(송파동)</span></div>
         <div class="c-row"><span class="label" data-i18n="contact.lHours">영업 시간</span><span class="val" data-i18n="contact.hours">평일 09:00 ~ 18:00</span></div>
       </div>
@@ -747,22 +747,43 @@ footer {
         <a href="#brands" data-i18n="nav.brands">취급 브랜드</a>
         <a href="#process" data-i18n="nav.process">진행 절차</a>
         <a href="#contact" data-i18n="nav.contact">견적 문의</a>
+        <a href="https://hakgeekim-source.github.io/QRJangbu.github.io/" target="_blank" rel="noopener noreferrer" data-i18n="nav.jangbu">큐알장부</a>
       </div>
     </div>
     <div class="foot-bot">
-      <span data-i18n="foot.legal">상호명: 주식회사 큐알테크 | 대표: 김평식 | 사업자등록번호: 446-86-00156 | 이메일: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6415161001070c2415161001070c4a0f16">[email&#160;protected]</a> | 전화: 010-4668-5357</span>
+      <span data-i18n="foot.legal">상호명: 주식회사 큐알테크 | 대표: 김평식 | 사업자등록번호: 446-86-00156 | 이메일: [[MAIL]] | 전화: 010-4668-5357</span>
       <span data-i18n="foot.addr">주소: 서울특별시 송파구 백제고분로42길 37, 지하1층(송파동)</span>
     </div>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 /* =========================================================
    QRTECH — bilingual site (KO default / EN)
    Quote form → Formspree (https://formspree.io/f/mbdpgdkj)
    ========================================================= */
 
 var FORMSPREE_ENDPOINT = 'https://formspree.io/f/mbdpgdkj';
+
+/* Mail address is assembled at runtime so page-level email scrapers /
+   Cloudflare-style obfuscation cannot replace it with "[email protected]". */
+var MAIL_AT = String.fromCharCode(64);
+var MAIL_USER = 'qr' + 'tech';
+var MAIL_DOMAIN = 'qr' + 'tech' + '.' + 'kr';
+var MAIL_ADDRESS = MAIL_USER + MAIL_AT + MAIL_DOMAIN;
+var MAIL_HREF = 'mail' + 'to:' + MAIL_ADDRESS;
+
+function fillMail(html) {
+  return html.split('[[MAILTO]]').join(MAIL_HREF).split('[[MAIL]]').join(MAIL_ADDRESS);
+}
+
+function mountMail() {
+  var link = document.getElementById('contactMail');
+  if (link) {
+    link.textContent = MAIL_ADDRESS;
+    link.setAttribute('href', MAIL_HREF);
+  }
+}
 var LANG = 'ko';
 
 var I18N = {
@@ -772,6 +793,7 @@ var I18N = {
     'nav.about': '회사 소개',
     'nav.products': '취급 품목',
     'nav.brands': '취급 브랜드',
+    'nav.jangbu': '큐알장부',
     'nav.process': '진행 절차',
     'nav.contact': '견적 문의',
     'nav.cta': '견적 요청',
@@ -870,10 +892,10 @@ var I18N = {
     'form.okTitle': '견적 문의가 전송되었습니다',
     'form.okDesc': '담당자가 확인 후 영업일 기준 1일 이내에 회신드립니다.<br>감사합니다.',
     'form.okBtn': '새 문의 작성하기',
-    'form.err': '전송에 실패했습니다. 잠시 후 다시 시도하시거나 <a href="mailto:qrtech@qrtech.kr">qrtech@qrtech.kr</a> 로 직접 보내주세요.',
+    'form.err': '전송에 실패했습니다. 잠시 후 다시 시도하시거나 <a href="[[MAILTO]]">[[MAIL]]</a> 로 직접 보내주세요.',
     'form.errDetail': '오류 내용: ',
     'foot.tag': '전자 부품 · 전기 부품 · 소방용품 B2B 전문 공급 파트너',
-    'foot.legal': '상호명: 주식회사 큐알테크 | 대표: 김평식 | 사업자등록번호: 446-86-00156 | 이메일: qrtech@qrtech.kr | 전화: 010-4668-5357',
+    'foot.legal': '상호명: 주식회사 큐알테크 | 대표: 김평식 | 사업자등록번호: 446-86-00156 | 이메일: [[MAIL]] | 전화: 010-4668-5357',
     'foot.addr': '주소: 서울특별시 송파구 백제고분로42길 37, 지하1층(송파동)',
     catOptions: ['전자 부품', '전기 부품', '소방용품', '복합 구매 / 기타 산업 자재']
   },
@@ -883,6 +905,7 @@ var I18N = {
     'nav.about': 'About',
     'nav.products': 'Products',
     'nav.brands': 'Brands',
+    'nav.jangbu': 'QR Jangbu',
     'nav.process': 'How we work',
     'nav.contact': 'Contact',
     'nav.cta': 'Request a quote',
@@ -981,10 +1004,10 @@ var I18N = {
     'form.okTitle': 'Your request has been sent',
     'form.okDesc': 'Our team will review it and reply within one business day.<br>Thank you.',
     'form.okBtn': 'Send another request',
-    'form.err': 'Sending failed. Please try again shortly, or email us directly at <a href="mailto:qrtech@qrtech.kr">qrtech@qrtech.kr</a>.',
+    'form.err': 'Sending failed. Please try again shortly, or email us directly at <a href="[[MAILTO]]">[[MAIL]]</a>.',
     'form.errDetail': 'Details: ',
     'foot.tag': 'B2B supplier of electronic components, electrical parts and fire safety equipment',
-    'foot.legal': 'QRTECH Co., Ltd. | CEO: Kim Pyung-sik | Business Reg. No. 446-86-00156 | Email: qrtech@qrtech.kr | Tel: 010-4668-5357',
+    'foot.legal': 'QRTECH Co., Ltd. | CEO: Kim Pyung-sik | Business Reg. No. 446-86-00156 | Email: [[MAIL]] | Tel: 010-4668-5357',
     'foot.addr': 'B1, 37 Baekjegobun-ro 42-gil, Songpa-gu, Seoul, Korea',
     catOptions: ['Electronic components', 'Electrical parts', 'Fire safety equipment', 'Mixed order / other industrial supplies']
   }
@@ -1103,7 +1126,7 @@ function setLang(lang, skipUrl) {
 
   document.querySelectorAll('[data-i18n]').forEach(function(el) {
     var v = pack[el.getAttribute('data-i18n')];
-    if (v !== undefined) el.innerHTML = v;
+    if (v !== undefined) el.innerHTML = fillMail(v);
   });
   document.querySelectorAll('[data-i18n-ph]').forEach(function(el) {
     var v = pack[el.getAttribute('data-i18n-ph')];
@@ -1146,7 +1169,8 @@ function setLang(lang, skipUrl) {
 function toggleMenu() {
   document.getElementById('mMenu').classList.toggle('open');
 }
-document.getElementById('burgerBtn').addEventListener('click', toggleMenu);
+var burgerBtn = document.getElementById('burgerBtn');
+if (burgerBtn) burgerBtn.addEventListener('click', toggleMenu);
 
 /* ---------------- Formspree submit ---------------- */
 var quoteForm = document.getElementById('quoteForm');
@@ -1202,7 +1226,7 @@ quoteForm.addEventListener('submit', function(e) {
     }
   })
   .catch(function(err) {
-    showStatus('err', pack['form.err'] + '<br><span style="opacity:.75">' + pack['form.errDetail'] + (err && err.message ? err.message : 'network error') + '</span>');
+    showStatus('err', fillMail(pack['form.err']) + '<br><span style="opacity:.75">' + pack['form.errDetail'] + (err && err.message ? err.message : 'network error') + '</span>');
   })
   .then(function() {
     submitBtn.disabled = false;
@@ -1225,6 +1249,7 @@ function resetForm() {
   var initial = params.get('lang');
   if (!initial && window.location.hash === '#en') initial = 'en';
   setLang(initial === 'en' ? 'en' : 'ko', true);
+  mountMail();
 })();
 </script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","spa":2}' crossorigin="anonymous"></script>

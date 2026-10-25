@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QRTECH — 전자 · 전기 부품 및 소방용품 전문 공급</title>
+<meta name="description" content="QRTECH(주)는 전자 부품, 전기 부품, 소방용품을 신속하고 정확하게 공급하는 B2B 산업 자재 전문 파트너입니다.">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root {
+  --bg: #F8FAFC;
+  --surface: #FFFFFF;
+  --surface-sub: #F1F5F9;
+  --line: #E2E8F0;
+  --line-strong: #CBD5E1;
+  --text: #0F172A;
+  --text-dim: #475569;
+  --text-faint: #64748B;
+  --accent: #D97706;
+  --accent-light: #FEF3C7;
+  --primary: #0F172A;
+  --primary-hover: #1E293B;
+  --font: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: -0.015em;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--accent-light); color: var(--accent); }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; }
+
+/* Layout */
+.wrap { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+section { padding: 80px 0; border-bottom: 1px solid var(--line); }
+
+/* Header */
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-wrap {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px; gap: 32px;
+}
+.brand {
+  font-size: 20px; font-weight: 900; letter-spacing: -0.02em;
+  color: var(--text);
+}
+.brand:hover { color: var(--accent); }
+nav.desktop-menu { display: flex; align-items: center; gap: 28px; }
+nav.desktop-menu a {
+  font-size: 14px; font-weight: 500; color: var(--text-dim);
+  transition: color 0.15s;
+}
+nav.desktop-menu a:hover { color: var(--text); }
+.header-actions { display: flex; align-items: center; gap: 10px; }
+.btn-primary {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--primary); color: #fff;
+  font-size: 13px; font-weight: 700; padding: 9px 18px; border-radius: 6px;
+  border: 0; cursor: pointer; transition: background 0.15s; white-space: nowrap;
+}
+.btn-primary:hover { background: var(--primary-hover); }
+
+.burger {
+  display: none; background: none; border: 0; cursor: pointer; padding: 8px;
+}
+.burger span {
+  display: block; width: 20px; height: 2px; background: var(--text); margin: 4px 0;
+}
+.mobile-menu {
+  display: none; background: #fff; border-bottom: 1px solid var(--line);
+  padding: 16px 24px; flex-direction: column; gap: 12px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a { font-size: 15px; font-weight: 600; padding: 6px 0; }
+
+/* Hero */
+.hero { background: #fff; padding: 96px 0 84px; }
+.kicker {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.1em;
+  color: var(--accent); margin-bottom: 16px; text-transform: uppercase;
+}
+.kicker span.dot { color: var(--line-strong); }
+h1 {
+  font-size: clamp(30px, 4.5vw, 48px); font-weight: 900;
+  line-height: 1.25; letter-spacing: -0.025em; color: var(--text);
+  max-width: 800px;
+}
+h1 span.hl { color: var(--accent); }
+.hero-desc {
+  margin-top: 20px; font-size: 17px; color: var(--text-dim);
+  max-width: 640px; line-height: 1.65;
+}
+.hero-btns { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
+.hero-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  margin-top: 56px; padding-top: 36px; border-top: 1px solid var(--line);
+  max-width: 760px;
+}
+.stat-item b {
+  display: block; font-size: 24px; font-weight: 900; color: var(--text);
+}
+.stat-item span {
+  display: block; font-size: 13px; color: var(--text-faint); margin-top: 4px;
+}
+
+/* Section Common */
+.sec-tag {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+  color: var(--accent); text-transform: uppercase;
+}
+.sec-title {
+  font-size: clamp(24px, 3.2vw, 34px); font-weight: 800;
+  color: var(--text); margin-top: 8px; letter-spacing: -0.02em;
+}
+.sec-desc {
+  font-size: 15px; color: var(--text-dim); margin-top: 10px; max-width: 620px;
+}
+
+/* About / Strengths */
+.strengths-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 44px;
+}
+.scard {
+  background: #fff; border: 1px solid var(--line); border-radius: 8px;
+  padding: 24px;
+}
+.scard h3 { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
+.scard p { font-size: 13px; color: var(--text-dim); line-height: 1.65; }
+
+/* Products Catalog */
+.cats-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 16px; margin-top: 36px; margin-bottom: 28px;
+}
+.cat-tabs {
+  display: flex; gap: 4px; background: var(--surface-sub);
+  padding: 4px; border-radius: 6px; border: 1px solid var(--line);
+}
+.cat-btn {
+  background: none; border: 0; padding: 7px 14px; font-size: 13px;
+  font-weight: 600; color: var(--text-dim); border-radius: 4px; cursor: pointer;
+  transition: all 0.15s;
+}
+.cat-btn.active { background: #fff; color: var(--text); box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+.search-box {
+  position: relative; width: 240px;
+}
+.search-box input {
+  width: 100%; padding: 8px 12px; font-size: 13px;
+  border: 1px solid var(--line-strong); border-radius: 6px;
+  background: #fff; color: var(--text); outline: none;
+}
+.search-box input:focus { border-color: var(--primary); }
+
+.prod-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+.pcard {
+  background: #fff; border: 1px solid var(--line); border-radius: 8px;
+  padding: 22px; display: flex; flex-direction: column; justify-content: space-between;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.pcard:hover {
+  border-color: var(--line-strong); box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+.phead {
+  display: flex; justify-content: space-between; font-size: 12px;
+  color: var(--text-faint); margin-bottom: 8px; font-family: monospace;
+}
+.pcard h3 { font-size: 16px; font-weight: 800; color: var(--text); }
+.pcard p.pdesc { font-size: 13px; color: var(--text-dim); margin-top: 8px; line-height: 1.6; }
+.pspecs {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.pspec {
+  font-size: 11px; color: var(--text-dim); background: var(--surface-sub);
+  padding: 3px 8px; border-radius: 4px;
+}
+.paction {
+  margin-top: 18px; display: flex; justify-content: flex-end;
+}
+.btn-add-quote {
+  background: none; border: 0; font-size: 12px; font-weight: 700;
+  color: var(--accent); cursor: pointer; display: inline-flex; align-items: center; gap: 4px;
+}
+.btn-add-quote:hover { text-decoration: underline; }
+
+/* Process */
+.proc-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 40px;
+}
+.step-card {
+  background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 24px;
+}
+.step-num { font-size: 12px; font-weight: 800; color: var(--accent); margin-bottom: 8px; font-family: monospace; }
+.step-card h3 { font-size: 16px; font-weight: 800; margin-bottom: 6px; }
+.step-card p { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+
+/* Contact & Quote Form */
+.contact-layout {
+  display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; margin-top: 44px; align-items: start;
+}
+.c-info-box {
+  background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 26px;
+}
+.c-row {
+  display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid var(--line);
+  font-size: 13.5px;
+}
+.c-row:last-child { border-bottom: 0; }
+.c-row span.label { color: var(--text-faint); }
+.c-row span.val { font-weight: 700; text-align: right; }
+
+.qform-box {
+  background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 32px;
+}
+.qform-box h3 { font-size: 18px; font-weight: 800; margin-bottom: 20px; }
+.frow { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.ffull { margin-bottom: 14px; }
+label { display: block; font-size: 12.5px; font-weight: 700; margin-bottom: 6px; color: var(--text-dim); }
+input, select, textarea {
+  width: 100%; padding: 10px 12px; font-size: 13px; border: 1px solid var(--line-strong);
+  border-radius: 6px; font-family: inherit; color: var(--text); background: #fff; outline: none;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--primary); }
+textarea { resize: vertical; min-height: 90px; }
+.fnote { font-size: 11.5px; color: var(--text-faint); margin: 12px 0 16px; }
+.btn-submit {
+  width: 100%; padding: 13px; font-size: 14px; font-weight: 800;
+  background: var(--primary); color: #fff; border: 0; border-radius: 6px; cursor: pointer;
+}
+.btn-submit:hover { background: var(--primary-hover); }
+
+/* Footer */
+footer {
+  background: var(--primary); color: #94A3B8; padding: 50px 0 40px; font-size: 13px;
+}
+.foot-top {
+  display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap; padding-bottom: 32px;
+  border-bottom: 1px solid #1E293B;
+}
+.foot-brand { font-size: 18px; font-weight: 900; color: #fff; }
+.foot-links { display: flex; gap: 24px; }
+.foot-links a { color: #94A3B8; }
+.foot-links a:hover { color: #fff; }
+.foot-bot {
+  margin-top: 24px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 12px; color: #64748B;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .strengths-grid, .prod-grid, .proc-grid { grid-template-columns: repeat(2, 1fr); }
+  .contact-layout { grid-template-columns: 1fr; }
+}
+@media (max-width: 680px) {
+  nav.desktop-menu { display: none; }
+  .burger { display: block; }
+  .strengths-grid, .prod-grid, .proc-grid { grid-template-columns: 1fr; }
+  .hero-stats { grid-template-columns: 1fr; gap: 16px; }
+  .frow { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="wrap nav-wrap">
+    <a href="#top" class="brand">QRTECH</a>
+    
+    <nav class="desktop-menu">
+      <a href="#about">회사 소개</a>
+      <a href="#products">취급 품목</a>
+      <a href="#process">진행 절차</a>
+      <a href="#contact">견적 문의</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="#contact" class="btn-primary">견적 요청</a>
+      <button class="burger" id="burgerBtn" aria-label="메뉴 열기">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mMenu">
+    <a href="#about" onclick="toggleMenu()">회사 소개</a>
+    <a href="#products" onclick="toggleMenu()">취급 품목</a>
+    <a href="#process" onclick="toggleMenu()">진행 절차</a>
+    <a href="#contact" onclick="toggleMenu()">견적 문의</a>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div class="kicker">
+      <span>ELECTRONIC</span><span class="dot">·</span>
+      <span>ELECTRICAL</span><span class="dot">·</span>
+      <span>FIRE SAFETY</span>
+    </div>
+    <h1>
+      산업 현장의 필수 부품,<br>
+      <span class="hl">QRTECH</span>가 신속하고 정확하게 납품합니다.
+    </h1>
+    <p class="hero-desc">
+      전자 부품 · 전기 부품 · 소방 안전용품 전문 B2B 공급 파트너 QRTECH.<br>
+      검증된 공식 유통망과 24시간 이내 신속 견적 체계로 귀사의 생산 라인과 현장 안전을 지원합니다.
+    </p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary" style="padding: 12px 24px; font-size: 14px;">견적 문의 작성하기 →</a>
+      <a href="#products" class="btn-outline" style="padding: 12px 20px; font-size: 14px;">취급 품목 둘러보기</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <b>3대 품목군</b>
+        <span>전자 부품 · 전기 자재 · 소방용품</span>
+      </div>
+      <div class="stat-item">
+        <b>24시간 이내</b>
+        <span>문의 접수 후 신속 견적서 회신</span>
+      </div>
+      <div class="stat-item">
+        <b>100% 정품 유통</b>
+        <span>제조사 직거래 및 규격 인증품</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-tag">ABOUT QRTECH</div>
+    <h2 class="sec-title">부품에서 안전까지, 단 하나의 파트너로</h2>
+    <p class="sec-desc">
+      회로 설계 부품부터 배전반 자재, 소방 방재 설비까지 한 곳에서 원스톱으로 조달할 수 있어 구매 비용과 리드타임을 획기적으로 줄여드립니다.
+    </p>
+
+    <div class="strengths-grid">
+      <div class="scard">
+        <h3>검증된 공식 유통망</h3>
+        <p>국내외 신뢰할 수 있는 제조사 및 공식 대리점 망을 통해 확실한 품질의 정품만을 공급합니다.</p>
+      </div>
+      <div class="scard">
+        <h3>신속한 견적 및 납기</h3>
+        <p>재고 현황 파악 및 신속한 견적 발송으로 공장 가동과 시공 일정 공백을 최소화합니다.</p>
+      </div>
+      <div class="scard">
+        <h3>대체품 기술 검토</h3>
+        <p>단종 품목이나 품귀 자재 발생 시 전기/전자 규격과 핀맵에 맞는 공식 대체품을 제안합니다.</p>
+      </div>
+      <div class="scard">
+        <h3>유연한 공급 계약</h3>
+        <p>소량 연구개발 샘플부터 대량 정기 납품까지 고객사 환경에 맞는 최적 조건으로 대응합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRODUCTS ================= -->
+<section id="products" style="background:#fff;">
+  <div class="wrap">
+    <div class="sec-tag">PRODUCT CATALOG</div>
+    <h2 class="sec-title">취급 품목 안내</h2>
+    <p class="sec-desc">품목의 [견적에 담기]를 클릭하시면 아래 견적 양식에 자동으로 기입됩니다.</p>
+
+    <div class="cats-bar">
+      <div class="cat-tabs">
+        <button class="cat-btn active" onclick="setCategory('all', this)">전체</button>
+        <button class="cat-btn" onclick="setCategory('electronic', this)">전자 부품</button>
+        <button class="cat-btn" onclick="setCategory('electrical', this)">전기 부품</button>
+        <button class="cat-btn" onclick="setCategory('fire', this)">소방용품</button>
+      </div>
+      <div class="search-box">
+        <input type="text" id="searchInp" oninput="filterProducts()" placeholder="품목명, 코드, 사양 검색...">
+      </div>
+    </div>
+
+    <div class="prod-grid" id="productGrid">
+      <!-- JavaScript will populate products dynamically -->
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section id="process">
+  <div class="wrap">
+    <div class="sec-tag">HOW WE WORK</div>
+    <h2 class="sec-title">진행 절차 안내</h2>
+    <p class="sec-desc">문의부터 현장 납품까지 4단계로 투명하게 진행됩니다.</p>
+
+    <div class="proc-grid">
+      <div class="step-card">
+        <div class="step-num">STEP 01</div>
+        <h3>문의 접수</h3>
+        <p>온라인 견적 폼이나 이메일, 전화로 필요한 부품 규격과 수량을 접수합니다.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">STEP 02</div>
+        <h3>견적 회신</h3>
+        <p>재고와 최단 납기일을 검토하여 최적의 단가 견적서를 신속히 회신합니다.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">STEP 03</div>
+        <h3>발주 및 검수</h3>
+        <p>견적 승인 후 즉시 입고 및 정품 라벨, 규격 전수 검수를 거쳐 안전 포장합니다.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">STEP 04</div>
+        <h3>안전 납품</h3>
+        <p>약정된 기일에 맞추어 현장 직배송 또는 택배로 인도하고 시험성적서를 지원합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" style="background:#fff;">
+  <div class="wrap">
+    <div class="sec-tag">CONTACT US</div>
+    <h2 class="sec-title">신속 견적 문의</h2>
+    <p class="sec-desc">필요하신 품목 명세를 남겨주시면 영업일 기준 1일 이내 신속히 회신 드립니다.</p>
+
+    <div class="contact-layout">
+      <div class="c-info-box">
+        <h3 style="font-size:17px; font-weight:800; margin-bottom:16px;">고객 지원 센터</h3>
+        <div class="c-row"><span class="label">대표 전화</span><span class="val">010-4668-5357</span></div>
+        <div class="c-row"><span class="label">이메일</span><span class="val">qrtech@qrtech.kr</span></div>
+        <div class="c-row"><span class="label">본사 주소</span><span class="val">서울특별시 송파구 백제고분로42길 37, 지하1층(송파동)</span></div>
+        <div class="c-row"><span class="label">영업 시간</span><span class="val">평일 09:00 ~ 18:00</span></div>
+      </div>
+
+      <div class="qform-box">
+        <h3>온라인 견적 의뢰서</h3>
+        <form id="quoteForm" onsubmit="handleQuoteSubmit(event)">
+          <div class="frow">
+            <div>
+              <label for="qCompany">회사명 / 상호</label>
+              <input type="text" id="qCompany" placeholder="예) (주)한국테크">
+            </div>
+            <div>
+              <label for="qName">성함 / 담당자명 *</label>
+              <input type="text" id="qName" required placeholder="예) 홍길동 대리">
+            </div>
+          </div>
+
+          <div class="frow">
+            <div>
+              <label for="qPhone">연락처 *</label>
+              <input type="tel" id="qPhone" required placeholder="예) 010-0000-0000">
+            </div>
+            <div>
+              <label for="qEmail">이메일 주소</label>
+              <input type="email" id="qEmail" placeholder="예) buyer@company.com">
+            </div>
+          </div>
+
+          <div class="ffull">
+            <label for="qCat">문의 품목 분류 *</label>
+            <select id="qCat" required>
+              <option>전자 부품</option>
+              <option>전기 부품</option>
+              <option>소방용품</option>
+              <option>복합 구매 / 기타 산업 자재</option>
+            </select>
+          </div>
+
+          <div class="ffull">
+            <label for="qItems">요청 품목 및 수량 *</label>
+            <textarea id="qItems" required placeholder="품목명, 규격, 필요 수량, 희망 납기를 적어주세요.&#10;(위 취급 품목 목록에서 [견적에 담기]를 클릭하면 자동 추가됩니다)"></textarea>
+          </div>
+
+          <div class="ffull">
+            <label for="qNote">추가 요청 사항</label>
+            <input type="text" id="qNote" placeholder="예) 납품 희망 지역, 시험성적서 필요 등">
+          </div>
+
+          <p class="fnote">* 제출하신 정보는 견적 산출 및 납기 안내 목적 이외에는 사용되지 않습니다.</p>
+
+          <button type="submit" class="btn-submit">견적 문의 보내기 (메일 전송)</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand">QRTECH</div>
+        <p style="margin-top:6px; font-size:13px; color:#64748B;">전자 부품 · 전기 부품 · 소방용품 B2B 전문 공급 파트너</p>
+      </div>
+      <div class="foot-links">
+        <a href="#about">회사 소개</a>
+        <a href="#products">취급 품목</a>
+        <a href="#process">진행 절차</a>
+        <a href="#contact">견적 문의</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>상호명: 주식회사 큐알테크 | 대표: 김평식 | 사업자등록번호: 446-86-00156 | 이메일: qrtech@qrtech.kr | 전화: 010-4668-5357</span>
+      <span>주소: 서울특별시 송파구 백제고분로42길 37, 지하1층(송파동)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Data
+var products = [
+  { id:'e1', cat:'electronic', code:'EC-MCU-01', name:'산업용 마이크로컨트롤러 (MCU & IC)', desc:'임베디드 제어 및 산업 장비용 고신뢰성 32비트 프로세서 및 로직 IC', specs:['STM32 호환', '-40℃~105℃ 산업용', 'Tray/Reel 정품'] },
+  { id:'e2', cat:'electronic', code:'EC-PASS-02', name:'정밀 수동 소자 (MLCC / 저항 / 인덕터)', desc:'고전압·고주파 회로용 고정밀 칩 커패시터, 금속 피막 저항기', specs:['0603/0805 규격', 'AEC-Q200 전장 인증', '소량 시험용 릴 가능'] },
+  { id:'e3', cat:'electronic', code:'EC-CONN-03', name:'산업용 PCB 커넥터 & 단자 소켓', desc:'내진동·방수 규격을 충족하는 보드-투-와이어 및 원형 밀스펙 커넥터', specs:['Molex/JST 호환', '금도금 핀 접점', 'UL94V-0 난연'] },
+  { id:'e4', cat:'electronic', code:'EC-SMPS-04', name:'고효율 산업용 SMPS (전원 공급 장치)', desc:'제어반 및 통신 장비에 전력을 안정적으로 공급하는 딘레일형 전원공급기', specs:['입력 85~264VAC', '출력 12V/24V/48V', '단락 보호 내장'] },
+  { id:'e5', cat:'electronic', code:'EC-SENS-05', name:'산업용 센서 모듈 (온습도·압력·근접)', desc:'공장 자동화 및 모니터링을 위한 고내구성 디지털·아날로그 센서', specs:['IP67 방수방진', '4-20mA 지원', '고감도 광학·유도형'] },
+
+  { id:'p1', cat:'electrical', code:'EL-BRK-01', name:'산업용 배선용 차단기 (MCCB / ELCB)', desc:'전기 설비와 회로를 과전류 및 단락 사고로부터 보호하는 주 전원 차단기', specs:['15A ~ 800A', '최대 85kA 차단', 'KS 안전인증'] },
+  { id:'p2', cat:'electrical', code:'EL-MAG-02', name:'전자 접촉기 (Magnetic Contactor)', desc:'모터 기동 및 대용량 부하의 On/Off를 안정적으로 제어하는 전자 접촉기', specs:['AC220V/DC24V', '2a2b 보조접점', '과부하 트립 보호'] },
+  { id:'p3', cat:'electrical', code:'EL-RLY-03', name:'산업용 제어 릴레이 & 타이머 유닛', desc:'PLC 신호 인터페이스용 고속 소형 플러그인 릴레이 및 타이머', specs:['8핀/14핀 소켓', '동작 LED 장착', '수명 5천만 회'] },
+  { id:'p4', cat:'electrical', code:'EL-CBL-04', name:'난연 케이블 및 제어용 실드선 (CV/VCTF)', desc:'공장 동력 배선 및 노이즈 차폐 제어용 산업용 특수 전선류', specs:['0.75sq ~ 70sq', '유연성 로봇선', '난연 인증 자재'] },
+  { id:'p5', cat:'electrical', code:'EL-TRM-05', name:'딘레일 단자대 및 배선 덕트 자재', desc:'분전반과 제어반 배선의 체계적인 정리와 결선을 위한 절연 단자대', specs:['스크류/원터치형', '난연 폴리아미드', '규격별 덕트·명판'] },
+
+  { id:'f1', cat:'fire', code:'FS-EXT-01', name:'ABC 분말 소화기 (3.3kg / 20kg 차륜식)', desc:'일반(A)·유류(B)·전기(C) 화재에 신속 대응 가능한 한국소방산업기술원 검정 소화기', specs:['KFI 형식승인', '게이지 기본 장착', '강화 분말 약제'] },
+  { id:'f2', cat:'fire', code:'FS-SENS-02', name:'고감도 광전식 연기 감지기 & 열 감지기', desc:'초기 화재 연기 및 열기를 감지해 수신반으로 즉시 알람을 전달하는 장치', specs:['2선/4선 공용', '오동작 방지 챔버', '점검 LED 탑재'] },
+  { id:'f3', cat:'fire', code:'FS-SIGN-03', name:'고휘도 LED 비상구 유도등 & 피난 설비', desc:'정전 시에도 예비 배터리로 60분 이상 시야를 확보해주는 법정 유도등', specs:['대/중/소형 라인업', '고효율 LED', '예비전원 배터리 내장'] },
+  { id:'f4', cat:'fire', code:'FS-SPRK-04', name:'자동 소화 장치 & 스프링클러 헤드 자재', desc:'배전반 상부 및 천장 화재 시 규정 온도에서 자동 개방되어 분사하는 안전 헤드', specs:['표준/조기반응형', '감열 유리벌브식', 'KFI 성능검정 합격'] },
+  { id:'f5', cat:'fire', code:'FS-ESC-05', name:'피난 사다리 및 완강기 세트 (1~10층)', desc:'다중이용업소 및 산업용 건축물 필수 구비 비상탈출 인명구조 장비', specs:['로프 10m~35m', '최대 150kg 하중', '전용 보관함 포함'] }
+];
+
+var curCategory = 'all';
+
+function renderProducts() {
+  var grid = document.getElementById('productGrid');
+  var q = (document.getElementById('searchInp').value || '').trim().toLowerCase();
+  
+  var filtered = products.filter(function(item) {
+    var matchCat = curCategory === 'all' || item.cat === curCategory;
+    var matchQ = !q || item.name.toLowerCase().includes(q) || item.code.toLowerCase().includes(q) || item.desc.toLowerCase().includes(q);
+    return matchCat && matchQ;
+  });
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding: 48px; color:#64748B; background:#F8FAFC; border-radius:8px; border:1px dashed #CBD5E1;">검색 조건에 맞는 품목이 없습니다.</div>';
+    return;
+  }
+
+  var html = '';
+  filtered.forEach(function(item) {
+    var catLabel = item.cat === 'electronic' ? '전자' : (item.cat === 'electrical' ? '전기' : '소방');
+    var specsHtml = item.specs.map(function(s){ return '<span class="pspec">'+s+'</span>'; }).join('');
+    
+    html += '<div class="pcard">' +
+      '<div>' +
+        '<div class="phead"><span>'+item.code+'</span><span>'+catLabel+'</span></div>' +
+        '<h3>'+item.name+'</h3>' +
+        '<p class="pdesc">'+item.desc+'</p>' +
+        '<div class="pspecs">'+specsHtml+'</div>' +
+      '</div>' +
+      '<div class="paction">' +
+        '<button type="button" class="btn-add-quote" onclick="addToQuote(\''+item.code+'\', \''+item.name.replace(/'/g, "\\'")+'\')">견적에 담기 →</button>' +
+      '</div>' +
+    '</div>';
+  });
+
+  grid.innerHTML = html;
+}
+
+function setCategory(cat, btn) {
+  curCategory = cat;
+  document.querySelectorAll('.cat-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  renderProducts();
+}
+
+function filterProducts() {
+  renderProducts();
+}
+
+function addToQuote(code, name) {
+  var area = document.getElementById('qItems');
+  var line = '[' + code + '] ' + name + ' (수량: 1개)';
+  if (area.value.trim()) {
+    area.value += '\n' + line;
+  } else {
+    area.value = line;
+  }
+  document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+}
+
+function handleQuoteSubmit(e) {
+  e.preventDefault();
+  var comp = document.getElementById('qCompany').value || '개인';
+  var name = document.getElementById('qName').value;
+  var phone = document.getElementById('qPhone').value;
+  var email = document.getElementById('qEmail').value || '-';
+  var cat = document.getElementById('qCat').value;
+  var items = document.getElementById('qItems').value;
+  var note = document.getElementById('qNote').value || '없음';
+
+  var body = '■ 신청 회사: ' + comp + '\n' +
+    '■ 담당자: ' + name + '\n' +
+    '■ 연락처: ' + phone + '\n' +
+    '■ 이메일: ' + email + '\n' +
+    '■ 품목 분류: ' + cat + '\n\n' +
+    '■ 요청 품목 및 수량:\n' + items + '\n\n' +
+    '■ 추가 요청:\n' + note;
+
+  var mailUrl = 'mailto:qrtech@qrtech.kr?subject=' + encodeURIComponent('[QRTECH 견적 문의] ' + comp + ' - ' + name + '님') + '&body=' + encodeURIComponent(body);
+  window.location.href = mailUrl;
+  alert('견적 문의 메일 발송 창이 열립니다. 내용을 확인 후 전송해 주세요.');
+}
+
+function toggleMenu() {
+  var m = document.getElementById('mMenu');
+  m.classList.toggle('open');
+}
+document.getElementById('burgerBtn').addEventListener('click', toggleMenu);
+
+// Initial render
+renderProducts();
+</script>
+</body>
+</html>

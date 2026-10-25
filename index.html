@@ -307,8 +307,23 @@ h1 span.hl { color: var(--accent); }
 
 /* Contact & Quote Form */
 .contact-layout {
-  display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; margin-top: 44px; align-items: start;
+  display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; margin-top: 44px; align-items: stretch;
 }
+.contact-left { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.contact-left .c-info-box { flex: 0 0 auto; }
+.map-card {
+  flex: 1 1 auto; min-height: 340px; display: flex; flex-direction: column;
+  background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 20px 20px 20px;
+}
+.map-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.map-head h3 { font-size: 15px; font-weight: 800; color: var(--text); }
+.map-link { font-size: 11.5px; font-weight: 700; color: var(--text-faint); white-space: nowrap; }
+.map-link:hover { color: var(--accent); }
+.map-frame {
+  flex: 1 1 auto; min-height: 260px; border-radius: 6px; overflow: hidden;
+  background: var(--surface-sub); border: 1px solid var(--line);
+}
+.map-frame iframe { display: block; width: 100%; height: 100%; border: 0; filter: saturate(0.92); }
 .c-info-box {
   background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 26px;
 }
@@ -368,6 +383,105 @@ textarea { resize: vertical; min-height: 90px; }
 }
 .fsent button:hover { border-color: var(--text); }
 
+/* Materials / Downloads */
+.dl-sec-head {
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap;
+}
+.dl-admin {
+  background: none; border: 1px solid var(--line-strong); border-radius: 6px;
+  cursor: pointer; font-size: 11.5px; font-weight: 700; color: var(--text-faint);
+  letter-spacing: 0.02em; padding: 7px 14px; transition: all 0.15s; white-space: nowrap;
+}
+.dl-admin:hover { color: var(--accent); border-color: var(--accent); }
+.dl-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 36px; }
+.dl-list .dl-empty { grid-column: 1 / -1; }
+.dl-item {
+  display: flex; align-items: center; gap: 12px; padding: 10px 12px;
+  border: 1px solid var(--line); border-radius: 7px; background: #fff;
+  transition: border-color 0.15s, background 0.15s;
+}
+.dl-item:hover { border-color: var(--line-strong); background: #FCFDFE; }
+.dl-ext {
+  flex-shrink: 0; width: 34px; height: 34px; border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9.5px; font-weight: 800; letter-spacing: 0.02em;
+  background: var(--surface-sub); color: var(--text-dim);
+}
+.dl-ext.pdf { background: #FEF2F2; color: #B91C1C; }
+.dl-ext.xls, .dl-ext.xlsx, .dl-ext.csv { background: #F0FDF4; color: #15803D; }
+.dl-ext.doc, .dl-ext.docx, .dl-ext.hwp, .dl-ext.hwpx { background: #EFF6FF; color: #1D4ED8; }
+.dl-ext.zip, .dl-ext.rar, .dl-ext.7z { background: #FEF9C3; color: #A16207; }
+.dl-meta { flex: 1; min-width: 0; }
+.dl-meta b {
+  display: block; font-size: 13px; font-weight: 700; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.dl-meta span { display: block; font-size: 11px; color: var(--text-faint); margin-top: 2px; }
+.dl-btn {
+  flex-shrink: 0; display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11.5px; font-weight: 700; color: var(--text);
+  border: 1px solid var(--line-strong); border-radius: 5px; padding: 6px 10px;
+  transition: background 0.15s, border-color 0.15s;
+}
+.dl-btn:hover { background: var(--primary); border-color: var(--primary); color: #fff; }
+.dl-empty {
+  font-size: 12.5px; color: var(--text-faint); text-align: center;
+  padding: 26px 16px; border: 1px dashed var(--line-strong); border-radius: 7px; background: var(--bg);
+}
+
+/* Admin modal */
+.admin-modal {
+  position: fixed; inset: 0; z-index: 300; display: none;
+  background: rgba(15,23,42,0.55); backdrop-filter: blur(3px);
+  padding: 24px; overflow-y: auto;
+}
+.admin-modal.open { display: flex; align-items: flex-start; justify-content: center; }
+.admin-card {
+  position: relative; background: #fff; border-radius: 10px; width: 100%; max-width: 460px;
+  padding: 28px; margin: auto; box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+}
+.admin-close {
+  position: absolute; top: 12px; right: 14px; background: none; border: 0;
+  font-size: 20px; line-height: 1; color: #94A3B8; cursor: pointer; padding: 4px;
+}
+.admin-close:hover { color: var(--text); }
+.admin-card h4 { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
+.admin-sub { font-size: 12px; color: var(--text-faint); margin-bottom: 16px; line-height: 1.6; }
+.admin-card label { font-size: 11.5px; }
+.admin-card input, .admin-card select { font-size: 12.5px; padding: 9px 10px; }
+.admin-err { font-size: 11.5px; color: #B91C1C; margin-top: 10px; min-height: 16px; }
+.admin-hint { font-size: 11px; color: var(--text-faint); margin-top: 12px; line-height: 1.6; }
+.admin-sect {
+  border: 1px solid var(--line); border-radius: 7px; padding: 14px; margin-bottom: 14px;
+}
+.admin-sect h5 { font-size: 11.5px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+.admin-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.admin-row2 > div { margin-bottom: 8px; }
+.admin-tag {
+  display: inline-block; font-size: 10.5px; font-weight: 800; color: #15803D;
+  background: #DCFCE7; border-radius: 4px; padding: 2px 7px; margin-left: 6px; vertical-align: 1px;
+}
+.adm-filelist { display: flex; flex-direction: column; gap: 6px; max-height: 190px; overflow-y: auto; }
+.adm-filerow { display: flex; align-items: center; gap: 8px; font-size: 11.5px; color: var(--text-dim); }
+.adm-filerow span { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.adm-filerow button {
+  background: none; border: 0; color: #B91C1C; font-size: 11px; font-weight: 700; cursor: pointer;
+}
+.adm-status { font-size: 11.5px; margin-top: 10px; line-height: 1.6; }
+.adm-status.ok { color: #15803D; }
+.adm-status.err { color: #B91C1C; }
+.btn-admin {
+  width: 100%; padding: 10px; font-size: 12.5px; font-weight: 800; border-radius: 6px;
+  background: var(--primary); color: #fff; border: 0; cursor: pointer; margin-top: 4px;
+}
+.btn-admin:disabled { opacity: .6; cursor: progress; }
+.btn-ghost {
+  width: 100%; padding: 9px; font-size: 12px; font-weight: 700; border-radius: 6px;
+  background: #fff; color: var(--text); border: 1px solid var(--line-strong); cursor: pointer; margin-top: 8px;
+}
+
+@media (max-width: 780px) { .dl-list { grid-template-columns: 1fr; } }
+
 /* Footer */
 footer {
   background: var(--primary); color: #94A3B8; padding: 50px 0 40px; font-size: 13px;
@@ -393,6 +507,8 @@ footer {
 @media (max-width: 960px) {
   .strengths-grid, .prod-grid, .proc-grid { grid-template-columns: repeat(2, 1fr); }
   .contact-layout { grid-template-columns: 1fr; gap: 28px; }
+  .map-card { min-height: 0; }
+  .map-frame { min-height: 240px; height: 240px; flex: 0 0 auto; }
   nav.desktop-menu { display: none; }
   .burger { display: block; }
 }
@@ -422,6 +538,7 @@ footer {
       <a href="#products" data-i18n="nav.products">취급 품목</a>
       <a href="#brands" data-i18n="nav.brands">취급 브랜드</a>
       <a href="#process" data-i18n="nav.process">진행 절차</a>
+      <a href="#downloads" data-i18n="nav.downloads">다운로드</a>
       <a href="#contact" data-i18n="nav.contact">견적 문의</a>
     </nav>
 
@@ -441,6 +558,7 @@ footer {
     <a href="#products" onclick="toggleMenu()" data-i18n="nav.products">취급 품목</a>
     <a href="#brands" onclick="toggleMenu()" data-i18n="nav.brands">취급 브랜드</a>
     <a href="#process" onclick="toggleMenu()" data-i18n="nav.process">진행 절차</a>
+    <a href="#downloads" onclick="toggleMenu()" data-i18n="nav.downloads">다운로드</a>
     <a href="#contact" onclick="toggleMenu()" data-i18n="nav.contact">견적 문의</a>
   </div>
 </header>
@@ -651,20 +769,48 @@ footer {
   </div>
 </section>
 
+<!-- ================= DOWNLOADS ================= -->
+<section id="downloads" style="background:#fff;">
+  <div class="wrap">
+    <div class="dl-sec-head">
+      <div>
+        <div class="sec-tag">DOWNLOADS</div>
+        <h2 class="sec-title" data-i18n="dl.title">자료실</h2>
+        <p class="sec-desc" data-i18n="dl.desc">제품 카탈로그, 인증서, 견적 양식 등 필요한 자료를 내려받으실 수 있습니다.</p>
+      </div>
+      <button type="button" class="dl-admin" id="adminToggle" data-i18n="dl.admin">관리자</button>
+    </div>
+    <div class="dl-list" id="dlList"><div class="dl-empty">등록된 자료가 없습니다.</div></div>
+  </div>
+</section>
+
 <!-- ================= CONTACT ================= -->
-<section id="contact" style="background:#fff;">
+<section id="contact">
   <div class="wrap">
     <div class="sec-tag">CONTACT US</div>
     <h2 class="sec-title" data-i18n="contact.title">신속 견적 문의</h2>
     <p class="sec-desc" data-i18n="contact.desc">필요하신 품목 명세를 남겨주시면 영업일 기준 1일 이내 신속히 회신 드립니다.</p>
 
     <div class="contact-layout">
+      <div class="contact-left">
       <div class="c-info-box">
         <h3 data-i18n="contact.infoTitle">고객 지원 센터</h3>
         <div class="c-row"><span class="label" data-i18n="contact.lPhone">대표 전화</span><span class="val"><a href="tel:+821046685357">010-4668-5357</a></span></div>
         <div class="c-row"><span class="label" data-i18n="contact.lEmail">이메일</span><span class="val"><a href="#" class="js-mail" id="contactMail" data-u="qrtech" data-d="qrtech.kr"></a></span></div>
         <div class="c-row"><span class="label" data-i18n="contact.lAddr">본사 주소</span><span class="val" data-i18n="contact.addr">서울특별시 송파구 백제고분로42길 37, 지하1층(송파동)</span></div>
         <div class="c-row"><span class="label" data-i18n="contact.lHours">영업 시간</span><span class="val" data-i18n="contact.hours">평일 09:00 ~ 18:00</span></div>
+      </div>
+
+      <div class="map-card">
+        <div class="map-head">
+          <h3 data-i18n="map.title">오시는 길</h3>
+          <a class="map-link" id="mapBig" href="https://maps.google.com/?q=%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EC%86%A1%ED%8C%8C%EA%B5%AC%20%EB%B0%B1%EC%A0%9C%EA%B3%A0%EB%B6%84%EB%A1%9C42%EA%B8%B8%2037" target="_blank" rel="noopener noreferrer" data-i18n="map.big">지도에서 크게 보기 ↗</a>
+        </div>
+        <div class="map-frame">
+          <iframe id="mapFrame" title="QRTECH 오시는 길" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen
+            src="https://maps.google.com/maps?q=%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EC%86%A1%ED%8C%8C%EA%B5%AC%20%EB%B0%B1%EC%A0%9C%EA%B3%A0%EB%B6%84%EB%A1%9C42%EA%B8%B8%2037&amp;z=17&amp;hl=ko&amp;output=embed"></iframe>
+        </div>
+      </div>
       </div>
 
       <div class="qform-box">
@@ -728,6 +874,77 @@ footer {
     </div>
   </div>
 </section>
+
+<!-- ================= ADMIN (materials upload) ================= -->
+<div class="admin-modal" id="adminModal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="admin-card">
+    <button type="button" class="admin-close" id="adminClose" aria-label="닫기">&times;</button>
+
+    <div id="adminLogin">
+      <h4 data-i18n="adm.loginTitle">관리자 로그인</h4>
+      <p class="admin-sub" data-i18n="adm.loginSub">자료를 등록·삭제할 수 있는 관리자 전용 메뉴입니다.</p>
+      <form id="adminForm" autocomplete="off">
+        <div class="ffull">
+          <label for="aEmail" data-i18n="adm.email">아이디</label>
+          <input type="text" id="aEmail" required placeholder="admin" autocomplete="username">
+        </div>
+        <div class="ffull">
+          <label for="aPass" data-i18n="adm.pass">비밀번호</label>
+          <input type="password" id="aPass" required placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn-admin" data-i18n="adm.login">로그인</button>
+        <p class="admin-err" id="aErr"></p>
+      </form>
+    </div>
+
+    <div id="adminPanel" style="display:none">
+      <h4><span data-i18n="adm.panelTitle">자료 관리</span><span class="admin-tag" id="adminTag">ADMIN</span></h4>
+      <p class="admin-sub" data-i18n="adm.panelSub">업로드한 파일은 GitHub 저장소의 <code>files/</code> 폴더에 커밋되어 모든 방문자가 내려받을 수 있습니다.</p>
+
+      <div class="admin-sect" id="cfgSect">
+        <h5 data-i18n="adm.cfgTitle">저장소 연결</h5>
+        <div class="admin-row2">
+          <div><label for="ghOwner" data-i18n="adm.owner">GitHub 사용자</label><input type="text" id="ghOwner" placeholder="owner"></div>
+          <div><label for="ghRepo" data-i18n="adm.repo">저장소</label><input type="text" id="ghRepo" placeholder="repo"></div>
+        </div>
+        <div class="admin-row2">
+          <div><label for="ghBranch" data-i18n="adm.branch">브랜치</label><input type="text" id="ghBranch" placeholder="main" value="main"></div>
+          <div><label for="ghPath" data-i18n="adm.folder">저장 폴더</label><input type="text" id="ghPath" value="files" readonly></div>
+        </div>
+        <div class="ffull" style="margin-bottom:8px">
+          <label for="ghToken" data-i18n="adm.token">GitHub 토큰 (contents:write)</label>
+          <input type="password" id="ghToken" placeholder="github_pat_..." autocomplete="off">
+        </div>
+        <button type="button" class="btn-ghost" id="cfgSave" data-i18n="adm.cfgSave">연결 저장 (이 브라우저 세션에만)</button>
+        <p class="admin-hint" data-i18n="adm.cfgHint">토큰은 저장소에 기록되지 않고 브라우저 세션에만 유지됩니다.</p>
+      </div>
+
+      <form id="uploadForm">
+        <div class="ffull">
+          <label for="upFile" data-i18n="adm.file">파일 선택</label>
+          <input type="file" id="upFile" required>
+        </div>
+        <div class="ffull">
+          <label for="upTitle" data-i18n="adm.fileTitle">자료 제목 (선택)</label>
+          <input type="text" id="upTitle" placeholder="예) 2026 제품 카탈로그">
+        </div>
+        <div class="ffull">
+          <label for="upCat" data-i18n="adm.fileCat">분류</label>
+          <select id="upCat"></select>
+        </div>
+        <button type="submit" class="btn-admin" id="upBtn" data-i18n="adm.upload">업로드</button>
+        <p class="adm-status" id="upStatus"></p>
+      </form>
+
+      <div class="admin-sect" style="margin-top:14px">
+        <h5 data-i18n="adm.listTitle">등록된 자료</h5>
+        <div class="adm-filelist" id="admList"></div>
+      </div>
+
+      <button type="button" class="btn-ghost" id="adminLogout" data-i18n="adm.logout">로그아웃</button>
+    </div>
+  </div>
+</div>
 </main>
 
 <!-- ================= FOOTER ================= -->
@@ -746,6 +963,7 @@ footer {
         <a href="#products" data-i18n="nav.products">취급 품목</a>
         <a href="#brands" data-i18n="nav.brands">취급 브랜드</a>
         <a href="#process" data-i18n="nav.process">진행 절차</a>
+        <a href="#downloads" data-i18n="nav.downloads">다운로드</a>
         <a href="#contact" data-i18n="nav.contact">견적 문의</a>
         <a href="https://hakgeekim-source.github.io/QRJangbu.github.io/" target="_blank" rel="noopener noreferrer" data-i18n="nav.jangbu">큐알장부</a>
       </div>
@@ -793,6 +1011,7 @@ var I18N = {
     'nav.about': '회사 소개',
     'nav.products': '취급 품목',
     'nav.brands': '취급 브랜드',
+    'nav.downloads': '다운로드',
     'nav.jangbu': '큐알장부',
     'nav.process': '진행 절차',
     'nav.contact': '견적 문의',
@@ -871,6 +1090,47 @@ var I18N = {
     'contact.addr': '서울특별시 송파구 백제고분로42길 37, 지하1층(송파동)',
     'contact.lHours': '영업 시간',
     'contact.hours': '평일 09:00 ~ 18:00',
+    'map.title': '오시는 길',
+    'map.big': '지도에서 크게 보기 ↗',
+    'dl.title': '자료실',
+    'dl.admin': '관리자',
+    'dl.desc': '제품 카탈로그, 인증서, 견적 양식 등 필요한 자료를 내려받으실 수 있습니다.',
+    'dl.empty': '등록된 자료가 없습니다.',
+    'dl.down': '다운로드',
+    'dl.cat1': '카탈로그', 'dl.cat2': '인증서', 'dl.cat3': '견적 양식', 'dl.cat4': '기타',
+    'adm.loginTitle': '관리자 로그인',
+    'adm.loginSub': '자료를 등록·삭제할 수 있는 관리자 전용 메뉴입니다.',
+    'adm.email': '아이디',
+    'adm.pass': '비밀번호',
+    'adm.login': '로그인',
+    'adm.badLogin': '아이디 또는 비밀번호가 올바르지 않습니다.',
+    'adm.panelTitle': '자료 관리',
+    'adm.panelSub': '업로드한 파일은 GitHub 저장소의 files/ 폴더에 커밋되어 모든 방문자가 내려받을 수 있습니다.',
+    'adm.cfgTitle': '저장소 연결',
+    'adm.owner': 'GitHub 사용자',
+    'adm.repo': '저장소',
+    'adm.branch': '브랜치',
+    'adm.folder': '저장 폴더',
+    'adm.token': 'GitHub 토큰 (contents:write)',
+    'adm.cfgSave': '연결 저장 (이 브라우저 세션에만)',
+    'adm.cfgHint': '토큰은 페이지에 기록되지 않고 브라우저 세션에만 유지됩니다.',
+    'adm.cfgSaved': '연결이 저장되었습니다. 자료를 업로드해 보세요.',
+    'adm.file': '파일 선택',
+    'adm.fileTitle': '자료 제목 (선택)',
+    'adm.fileCat': '분류',
+    'adm.upload': '업로드',
+    'adm.uploading': '업로드 중... 저장소에 커밋하고 있습니다.',
+    'adm.uploaded': '업로드가 완료되었습니다. 잠시 후 페이지에 반영됩니다.',
+    'adm.deleting': '삭제 중...',
+    'adm.deleted': '삭제되었습니다.',
+    'adm.del': '삭제',
+    'adm.confirmDel': '이 자료를 삭제할까요?',
+    'adm.listTitle': '등록된 자료',
+    'adm.logout': '로그아웃',
+    'adm.needCfg': '먼저 저장소 연결(사용자·저장소·토큰)을 저장해 주세요.',
+    'adm.needFile': '파일을 선택해 주세요.',
+    'adm.tooBig': '파일이 너무 큽니다. 24MB 이하만 업로드할 수 있습니다.',
+    'adm.fail': '실패:',
     'form.title': '온라인 견적 의뢰서',
     'form.company': '회사명 / 상호',
     'form.companyPh': '예) (주)한국테크',
@@ -905,6 +1165,7 @@ var I18N = {
     'nav.about': 'About',
     'nav.products': 'Products',
     'nav.brands': 'Brands',
+    'nav.downloads': 'Downloads',
     'nav.jangbu': 'QR Jangbu',
     'nav.process': 'How we work',
     'nav.contact': 'Contact',
@@ -983,6 +1244,47 @@ var I18N = {
     'contact.addr': 'B1, 37 Baekjegobun-ro 42-gil, Songpa-gu, Seoul, Korea',
     'contact.lHours': 'Opening hours',
     'contact.hours': 'Mon–Fri 09:00 – 18:00 (KST)',
+    'map.title': 'Find us',
+    'map.big': 'Open in Maps ↗',
+    'dl.title': 'Downloads',
+    'dl.admin': 'Admin',
+    'dl.desc': 'Download catalogues, certificates, quote forms and other documents you need.',
+    'dl.empty': 'No documents available yet.',
+    'dl.down': 'Download',
+    'dl.cat1': 'Catalogue', 'dl.cat2': 'Certificate', 'dl.cat3': 'Quote form', 'dl.cat4': 'Other',
+    'adm.loginTitle': 'Admin sign-in',
+    'adm.loginSub': 'Administrator area for uploading and removing documents.',
+    'adm.email': 'ID',
+    'adm.pass': 'Password',
+    'adm.login': 'Sign in',
+    'adm.badLogin': 'Incorrect ID or password.',
+    'adm.panelTitle': 'Document management',
+    'adm.panelSub': 'Uploaded files are committed to the files/ folder of your GitHub repository and are downloadable by every visitor.',
+    'adm.cfgTitle': 'Repository connection',
+    'adm.owner': 'GitHub user',
+    'adm.repo': 'Repository',
+    'adm.branch': 'Branch',
+    'adm.folder': 'Folder',
+    'adm.token': 'GitHub token (contents:write)',
+    'adm.cfgSave': 'Save connection (this browser session only)',
+    'adm.cfgHint': 'The token is never written into the page; it stays in this browser session.',
+    'adm.cfgSaved': 'Connection saved. You can upload documents now.',
+    'adm.file': 'Choose file',
+    'adm.fileTitle': 'Document title (optional)',
+    'adm.fileCat': 'Category',
+    'adm.upload': 'Upload',
+    'adm.uploading': 'Uploading... committing to the repository.',
+    'adm.uploaded': 'Upload complete. It appears on the page shortly.',
+    'adm.deleting': 'Deleting...',
+    'adm.deleted': 'Deleted.',
+    'adm.del': 'Delete',
+    'adm.confirmDel': 'Delete this document?',
+    'adm.listTitle': 'Documents',
+    'adm.logout': 'Sign out',
+    'adm.needCfg': 'Save the repository connection (user, repository, token) first.',
+    'adm.needFile': 'Please choose a file.',
+    'adm.tooBig': 'File too large. Maximum 24 MB.',
+    'adm.fail': 'Failed:',
     'form.title': 'Online quote request',
     'form.company': 'Company',
     'form.companyPh': 'e.g. Acme Industrial Co.',
@@ -1139,6 +1441,15 @@ function setLang(lang, skipUrl) {
   sel.innerHTML = pack.catOptions.map(function(o) { return '<option>' + o + '</option>'; }).join('');
   if (keep > -1 && keep < pack.catOptions.length) sel.selectedIndex = keep;
 
+  // material categories
+  var upCat = document.getElementById('upCat');
+  if (upCat) {
+    var keepMat = upCat.selectedIndex;
+    upCat.innerHTML = ['dl.cat1', 'dl.cat2', 'dl.cat3', 'dl.cat4']
+      .map(function(k) { return '<option value="' + pack[k] + '">' + pack[k] + '</option>'; }).join('');
+    if (keepMat > -1 && keepMat < 4) upCat.selectedIndex = keepMat;
+  }
+
   // form meta
   document.getElementById('fsLang').value = LANG;
   document.getElementById('fsSubject').value = pack['form.subject'];
@@ -1154,6 +1465,8 @@ function setLang(lang, skipUrl) {
   document.getElementById('qItems').setAttribute('placeholder', pack['form.itemsPh']);
 
   renderProducts();
+  renderMaterials();
+  updateMap();
 
   if (!skipUrl) {
     try {
@@ -1163,6 +1476,19 @@ function setLang(lang, skipUrl) {
       history.replaceState(null, '', url.pathname + url.search);
     } catch (e) { /* noop */ }
   }
+}
+
+/* ---------------- Map (language aware) ---------------- */
+var MAP_Q;
+function updateMap() {
+  var query = (LANG === 'en')
+    ? '37 Baekjegobun-ro 42-gil, Songpa-gu, Seoul, Korea'
+    : '서울특별시 송파구 백제고분로42길 37';
+  var q = encodeURIComponent(query);
+  var frame = document.getElementById('mapFrame');
+  var big = document.getElementById('mapBig');
+  if (frame) frame.setAttribute('src', 'https://maps.google.com/maps?q=' + q + '&z=17&hl=' + (LANG === 'en' ? 'en' : 'ko') + '&output=embed');
+  if (big) big.setAttribute('href', 'https://maps.google.com/?q=' + q);
 }
 
 /* ---------------- Mobile menu ---------------- */
@@ -1243,6 +1569,326 @@ function resetForm() {
   document.getElementById('qName').focus();
 }
 
+
+/* =========================================================
+   자료실 (Materials) — 공개 다운로드 + 관리자 전용 업로드
+   공개: files/index.json 을 읽어 목록 렌더링
+   관리자: 로그인 후 GitHub Contents API 로 files/ 에 커밋
+   ========================================================= */
+var MAT_FOLDER = 'files';
+var MAT_INDEX = MAT_FOLDER + '/index.json';
+var ADMIN_GATE = '248909ea';
+var CFG_KEY = 'qrtech_mat_cfg';
+var AUTH_KEY = 'qrtech_mat_auth';
+var materials = [];
+var matCats = [];
+
+function gateHash(str) {
+  var v = 5381;
+  for (var i = 0; i < str.length; i++) v = ((v * 33) ^ str.charCodeAt(i)) >>> 0;
+  return ('0000000' + v.toString(16)).slice(-8);
+}
+function uiStr(key) { return t(key); }
+
+function fmtSize(bytes) {
+  if (!bytes && bytes !== 0) return '';
+  var u = ['B', 'KB', 'MB', 'GB'], i = 0, n = bytes;
+  while (n >= 1024 && i < u.length - 1) { n = n / 1024; i++; }
+  return (i === 0 ? n : n.toFixed(1)) + ' ' + u[i];
+}
+function extOf(name) {
+  var m = /\.([A-Za-z0-9]+)$/.exec(name || '');
+  return m ? m[1].toLowerCase() : '';
+}
+function renderMaterials() {
+  var box = document.getElementById('dlList');
+  if (!box) return;
+  if (!materials.length) {
+    box.innerHTML = '<div class="dl-empty">' + uiStr('dl.empty') + '</div>';
+    return;
+  }
+  var html = '';
+  materials.forEach(function(f) {
+    var ext = extOf(f.name);
+    var label = ext ? ext.toUpperCase().slice(0, 4) : 'FILE';
+    var href = MAT_FOLDER + '/' + encodeURIComponent(f.name);
+    var meta = [fmtSize(f.size), f.date, f.cat].filter(Boolean).join(' · ');
+    html += '<div class="dl-item">' +
+      '<div class="dl-ext ' + ext + '">' + label + '</div>' +
+      '<div class="dl-meta"><b>' + (f.title || f.name) + '</b><span>' + meta + '</span></div>' +
+      '<a class="dl-btn" href="' + href + '" download>' + uiStr('dl.down') +
+        ' <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12"/><path d="M6 12l6 6 6-6"/><path d="M5 20h14"/></svg>' +
+      '</a>' +
+    '</div>';
+  });
+  box.innerHTML = html;
+}
+
+function loadMaterials() {
+  return fetch(MAT_INDEX + '?t=' + Date.now(), { cache: 'no-store' })
+    .then(function(r) { return r.ok ? r.json() : { files: [] }; })
+    .then(function(j) {
+      materials = Array.isArray(j.files) ? j.files : [];
+      renderMaterials();
+      renderAdminList();
+    })
+    .catch(function() {
+      materials = [];
+      renderMaterials();
+      renderAdminList();
+    });
+}
+
+/* ---------- GitHub helpers ---------- */
+function matCfg() {
+  try { return JSON.parse(sessionStorage.getItem(CFG_KEY) || '{}'); } catch (e) { return {}; }
+}
+function matCfgReady(c) { return !!(c && c.owner && c.repo && c.token); }
+
+function b64ToText(b64) {
+  var bin = atob((b64 || '').replace(/\s/g, ''));
+  var bytes = new Uint8Array(bin.length);
+  for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  return new TextDecoder('utf-8').decode(bytes);
+}
+function textToB64(str) {
+  var bytes = new TextEncoder().encode(str), bin = '', CH = 0x8000;
+  for (var i = 0; i < bytes.length; i += CH) {
+    bin += String.fromCharCode.apply(null, bytes.subarray(i, i + CH));
+  }
+  return btoa(bin);
+}
+function fileToB64(file) {
+  return new Promise(function(res, rej) {
+    var fr = new FileReader();
+    fr.onload = function() { res(String(fr.result).split(',')[1] || ''); };
+    fr.onerror = function() { rej(new Error('read error')); };
+    fr.readAsDataURL(file);
+  });
+}
+function gh(method, repoPath, cfg, body) {
+  return fetch('https://api.github.com/repos/' + cfg.owner + '/' + cfg.repo + '/contents/' + repoPath, {
+    method: method,
+    headers: {
+      'Authorization': 'Bearer ' + cfg.token,
+      'Accept': 'application/vnd.github+json',
+      'Content-Type': 'application/json'
+    },
+    body: body ? JSON.stringify(body) : undefined
+  }).then(function(r) {
+    return r.text().then(function(txt) {
+      var j = {};
+      try { j = JSON.parse(txt); } catch (e) {}
+      if (!r.ok) {
+        var msg = (j && j.message) ? j.message : ('HTTP ' + r.status);
+        var err = new Error(msg);
+        err.status = r.status;
+        throw err;
+      }
+      return j;
+    });
+  });
+}
+function readManifest(cfg) {
+  return gh('GET', MAT_INDEX, cfg)
+    .then(function(j) {
+      var parsed = {};
+      try { parsed = JSON.parse(b64ToText(j.content)); } catch (e) {}
+      return { files: Array.isArray(parsed.files) ? parsed.files : [], sha: j.sha };
+    })
+    .catch(function(e) {
+      if (e.status === 404) return { files: [], sha: null };
+      throw e;
+    });
+}
+function writeManifest(cfg, files, sha) {
+  var payload = { updated: new Date().toISOString(), files: files };
+  var body = {
+    message: 'chore(files): update material index',
+    content: textToB64(JSON.stringify(payload, null, 2)),
+    branch: cfg.branch || 'main'
+  };
+  if (sha) body.sha = sha;
+  return gh('PUT', MAT_INDEX, cfg, body);
+}
+function safeName(name) {
+  return String(name).replace(/[^\w.\-]+/g, '_').replace(/_{2,}/g, '_').slice(-80);
+}
+
+/* ---------- Admin UI ---------- */
+function openAdmin() {
+  var m = document.getElementById('adminModal');
+  m.classList.add('open');
+  m.setAttribute('aria-hidden', 'false');
+  var ok = sessionStorage.getItem(AUTH_KEY) === '1';
+  document.getElementById('adminLogin').style.display = ok ? 'none' : '';
+  document.getElementById('adminPanel').style.display = ok ? '' : 'none';
+  if (ok) fillCfgForm();
+}
+function closeAdmin() {
+  var m = document.getElementById('adminModal');
+  m.classList.remove('open');
+  m.setAttribute('aria-hidden', 'true');
+}
+function fillCfgForm() {
+  var c = matCfg();
+  if (c.owner) document.getElementById('ghOwner').value = c.owner;
+  if (c.repo) document.getElementById('ghRepo').value = c.repo;
+  if (c.branch) document.getElementById('ghBranch').value = c.branch;
+  if (c.token) document.getElementById('ghToken').value = c.token;
+}
+function setStatus(el, type, msg) {
+  el.className = 'adm-status ' + type;
+  el.textContent = msg;
+}
+function renderAdminList() {
+  var box = document.getElementById('admList');
+  if (!box) return;
+  if (!materials.length) {
+    box.innerHTML = '<div style="font-size:11.5px;color:#94A3B8">' + uiStr('dl.empty') + '</div>';
+    return;
+  }
+  var html = '';
+  materials.forEach(function(f, idx) {
+    html += '<div class="adm-filerow"><span>' + (f.title || f.name) + '</span>' +
+      '<button type="button" data-idx="' + idx + '" class="adm-del">' + uiStr('adm.del') + '</button></div>';
+  });
+  box.innerHTML = html;
+  box.querySelectorAll('.adm-del').forEach(function(btn) {
+    btn.addEventListener('click', function() { deleteMaterial(parseInt(btn.getAttribute('data-idx'), 10)); });
+  });
+}
+
+function deleteMaterial(idx) {
+  var cfg = matCfg();
+  var st = document.getElementById('upStatus');
+  if (!matCfgReady(cfg)) { setStatus(st, 'err', uiStr('adm.needCfg')); return; }
+  var f = materials[idx];
+  if (!f) return;
+  if (!confirm(uiStr('adm.confirmDel'))) return;
+  setStatus(st, 'ok', uiStr('adm.deleting'));
+  gh('GET', MAT_FOLDER + '/' + encodeURIComponent(f.name), cfg)
+    .then(function(j) {
+      return gh('DELETE', MAT_FOLDER + '/' + encodeURIComponent(f.name), cfg, {
+        message: 'chore(files): remove ' + f.name,
+        sha: j.sha,
+        branch: cfg.branch || 'main'
+      });
+    })
+    .then(function() { return readManifest(cfg); })
+    .then(function(mf) {
+      var next = mf.files.filter(function(x) { return x.name !== f.name; });
+      return writeManifest(cfg, next, mf.sha);
+    })
+    .then(function() {
+      setStatus(st, 'ok', uiStr('adm.deleted'));
+      return loadMaterials();
+    })
+    .catch(function(e) { setStatus(st, 'err', uiStr('adm.fail') + ' ' + e.message); });
+}
+
+/* ---------- Wiring ---------- */
+document.getElementById('adminToggle').addEventListener('click', openAdmin);
+document.getElementById('adminClose').addEventListener('click', closeAdmin);
+document.getElementById('adminModal').addEventListener('click', function(e) {
+  if (e.target === this) closeAdmin();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeAdmin();
+});
+
+document.getElementById('adminForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var em = document.getElementById('aEmail').value.trim().toLowerCase();
+  var pw = document.getElementById('aPass').value;
+  var err = document.getElementById('aErr');
+  if (gateHash(em + '|' + pw) === ADMIN_GATE) {
+    sessionStorage.setItem(AUTH_KEY, '1');
+    err.textContent = '';
+    document.getElementById('adminLogin').style.display = 'none';
+    document.getElementById('adminPanel').style.display = '';
+    fillCfgForm();
+  } else {
+    err.textContent = uiStr('adm.badLogin');
+  }
+});
+
+document.getElementById('adminLogout').addEventListener('click', function() {
+  sessionStorage.removeItem(AUTH_KEY);
+  sessionStorage.removeItem(CFG_KEY);
+  document.getElementById('adminPanel').style.display = 'none';
+  document.getElementById('adminLogin').style.display = '';
+  document.getElementById('aPass').value = '';
+  closeAdmin();
+});
+
+document.getElementById('cfgSave').addEventListener('click', function() {
+  var cfg = {
+    owner: document.getElementById('ghOwner').value.trim(),
+    repo: document.getElementById('ghRepo').value.trim(),
+    branch: document.getElementById('ghBranch').value.trim() || 'main',
+    token: document.getElementById('ghToken').value.trim()
+  };
+  sessionStorage.setItem(CFG_KEY, JSON.stringify(cfg));
+  var st = document.getElementById('upStatus');
+  if (!matCfgReady(cfg)) { setStatus(st, 'err', uiStr('adm.needCfg')); return; }
+  setStatus(st, 'ok', uiStr('adm.cfgSaved'));
+  readManifest(cfg).then(function(mf) {
+    materials = mf.files;
+    renderAdminList();
+    renderMaterials();
+  }).catch(function(e) { setStatus(st, 'err', uiStr('adm.fail') + ' ' + e.message); });
+});
+
+document.getElementById('uploadForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var cfg = matCfg();
+  var st = document.getElementById('upStatus');
+  var btn = document.getElementById('upBtn');
+  if (!matCfgReady(cfg)) { setStatus(st, 'err', uiStr('adm.needCfg')); return; }
+
+  var input = document.getElementById('upFile');
+  var file = input.files && input.files[0];
+  if (!file) { setStatus(st, 'err', uiStr('adm.needFile')); return; }
+  if (file.size > 24 * 1024 * 1024) { setStatus(st, 'err', uiStr('adm.tooBig')); return; }
+
+  var title = document.getElementById('upTitle').value.trim() || file.name;
+  var cat = document.getElementById('upCat').value;
+  var stored = 'f' + Date.now() + '-' + safeName(file.name);
+
+  btn.disabled = true;
+  setStatus(st, 'ok', uiStr('adm.uploading'));
+
+  fileToB64(file)
+    .then(function(b64) {
+      return gh('PUT', MAT_FOLDER + '/' + encodeURIComponent(stored), cfg, {
+        message: 'feat(files): upload ' + file.name,
+        content: b64,
+        branch: cfg.branch || 'main'
+      });
+    })
+    .then(function() { return readManifest(cfg); })
+    .then(function(mf) {
+      var entry = {
+        name: stored,
+        title: title,
+        cat: cat,
+        size: file.size,
+        date: new Date().toISOString().slice(0, 10)
+      };
+      var next = mf.files.slice();
+      next.unshift(entry);
+      return writeManifest(cfg, next, mf.sha);
+    })
+    .then(function() {
+      setStatus(st, 'ok', uiStr('adm.uploaded'));
+      document.getElementById('uploadForm').reset();
+      return loadMaterials();
+    })
+    .catch(function(err) { setStatus(st, 'err', uiStr('adm.fail') + ' ' + err.message); })
+    .then(function() { btn.disabled = false; });
+});
+
 /* ---------------- Init ---------------- */
 (function init() {
   var params = new URLSearchParams(window.location.search);
@@ -1250,6 +1896,7 @@ function resetForm() {
   if (!initial && window.location.hash === '#en') initial = 'en';
   setLang(initial === 'en' ? 'en' : 'ko', true);
   mountMail();
+  loadMaterials();
 })();
 </script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","spa":2}' crossorigin="anonymous"></script>

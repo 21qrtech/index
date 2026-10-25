@@ -1,0 +1,1625 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>큐알장부 · 실행 버전 패키지</title><style>
+:root{--ink:#1b2330;--sub:#5b6675;--line:#dfe3ea;--paper:#f7f7f4;--card:#ffffff;--blue:#285eb5;--deep:#1d4487;--seal:#b3392f;--codebg:#101823}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;line-height:1.65}
+.hero{background:linear-gradient(130deg,#22314a 0%,#1d4487 78%);color:#fff;padding:46px 28px 42px}
+.hero .in{max-width:940px;margin:0 auto}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;color:#9fc0f0;margin-bottom:10px}
+.hero h1{margin:0 0 10px;font-size:29px;font-weight:800;letter-spacing:-.01em}
+.hero p{margin:0;font-size:14.5px;color:#cdd8ea;max-width:640px}
+.wrap{max-width:940px;margin:0 auto;padding:26px 20px 70px}
+section{margin-bottom:34px}
+h2{font-size:19px;font-weight:800;margin:0 0 6px;letter-spacing:-.01em}
+h2 .step{display:inline-block;width:26px;height:26px;border-radius:50%;background:var(--deep);color:#fff;font-size:13px;text-align:center;line-height:26px;margin-right:8px;vertical-align:2px}
+.sub{color:var(--sub);font-size:13.5px;margin:0 0 16px}
+.duo{display:grid;grid-template-columns:1fr 44px 1fr;gap:0;align-items:stretch}
+.side{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.side .tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.2em;padding:4px 10px;border-radius:20px;margin-bottom:10px}
+.side.debit .tag{background:rgba(40,94,181,.1);color:var(--deep)}
+.side.credit .tag{background:rgba(179,57,47,.08);color:var(--seal)}
+.side h3{margin:0 0 8px;font-size:16.5px}
+.side p{font-size:13.5px;color:var(--sub);margin:0 0 10px}
+.side ul{margin:0;padding-left:18px;font-size:13.5px;color:var(--ink)}
+.side li{margin-bottom:4px}
+.filechip{margin-top:12px;font-size:12px;color:var(--deep);background:rgba(40,94,181,.07);border:1px dashed rgba(40,94,181,.4);border-radius:8px;padding:7px 10px;word-break:break-all}
+.mid{display:flex;align-items:center;justify-content:center;color:var(--sub);font-weight:800}
+ol.steps{counter-reset:st;list-style:none;padding:0;margin:0}
+ol.steps li{counter-increment:st;position:relative;padding:10px 0 10px 44px;border-bottom:1px solid var(--line);font-size:14px}
+ol.steps li:before{content:counter(st);position:absolute;left:0;top:9px;width:28px;height:28px;border-radius:8px;background:var(--deep);color:#fff;font-weight:800;font-size:14px;text-align:center;line-height:28px}
+ol.steps b{font-weight:800}
+.copybtn{background:var(--deep);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:700;cursor:pointer}
+.copybtn.done{background:#1c7a43}
+pre{background:var(--codebg);color:#dbe6f5;border-radius:12px;padding:18px;font-size:12px;line-height:1.55;overflow:auto;max-height:420px;margin:12px 0 0}
+table.cmp{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--card)}
+table.cmp th,table.cmp td{border:1px solid var(--line);padding:9px 12px;text-align:left}
+table.cmp th{background:#eef1f6;font-weight:800}
+.caution{background:#fff;border:1px solid var(--line);border-left:4px solid var(--seal);border-radius:10px;padding:14px 18px;font-size:13.5px}
+.caution li{margin-bottom:6px}
+@media(max-width:760px){.duo{grid-template-columns:1fr}.mid{display:none}.hero h1{font-size:24px}}
+</style></head><body>
+<div class="hero"><div class="in">
+<div class="eyebrow">큐알장부 · 스마트 회계 — 실행 버전 패키지</div>
+<h1>한 벌의 장부, 두 개의 실행 방식</h1>
+<p>같은 회계 체계를 크롬에서는 단독 프로그램으로, 구글 시트에서는 상단 메뉴로 실행합니다. 이 문서에 설치 안내와 코드가 모두 들어 있으니 순서대로 따라 하면 됩니다.</p>
+</div></div>
+<div class="wrap">
+
+<section class="duo">
+  <div class="side debit">
+    <span class="tag">차변 · 크롬 실행</span>
+    <h3>크롬 실행 버전</h3>
+    <p>HTML 파일 하나를 PC 크롬(또는 Edge)에서 열면 별도 설치 없이 바로 실행되는 단독 프로그램입니다.</p>
+    <ul>
+      <li>데이터는 이 브라우저에 저장 (로컬)</li>
+      <li>백업 폴더를 지정하면 전표 저장 시·종료 시 자동 백업</li>
+      <li>전표 입력 (자동 분개)·거래명세서·세금계산서·재무제표 8종 전 기능 탑재</li>
+    </ul>
+    <div class="filechip">파일: 큐알장부 - 스마트 회계 (크롬).html</div>
+  </div>
+  <div class="mid">=</div>
+  <div class="side credit">
+    <span class="tag">대변 · 구글 시트 실행</span>
+    <h3>구글 시트 실행 버전</h3>
+    <p>구글 시트에 Apps Script를 붙여넣으면 시트 상단에 <b>큐알장부 메뉴</b>가 생기고, 데이터가 시트에 그대로 저장됩니다.</p>
+    <ul>
+      <li>전 기능 탑재 — 탭 10개 (전표 · 장부 · 재무제표 · 결산 · 가결산 · 부가세·세무 · 분석 · 업로드 · 기준정보 · 설정)</li>
+      <li>데이터는 시트에 그대로 저장되고, 보고서는 [시트로 저장] 버튼으로 기록</li>
+      <li>매출 전표 저장 시 거래명세서(TR-)·세금계산서(TX-) 자동 발행·연동</li>
+      <li>크롬 버전과 백업 파일 공유 — [설정 → 백업 공유]에서 qr-backup.json 내려받기·복원</li>
+    </ul>
+    <div class="filechip">파일: 이 안내 문서 + 큐알장부-구글시트-스크립트.zip</div>
+  </div>
+</section>
+
+<section>
+  <h2>구글 시트 버전 설치 — 7단계</h2>
+  <p class="sub">PC 브라우저에서 진행하세요. 약 3분이면 끝납니다.</p>
+  <ol class="steps">
+    <li><b>새 구글 시트</b>를 만듭니다 (sheets.new 입력).</li>
+    <li>상단 <b>확장 프로그램 → Apps Script</b>를 엽니다.</li>
+    <li>에디터의 기본 코드를 모두 지우고, 아래 <b>Code.gs</b> 코드를 붙여넣습니다.</li>
+    <li><b>+ → HTML</b>로 새 파일을 만들고 이름을 정확히 <b>UI</b>로 지정한 뒤, 아래 <b>UI.html</b> 코드를 붙여넣습니다. (기존 내용 전체 교체)</li>
+    <li><b>저장</b>(Ctrl+S) 후 시트 탭으로 돌아와 <b>새로고침</b>하면 상단에 <b>큐알장부</b> 메뉴가 생깁니다.</li>
+    <li><b>큐알장부 → 초기 설정 (시트 자동 생성)</b>을 먼저 실행합니다. 첫 실행 시 Google 승인 화면이 나오면 <b>[승인 필요] → 계정 선택 → [고급] → [안전하지 않은 페이지로 이동] → [허용]</b>을 누릅니다. (직접 만든 스크립트라 안전합니다)</li>
+  <li><b>큐알장부 → 큐알장부 열기 (전체 화면)</b>를 누르면 전 기능 화면이 열립니다 (탭 10개).</li>
+  </ol>
+</section>
+
+<section>
+  <h2>Code.gs</h2>
+  <p class="sub">Apps Script 에디터의 기본 코드를 지우고 전체를 붙여넣으세요.</p>
+  <button class="copybtn" data-src="c1">코드 복사</button>
+  <pre id="c1"><code>/** 큐알장부 — 구글 시트 실행 버전 (Google Apps Script · 전 기능 통합)
+ *
+ * 설치 방법:
+ *  1. 새 구글 시트를 만듭니다 (sheets.new).
+ *  2. 확장 프로그램 → Apps Script를 엽니다.
+ *  3. 기본 코드를 지우고 이 파일(Code.gs) 전체를 붙여넣습니다.
+ *  4. [+ → HTML]로 새 파일을 만들고 이름을 정확히 'UI'로 지정한 뒤,
+ *     UI.html 파일의 내용 전체를 붙여넣습니다.
+ *  5. 저장(Ctrl+S) 후 시트로 돌아와 새로고침하면 상단에 '큐알장부' 메뉴가 생깁니다.
+ *  6. [큐알장부 → 초기 설정] 실행 후 [큐알장부 열기]로 전체 화면을 엽니다.
+ *     첫 실행 승인 화면: [승인 필요] → 계정 선택 → [고급] → [안전하지 않은 페이지로 이동] → [허용]
+ */
+
+const N_SET='설정', N_ACC='계정과목', N_PART='거래처', N_BANK='은행계좌', N_OPEN='최초잔액',
+      N_V='전표', N_DOC='문서', N_PROD='품목', N_STK='재고수불', N_AS='자산', N_DEPT='부서',
+      N_TPL='템플릿', N_MAP='매핑', N_FX='외화';
+
+const HEADERS={};
+HEADERS[N_SET]=['항목','값'];
+HEADERS[N_ACC]=['코드','계정명','구분','사용'];
+HEADERS[N_PART]=['거래처명','구분','사업자등록번호','대표자','전화','주소','메모','사용'];
+HEADERS[N_BANK]=['계좌별칭','은행명','계좌번호','예금주','연결계정코드','사용'];
+HEADERS[N_OPEN]=['계정코드','금액','거래처'];
+HEADERS[N_V]=['일자','전표번호','적요','계정코드','계정명','거래처','차변','대변','증빙','세무구분','부서','라인적요','전표ID'];
+HEADERS[N_DOC]=['문서번호','종류','구분','일자','거래처','공급가액','세액','합계','계정코드','품목요약','비고','연결전표ID','문서ID'];
+HEADERS[N_PROD]=['코드','품목명','규격','매출단가','매입단가','기초수량','기초단가','연결계정코드','사용'];
+HEADERS[N_STK]=['일자','품목코드','품목명','구분','수량','단가','금액','잔량','전표ID'];
+HEADERS[N_AS]=['자산명','유형','취득일','취득금액','내용연수','잔존가치','상각누계','상태','연결계정코드','자산ID'];
+HEADERS[N_DEPT]=['부서명','사용'];
+HEADERS[N_TPL]=['이름','라인JSON'];
+HEADERS[N_MAP]=['재고계정코드','원가계정코드'];
+HEADERS[N_FX]=['일자','통화','외화금액','환율','원화금액','메모','전표ID'];
+
+const DEFAULT_ACCOUNTS=[
+  [101,'현금','A'],[103,'보통예금','A'],[108,'외상매출금','A'],[120,'미수금','A'],
+  [135,'부가세대급금','A'],[146,'상품','A'],[147,'제품','A'],[148,'원재료','A'],[212,'비품','A'],
+  [251,'외상매입금','L'],[253,'미지급금','L'],[255,'부가세예수금','L'],[260,'단기차입금','L'],
+  [331,'자본금','E'],[375,'이월이익잉여금','E'],
+  [401,'상품매출','R'],[420,'용역매출','R'],[901,'이자수익','R'],
+  [451,'상품매출원가','X'],[801,'급여','X'],[811,'복리후생비','X'],[812,'여비교통비','X'],
+  [813,'접대비','X'],[814,'통신비','X'],[815,'감가상각비','X'],[819,'임차료','X'],[822,'차량유지비','X'],
+  [831,'수수료비용','X'],[833,'광고선전비','X'],[951,'이자비용','X']
+];
+const PM_CODES=[108,120,251,253];
+const TYPE_NAME={A:'자산',L:'부채',E:'자본',R:'수익',X:'비용'};
+
+/* ── 메뉴 ── */
+function onOpen(){
+  SpreadsheetApp.getUi().createMenu('큐알장부')
+    .addItem('큐알장부 열기 (전체 화면)','openApp')
+    .addItem('초기 설정 (시트 자동 생성)','setupSheets')
+    .addSeparator()
+    .addItem('합계잔액시산표 → 시트','rptSheetTB')
+    .addItem('손익계산서 → 시트','rptSheetPL')
+    .addItem('재무상태표 → 시트','rptSheetBS')
+    .addToUi();
+}
+function openApp(){
+  setupSheets();
+  const html=HtmlService.createHtmlOutputFromFile('UI').setWidth(1080).setHeight(740);
+  SpreadsheetApp.getUi().showModalDialog(html,'큐알장부 · 스마트 회계 (구글 시트 실행)');
+}
+function rptSheetTB(){ writeReportSheet('tb',{}); }
+function rptSheetPL(){ writeReportSheet('pnl',{}); }
+function rptSheetBS(){ writeReportSheet('bs',{}); }
+
+/* ── 공통 헬퍼 ── */
+function sh_(name){ return SpreadsheetApp.getActiveSpreadsheet().getSheetByName(name); }
+function ensureSheet_(name){
+  const ss=SpreadsheetApp.getActiveSpreadsheet();
+  let s=ss.getSheetByName(name);
+  if(!s){
+    s=ss.insertSheet(name);
+    s.getRange(1,1,1,HEADERS[name].length).setValues([HEADERS[name]])
+      .setFontWeight('bold').setBackground('#e8eaed');
+    s.setFrozenRows(1);
+  }
+  return s;
+}
+function str_(v){
+  if(v instanceof Date) return Utilities.formatDate(v,Session.getScriptTimeZone(),'yyyy-MM-dd');
+  return String(v==null?'':v).trim();
+}
+function num_(v){ const n=Number(String(v==null?0:v).toString().replace(/,/g,'')); return Number.isFinite(n)?n:0; }
+function readRows_(name){
+  const s=sh_(name); if(!s) return [];
+  const v=s.getDataRange().getValues(), keys=HEADERS[name], out=[];
+  for(let i=1;i&lt;v.length;i++){
+    const o={}; let empty=true;
+    for(let j=0;j&lt;keys.length;j++){ o[keys[j]]=v[i][j] instanceof Date?v[i][j]:v[i][j]; if(str_(v[i][j])!=='') empty=false; }
+    if(!empty) o.__row=i+1;
+    if(!empty) out.push(o);
+  }
+  return out;
+}
+function appendRows_(name,arr2d,fmtCols){
+  if(!arr2d.length) return;
+  const sh=ensureSheet_(name), start=sh.getLastRow()+1;
+  sh.getRange(start,1,arr2d.length,arr2d[0].length).setValues(arr2d);
+  if(fmtCols) fmtCols.forEach(c=&gt;sh.getRange(start,c[0],arr2d.length,c[1]).setNumberFormat('#,##0'));
+}
+function setupSheets(){
+  const ss=SpreadsheetApp.getActiveSpreadsheet();
+  Object.keys(HEADERS).forEach(n=&gt;ensureSheet_(n));
+  const acc=sh_(N_ACC);
+  if(acc.getLastRow()&lt;2){
+    acc.getRange(2,1,DEFAULT_ACCOUNTS.length,3).setValues(DEFAULT_ACCOUNTS);
+    acc.getRange(2,4,DEFAULT_ACCOUNTS.length,1).setValue('사용');
+  }
+  const set=sh_(N_SET);
+  if(set.getLastRow()&lt;2){
+    const y=new Date().getFullYear();
+    set.getRange(2,1,11,2).setValues([
+      ['회사명','내 회사'],['사업자등록번호',''],['대표자',''],['주소',''],['업태',''],['종목',''],
+      ['조회 시작일',y+'-01-01'],['조회 종료일',y+'-12-31'],
+      ['기초 이월이익',0],['부가세 절사','절사'],['마감일','']
+    ]);
+  }
+  ss.toast('시트 준비 완료. [큐알장부 열기]로 시작하세요.','큐알장부 초기 설정');
+}
+function settings_(){
+  const o={}; readRows_(N_SET).forEach(r=&gt;{ o[String(r['항목']).trim()]=r['값']; });
+  return o;
+}
+function setSetting_(k,v){
+  const sh=ensureSheet_(N_SET), rows=readRows_(N_SET);
+  const hit=rows.find(r=&gt;String(r['항목']).trim()===k);
+  if(hit) sh.getRange(hit.__row,2).setValue(v);
+  else sh.getRange(sh.getLastRow()+1,1,1,2).setValues([[k,v]]);
+}
+function period_(){
+  const s=settings_();
+  return [ str_(s['조회 시작일'])||'1900-01-01', str_(s['조회 종료일'])||'2999-12-31' ];
+}
+function vatOf_(n){ const s=settings_(); return (str_(s['부가세 절사'])==='반올림'?Math.round:Math.floor)(n*0.1); }
+function accounts_(){
+  return readRows_(N_ACC).filter(r=&gt;num_(r['코드'])).map(r=&gt;({
+    code:num_(r['코드']), name:String(r['계정명']||''), type:String(r['구분']||'A').trim().toUpperCase(),
+    use:String(r['사용']||'사용').trim()!=='미사용' }));
+}
+function amap_(){ const m={}; accounts_().forEach(a=&gt;m[a.code]=a); return m; }
+function vouchers_(){
+  return readRows_(N_V).map(r=&gt;({
+    date:str_(r['일자']), no:num_(r['전표번호']), memo:String(r['적요']||''),
+    code:num_(r['계정코드']), name:String(r['계정명']||''), p:String(r['거래처']||''),
+    d:num_(r['차변']), c:num_(r['대변']), proof:String(r['증빙']||''), tax:String(r['세무구분']||''),
+    dept:String(r['부서']||''), lm:String(r['라인적요']||''), id:String(r['전표ID']||'') }));
+}
+function opening_(){
+  const per={}, tot={};
+  readRows_(N_OPEN).forEach(r=&gt;{
+    const code=num_(r['계정코드']), amt=num_(r['금액']), p=String(r['거래처']||'').trim();
+    if(!code||!amt) return;
+    tot[code]=(tot[code]||0)+amt;
+    if(p){ const k=code+'|'+p; per[k]=(per[k]||0)+amt; }
+  });
+  return {tot:tot, per:per};
+}
+
+/* ── 부팅 데이터 ── */
+function getBoot(){
+  const s=settings_(), p=period_();
+  let t=Utilities.formatDate(new Date(),Session.getScriptTimeZone(),'yyyy-MM-dd');
+  if(t&lt;p[0]) t=p[0]; if(t&gt;p[1]) t=p[1];
+  const st=stockBalances_();
+  return {
+    settings:{
+      name:str_(s['회사명'])||'내 회사', no:str_(s['사업자등록번호']), ceo:str_(s['대표자']),
+      addr:str_(s['주소']), upte:str_(s['업태']), jong:str_(s['종목']),
+      s:p[0], e:p[1], base:num_(s['기초 이월이익']), vat:str_(s['부가세 절사'])||'절사',
+      closing:str_(s['마감일'])
+    },
+    today:t, accounts:accounts_(), partners:readRows_(N_PART).map(r=&gt;({
+      name:String(r['거래처명']||'').trim(), kind:String(r['구분']||'겸용'), no:str_(r['사업자등록번호']),
+      ceo:str_(r['대표자']), tel:str_(r['전화']), addr:str_(r['주소']), memo:str_(r['메모']),
+      use:String(r['사용']||'사용').trim()!=='미사용' })).filter(x=&gt;x.name),
+    banks:readRows_(N_BANK).map(r=&gt;({alias:String(r['계좌별칭']||''),bank:String(r['은행명']||''),
+      no:str_(r['계좌번호']),holder:str_(r['예금주']),acct:num_(r['연결계정코드'])||103,
+      use:String(r['사용']||'사용').trim()!=='미사용'})),
+    depts:readRows_(N_DEPT).map(r=&gt;String(r['부서명']||'').trim()).filter(Boolean),
+    templates:readRows_(N_TPL).map(r=&gt;{ try{ return {name:String(r['이름']||''),lines:JSON.parse(r['라인JSON']||'[]')}; }catch(e){ return null; } }).filter(Boolean),
+    products:readRows_(N_PROD).map(r=&gt;({code:num_(r['코드']),name:String(r['품목명']||''),
+      spec:str_(r['규격']),sp:num_(r['매출단가']),pp:num_(r['매입단가']),
+      q0:num_(r['기초수량']),p0:num_(r['기초단가']),acct:num_(r['연결계정코드'])||146,
+      use:String(r['사용']||'사용').trim()!=='미사용'})).filter(x=&gt;x.code),
+    prodBal:st, mappings:readRows_(N_MAP).map(r=&gt;({from:num_(r['재고계정코드']),to:num_(r['원가계정코드'])})),
+    docs:readRows_(N_DOC).map(r=&gt;({no:String(r['문서번호']||''),kind:String(r['종류']||''),side:String(r['구분']||''),
+      date:str_(r['일자']),p:String(r['거래처']||''),supply:num_(r['공급가액']),vat:num_(r['세액']),
+      total:num_(r['합계']),acct:num_(r['계정코드'])||401,items:String(r['품목요약']||''),
+      note:String(r['비고']||''),vch:String(r['연결전표ID']||''),id:String(r['문서ID']||'')}))
+  };
+}
+
+/* ── 전표 저장 (공통) ── */
+function checkClosing_(date){
+  const s=settings_();
+  if(str_(s['마감일']) &amp;&amp; str_(s['마감일'])&lt;date &amp;&amp; String(s['마감 잠금']||'')!=='해제')
+    throw new Error('마감일('+str_(s['마감일'])+') 이후 일자입니다. 설정 시트의 마감일을 조정하거나 마감을 해제하세요.');
+}
+function saveVoucher(payload){
+  const lock=LockService.getScriptLock(); lock.waitLock(10000);
+  try{
+    setupSheets();
+    const p=period_(), date=str_(payload&amp;&amp;payload.date), memo=String((payload&amp;&amp;payload.memo)||'').trim();
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(date)) throw new Error('일자를 YYYY-MM-DD 형식으로 선택하세요.');
+    if(date&lt;p[0]||date&gt;p[1]) throw new Error('일자가 조회 기간('+p[0]+' ~ '+p[1]+') 밖입니다. 설정 시트에서 기간을 조정하세요.');
+    checkClosing_(date);
+    const map=amap_();
+    const lines=(payload.lines||[]).filter(l=&gt;num_(l.d)||num_(l.c)).map(l=&gt;{
+      const code=num_(l.acct);
+      if(!map[code]) throw new Error('등록되지 않은 계정 코드입니다: '+code);
+      const d=num_(l.d), c=num_(l.c);
+      if(d&amp;&amp;c) throw new Error('한 라인에는 차변 또는 대변 하나만 입력하세요.');
+      return { code:code, name:map[code].name, type:map[code].type, p:String(l.p||''),
+               d:Math.max(d,0), c:Math.max(c,0), proof:String(l.proof||''), tax:String(l.tax||''),
+               dept:String(l.dept||''), lm:String(l.lm||'') };
+    });
+    if(lines.length&lt;2) throw new Error('2개 이상의 라인에 금액을 입력하세요.');
+    const dTot=lines.reduce((s,l)=&gt;s+l.d,0), cTot=lines.reduce((s,l)=&gt;s+l.c,0);
+    if(!dTot||Math.abs(dTot-cTot)&gt;0.001) throw new Error('차변·대변 합계가 일치하지 않습니다. ('+dTot+' / '+cTot+')');
+    const sh=ensureSheet_(N_V);
+    let no=0; sh.getDataRange().getValues().forEach((r,i)=&gt;{ if(i&amp;&amp;str_(r[0])===date) no=Math.max(no,num_(r[1])); });
+    no+=1;
+    const vid=Utilities.getUuid();
+    const rows=lines.map(l=&gt;[date,no,memo,l.code,l.name,l.p,l.d,l.c,l.proof,l.tax,l.dept,l.lm,vid]);
+    appendRows_(N_V,rows,[[7,2]]);
+    autoDocs_(lines,date,vid,memo);
+    return { ok:true, msg:'✓ 전표 저장 — '+date+' 제'+no+'번 ('+lines.length+'라인 · 차대변 '+dTot+'원 일치)', id:vid, no:no, date:date };
+  } finally{ lock.releaseLock(); }
+}
+/* 매출 전표 → 거래명세서·세금계산서 자동 기록 (판매 연동) */
+function autoDocs_(lines,date,vid,memo){
+  const supply=lines.filter(l=&gt;l.type==='R').reduce((s,l)=&gt;s+l.c,0);
+  if(!supply) return;
+  const vat=lines.filter(l=&gt;l.code===255).reduce((s,l)=&gt;s+l.c,0);
+  const partner=lines.map(l=&gt;l.p).find(Boolean)||'';
+  const dv=readRows_(N_DOC);
+  let tr=0, tx=0;
+  dv.forEach(r=&gt;{ const n=String(r['문서번호']||'');
+    if(n.indexOf('TR-')===0) tr=Math.max(tr,num_(n.slice(3)));
+    if(n.indexOf('TX-')===0) tx=Math.max(tx,num_(n.slice(3))); });
+  appendRows_(N_DOC,[
+    ['TR-'+String(tr+1).padStart(4,'0'),'거래명세서','매출',date,partner,supply,vat,supply+vat,401,memo,'전표 연동 자동 발행',vid,Utilities.getUuid()],
+    ['TX-'+String(tx+1).padStart(4,'0'),'세금계산서','매출',date,partner,supply,vat,supply+vat,401,memo,'전표 연동 자동 발행',vid,Utilities.getUuid()]
+  ],[[6,3]]);
+}
+function listVouchers(f){
+  const p=period_();
+  const s=(f&amp;&amp;f.s)||p[0], e=(f&amp;&amp;f.e)||p[1], acct=num_(f&amp;&amp;f.acct), q=String((f&amp;&amp;f.q)||'').trim(), pt=String((f&amp;&amp;f.p)||'').trim();
+  const rows=vouchers_().filter(v=&gt;v.date&gt;=s&amp;&amp;v.date&lt;=e)
+    .filter(v=&gt;!acct||v.code===acct)
+    .filter(v=&gt;!pt||v.p===pt)
+    .filter(v=&gt;!q||(v.memo+v.name+v.p+v.lm).indexOf(q)&gt;=0)
+    .sort((a,b)=&gt;a.date.localeCompare(b.date)||a.no-b.no);
+  const td=rows.reduce((s2,r)=&gt;s2+r.d,0), tc=rows.reduce((s2,r)=&gt;s2+r.c,0);
+  return { rows:rows, dTot:td, cTot:tc };
+}
+function delVoucher(id){
+  const lock=LockService.getScriptLock(); lock.waitLock(10000);
+  try{
+    const sh=ensureSheet_(N_V), rows=readRows_(N_V).filter(r=&gt;String(r['전표ID'])===String(id));
+    if(!rows.length) throw new Error('전표를 찾을 수 없습니다.');
+    rows.sort((a,b)=&gt;b.__row-a.__row).forEach(r=&gt;sh.deleteRow(r.__row));
+    unlinkDocs_(id);
+    return {ok:true,msg:'✓ 전표 '+rows.length+'라인 삭제 완료'};
+  } finally{ lock.releaseLock(); }
+}
+function unlinkDocs_(vid){
+  const sh=ensureSheet_(N_DOC), rows=readRows_(N_DOC).filter(r=&gt;String(r['연결전표ID'])===String(vid));
+  rows.sort((a,b)=&gt;b.__row-a.__row).forEach(r=&gt;sh.getRange(r.__row,12).setValue(''));
+}
+/* ── 간이 전표 / 매입·매출 ── */
+function saveSimple(p){
+  const date=str_(p.date), inc=p.dir==='입금', n=num_(p.amt);
+  if(!n) throw new Error('금액을 입력하세요.');
+  if(inc&amp;&amp;p.tax==='불공제') throw new Error('매출에는 불공제를 선택할 수 없습니다.');
+  const t=(p.tax==='과세'||p.tax==='불공제')?(p.taxamt!==''&amp;&amp;p.taxamt!=null?num_(p.taxamt):(p.tax==='과세'?vatOf_(Math.abs(n)):0)):0;
+  const extra={tax:p.tax||'',proof:p.proof||'',dept:p.dept||'',lm:p.memo||''};
+  const L=[{acct:num_(p.acct),p:p.p||'',d:inc?0:(n+(p.tax==='불공제'?t:0)),c:inc?(n+(p.tax==='불공제'?t:0)):0,...extra},
+           {acct:num_(p.pay),p:p.p||'',d:inc?(n+t):0,c:inc?0:(n+t),dept:p.dept||''}];
+  if(t&amp;&amp;p.tax!=='불공제') L.push({acct:inc?255:135,p:p.p||'',d:inc?0:t,c:inc?t:0,dept:p.dept||''});
+  return saveVoucher({date:date,memo:String(p.memo||''),lines:L});
+}
+function saveBuySell(p){
+  const n=num_(p.amt); if(!n) throw new Error('금액을 입력하세요.');
+  const buy=p.side==='매입';
+  const v=p.vatOn?vatOf_(n):num_(p.vat);
+  const L=buy?[{acct:num_(p.acct)||146,p:p.p||'',d:n,c:0,proof:p.proof||'',tax:'과세',lm:p.memo||''},
+              {acct:135,p:p.p||'',d:v,c:0,proof:p.proof||''},
+              {acct:num_(p.pay)||251,p:p.p||'',d:0,c:n+v}]
+             :[{acct:num_(p.pay)||108,p:p.p||'',d:n+v,c:0},
+               {acct:num_(p.acct)||401,p:p.p||'',d:0,c:n,proof:p.proof||'',tax:'과세',lm:p.memo||''},
+               {acct:255,p:p.p||'',d:0,c:v,proof:p.proof||''}];
+  return saveVoucher({date:str_(p.date),memo:(buy?'매입 ':'매출 ')+String(p.memo||''),lines:L});
+}
+/* ── 문서 (거래명세서·세금계산서) ── */
+function saveDoc(p){
+  const lock=LockService.getScriptLock(); lock.waitLock(10000);
+  try{
+    setupSheets();
+    const date=str_(p.date); checkClosing_(date);
+    const supply=num_(p.supply), vat=num_(p.vat);
+    if(!supply) throw new Error('공급가액이 0원입니다.');
+    const dv=readRows_(N_DOC); let tr=0, tx=0;
+    dv.forEach(r=&gt;{ const n=String(r['문서번호']||'');
+      if(n.indexOf('TR-')===0) tr=Math.max(tr,num_(n.slice(3)));
+      if(n.indexOf('TX-')===0) tx=Math.max(tx,num_(n.slice(3))); });
+    const kind=String(p.kind||'거래명세서');
+    const no=(kind==='세금계산서'?'TX-':'TR-')+String(kind==='세금계산서'?tx+1:tr+1).padStart(4,'0');
+    const id=Utilities.getUuid();
+    appendRows_(N_DOC,[[no,kind,String(p.side||'매출'),date,String(p.p||''),supply,vat,supply+vat,num_(p.acct)||401,
+      String(p.items||''),String(p.note||''),'',id]],[[6,3]]);
+    return {ok:true,msg:'✓ '+kind+' 저장 — '+no,id:id,no:no};
+  } finally{ lock.releaseLock(); }
+}
+function docVch(id){
+  const lock=LockService.getScriptLock(); lock.waitLock(10000);
+  try{
+    const d=readRows_(N_DOC).find(r=&gt;String(r['문서ID'])===String(id));
+    if(!d) throw new Error('문서를 찾을 수 없습니다.');
+    if(String(d['연결전표ID']||'')) throw new Error('이미 생성된 전표가 있습니다. 먼저 되돌리세요.');
+    const side=String(d['구분']||'매출'), supply=num_(d['공급가액']), vat=num_(d['세액']), tot=num_(d['합계']);
+    const acct=num_(d['계정코드'])||(side==='매출'?401:451), p=String(d['거래처']||'');
+    const L=side==='매출'?[{acct:108,p:p,d:tot,c:0},{acct:acct,p:p,d:0,c:supply},{acct:255,p:p,d:0,c:vat}]
+                        :[{acct:acct,p:p,d:supply,c:0},{acct:135,p:p,d:vat,c:0},{acct:251,p:p,d:0,c:tot}];
+    const r=saveVoucher({date:str_(d['일자']),memo:'['+String(d['종류'])+'] '+String(d['문서번호'])+' '+p,lines:L});
+    ensureSheet_(N_DOC).getRange(d.__row,12).setValue(r.id);
+    return {ok:true,msg:'✓ '+side+' 전표 생성 완료 — '+r.msg,id:r.id};
+  } finally{ lock.releaseLock(); }
+}
+function docUndo(id){
+  const lock=LockService.getScriptLock(); lock.waitLock(10000);
+  try{
+    const d=readRows_(N_DOC).find(r=&gt;String(r['문서ID'])===String(id));
+    if(!d) throw new Error('문서를 찾을 수 없습니다.');
+    const vid=String(d['연결전표ID']||'');
+    if(!vid) throw new Error('생성된 전표가 없습니다.');
+    const sh=ensureSheet_(N_V), rows=readRows_(N_V).filter(r=&gt;String(r['전표ID'])===vid);
+    rows.sort((a,b)=&gt;b.__row-a.__row).forEach(r=&gt;sh.deleteRow(r.__row));
+    ensureSheet_(N_DOC).getRange(d.__row,12).setValue('');
+    return {ok:true,msg:'✓ 연결 전표 되돌리기 완료'};
+  } finally{ lock.releaseLock(); }
+}
+function delDoc(id){
+  const lock=LockService.getScriptLock(); lock.waitLock(10000);
+  try{
+    const d=readRows_(N_DOC).find(r=&gt;String(r['문서ID'])===String(id));
+    if(!d) throw new Error('문서를 찾을 수 없습니다.');
+    const vid=String(d['연결전표ID']||'');
+    if(vid){
+      const sh=ensureSheet_(N_V), rows=readRows_(N_V).filter(r=&gt;String(r['전표ID'])===vid);
+      rows.sort((a,b)=&gt;b.__row-a.__row).forEach(r=&gt;sh.deleteRow(r.__row));
+    }
+    ensureSheet_(N_DOC).deleteRow(d.__row);
+    return {ok:true,msg:'✓ 문서 삭제 완료'+(vid?' (연결 전표 함께 삭제)':'')};
+  } finally{ lock.releaseLock(); }
+}
+/* ── 템플릿 (자주 쓰는 분개) ── */
+function saveTemplate(p){
+  const name=String(p.name||'').trim(); if(!name) throw new Error('템플릿 이름을 입력하세요.');
+  const sh=ensureSheet_(N_TPL), rows=readRows_(N_TPL);
+  const hit=rows.find(r=&gt;String(r['이름'])===name);
+  const json=JSON.stringify(p.lines||[]);
+  if(hit) sh.getRange(hit.__row,2).setValue(json); else sh.getRange(sh.getLastRow()+1,1,1,2).setValues([[name,json]]);
+  return {ok:true,msg:'✓ 템플릿 저장 — '+name};
+}
+function delTemplate(name){
+  const sh=ensureSheet_(N_TPL), rows=readRows_(N_TPL).filter(r=&gt;String(r['이름'])===String(name));
+  rows.sort((a,b)=&gt;b.__row-a.__row).forEach(r=&gt;sh.deleteRow(r.__row));
+  return {ok:true,msg:'✓ 템플릿 삭제'};
+}
+function runTemplate(name,date,post){
+  const t=readRows_(N_TPL).find(r=&gt;String(r['이름'])===String(name));
+  if(!t) throw new Error('템플릿을 찾을 수 없습니다.');
+  const lines=JSON.parse(t['라인JSON']||'[]');
+  if(!lines.length) throw new Error('템플릿에 라인이 없습니다.');
+  if(!post) return {ok:true,lines:lines,msg:'불러오기 완료'};
+  return saveVoucher({date:str_(date),memo:String(name),lines:lines});
+}
+/* ── 재고수불 ── */
+function stockBalances_(){
+  const bal={};
+  readRows_(N_PROD).forEach(r=&gt;{ const c=num_(r['코드']); if(c) bal[c]={q:num_(r['기초수량']),amt:num_(r['기초수량'])*num_(r['기초단가'])}; });
+  const moves=readRows_(N_STK);
+  moves.sort((a,b)=&gt;str_(a['일자']).localeCompare(str_(b['일자'])));
+  moves.forEach(m=&gt;{
+    const c=num_(m['품목코드']); if(!c) return;
+    bal[c]=bal[c]||{q:0,amt:0};
+    const q=num_(m['수량']), amt=num_(m['금액']);
+    if(String(m['구분'])==='입고'){ bal[c].q+=q; bal[c].amt+=amt; }
+    else if(String(m['구분'])==='출고'){ bal[c].q-=q; bal[c].amt-=amt; }
+    else { bal[c].q+=q; bal[c].amt+=amt; }
+  });
+  return bal;
+}
+function saveMove(p){
+  const lock=LockService.getScriptLock(); lock.waitLock(10000);
+  try{
+    setupSheets();
+    const date=str_(p.date); checkClosing_(date);
+    const prod=readRows_(N_PROD).find(r=&gt;num_(r['코드'])===num_(p.code));
+    if(!prod) throw new Error('품목을 찾을 수 없습니다. 기준정보 → 최초재고에 등록하세요.');
+    const q=num_(p.qty); if(!q) throw new Error('수량을 입력하세요.');
+    const type=String(p.type||'입고'), stockAcct=num_(prod['연결계정코드'])||146;
+    let amt;
+    if(type==='입고') amt=num_(p.amt)||(q*num_(p.price)||q*num_(prod['매입단가']));
+    else{
+      const bal=stockBalances_()[num_(p.code)]||{q:0,amt:0};
+      const unit=bal.q&gt;0?bal.amt/bal.q:num_(prod['매입단가']);
+      amt=num_(p.amt)||Math.round(q*unit);
+    }
+    let vid='';
+    if(p.post){
+      const L=type==='입고'
+        ?[{acct:stockAcct,d:amt,c:0,p:String(p.partner||''),lm:prod['품목명']+' 입고 '+q},
+          {acct:num_(p.pay)||251,d:0,c:amt,p:String(p.partner||'')}]
+        :[{acct:num_(p.cogs)||451,d:amt,c:0,lm:prod['품목명']+' 출고 '+q},
+          {acct:stockAcct,d:0,c:amt}];
+      const r=saveVoucher({date:date,memo:'[재고'+type+'] '+String(prod['품목명']),lines:L});
+      vid=r.id;
+    }
+    const bal=stockBalances_();
+    const remain=(bal[num_(p.code)]||{q:0}).q+(type==='입고'?q:-q);
+    appendRows_(N_STK,[[date,num_(p.code),String(prod['품목명']),type,q,amt/q&gt;0?Math.round(amt/q):0,amt,remain,vid]],[[6,7]]);
+    return {ok:true,msg:'✓ 재고'+type+' 기록 — '+String(prod['품목명'])+' '+q+(vid?' (전표 생성)':'')};
+  } finally{ lock.releaseLock(); }
+}
+/* ── 자산 (유·무형) ── */
+function saveAsset(p){
+  const lock=LockService.getScriptLock(); lock.waitLock(10000);
+  try{
+    setupSheets(); const date=str_(p.date); checkClosing_(date);
+    const name=String(p.name||'').trim(); if(!name) throw new Error('자산명을 입력하세요.');
+    const amt=num_(p.amt), yrs=num_(p.yrs)||5, sal=num_(p.salvage);
+    if(!amt) throw new Error('취득금액을 입력하세요.');
+    const id=Utilities.getUuid(), acct=num_(p.acct)||212;
+    const L=[{acct:acct,d:amt,c:0,lm:name+' 취득'},{acct:num_(p.pay)||103,d:0,c:amt,lm:name+' 취득'}];
+    const r=saveVoucher({date:date,memo:'[자산취득] '+name,lines:L});
+    appendRows_(N_AS,[[name,String(p.kind||'유형'),date,amt,yrs,sal,0,'보유',acct,id]]);
+    return {ok:true,msg:'✓ 자산 등록 — '+name+' (취득 전표 생성)',id:id};
+  } finally{ lock.releaseLock(); }
+}
+function depreciateAssets(ym){
+  const lock=LockService.getScriptLock(); lock.waitLock(10000);
+  try{
+    setupSheets();
+    const ymS=String(ym||'').trim();
+    if(!/^\d{4}-\d{2}$/.test(ymS)) throw new Error('상각 연월을 YYYY-MM 형식으로 입력하세요.');
+    const assets=readRows_(N_AS).filter(r=&gt;String(r['상태'])==='보유');
+    if(!assets.length) throw new Error('보유 자산이 없습니다.');
+    const vs=vouchers_();
+    const done=[], out=[];
+    assets.forEach(a=&gt;{
+      const tag='[상각]'+String(a['자산명'])+'-'+ymS;
+      if(vs.some(v=&gt;v.memo===tag)) return;
+      const life=num_(a['내용연수'])||5, amt=num_(a['취득금액']), sal=num_(a['잔존가치']);
+      const per=Math.round((amt-sal)/(life*12));
+      if(per&lt;=0) return;
+      if(num_(a['상각누계'])+per&gt;amt-sal) return;
+      const L=[{acct:815,d:per,c:0,lm:String(a['자산명'])+' '+ymS+' 상각'},{acct:num_(a['연결계정코드'])||212,d:0,c:per}];
+      const r=saveVoucher({date:ymS+'-28',memo:tag,lines:L});
+      out.push(String(a['자산명'])+' '+per+'원');
+    });
+    if(!out.length) return {ok:true,msg:'이번 달 새로 상각할 자산이 없습니다.'};
+    return {ok:true,msg:'✓ 감가상각 '+out.length+'건 — '+out.join(', ')};
+  } finally{ lock.releaseLock(); }
+}
+function disposeAsset(p){
+  const lock=LockService.getScriptLock(); lock.waitLock(10000);
+  try{
+    setupSheets(); const date=str_(p.date); checkClosing_(date);
+    const a=readRows_(N_AS).find(r=&gt;String(r['자산ID'])===String(p.id));
+    if(!a) throw new Error('자산을 찾을 수 없습니다.');
+    const acct=num_(a['연결계정코드'])||212, nb=num_(a['취득금액'])-num_(a['상각누계']);
+    const price=num_(p.amount), mode=String(p.mode||'매각');
+    const L=mode==='매각'
+      ?[{acct:num_(p.pay)||103,d:price,c:0},{acct:acct,d:0,c:nb}]
+      :[{acct:acct,d:0,c:nb}];
+    if(mode==='매각'&amp;&amp;price!==nb) L.push({acct:price&gt;nb?901:951,d:price&gt;nb?0:price-nb,c:price&gt;nb?price-nb:0});
+    if(mode==='폐기'&amp;&amp;nb&gt;0) L.push({acct:809,d:nb,c:0});
+    const r=saveVoucher({date:date,memo:'[자산'+mode+'] '+String(a['자산명']),lines:L});
+    const sh=ensureSheet_(N_AS);
+    sh.getRange(a.__row,8).setValue(mode==='매각'?'매각':'폐기');
+    return {ok:true,msg:'✓ 자산'+mode+' 처리 — '+String(a['자산명'])+' (장부가액 '+nb+'원)',id:r.id};
+  } finally{ lock.releaseLock(); }
+}
+/* ── 외화거래 ── */
+function saveForex(p){
+  const lock=LockService.getScriptLock(); lock.waitLock(10000);
+  try{
+    setupSheets(); const date=str_(p.date); checkClosing_(date);
+    const fv=num_(p.famt), rate=num_(p.rate);
+    if(!fv||!rate) throw new Error('외화 금액과 환율을 입력하세요.');
+    const krw=Math.round(fv*rate);
+    const L=p.dir==='유출'
+      ?[{acct:num_(p.acct)||951,d:krw,c:0,lm:String(p.cur)+' '+fv},{acct:num_(p.pay)||103,d:0,c:krw,lm:String(p.cur)+' '+fv}]
+      :[{acct:num_(p.pay)||103,d:krw,c:0,lm:String(p.cur)+' '+fv},{acct:num_(p.acct)||401,d:0,c:krw,lm:String(p.cur)+' '+fv}];
+    const r=saveVoucher({date:date,memo:'[외화] '+String(p.cur)+' '+fv+' @'+rate,lines:L});
+    appendRows_(N_FX,[[date,String(p.cur||'USD'),fv,rate,krw,String(p.memo||''),r.id]],[[5]]);
+    return {ok:true,msg:'✓ 외화거래 기록 — '+p.cur+' '+fv+' = '+krw+'원',id:r.id};
+  } finally{ lock.releaseLock(); }
+}
+/* ── 기준정보 저장 ── */
+function saveMasters(p){
+  const lock=LockService.getScriptLock(); lock.waitLock(10000);
+  try{
+    setupSheets();
+    if(p.settings){
+      Object.keys(p.settings).forEach(k=&gt;setSetting_(k,p.settings[k]));
+    }
+    const put=(name,headers,arr)=&gt;{
+      const sh=ensureSheet_(name);
+      if(sh.getLastRow()&gt;1) sh.getRange(2,1,sh.getLastRow()-1,headers.length).clearContent();
+      if(arr.length) sh.getRange(2,1,arr.length,headers.length).setValues(arr);
+    };
+    if(p.accounts) put(N_ACC,HEADERS[N_ACC],p.accounts);
+    if(p.partners) put(N_PART,HEADERS[N_PART],p.partners);
+    if(p.banks) put(N_BANK,HEADERS[N_BANK],p.banks);
+    if(p.depts) put(N_DEPT,HEADERS[N_DEPT],p.depts);
+    if(p.products) put(N_PROD,HEADERS[N_PROD],p.products);
+    if(p.opening) put(N_OPEN,HEADERS[N_OPEN],p.opening);
+    if(p.mappings) put(N_MAP,HEADERS[N_MAP],p.mappings);
+    return {ok:true,msg:'✓ 기준정보 저장 완료'};
+  } finally{ lock.releaseLock(); }
+}
+function saveProvStock(p){
+  const sh=ensureSheet_(N_SET), rows=readRows_(N_SET);
+  const key='가결산 재고 '+String(p.month);
+  const hit=rows.find(r=&gt;String(r['항목'])===key);
+  if(hit) sh.getRange(hit.__row,2).setValue(num_(p.amt));
+  else sh.getRange(sh.getLastRow()+1,1,1,2).setValues([[key,num_(p.amt)]]);
+  return {ok:true,msg:'✓ '+p.month+' 기말재고 저장 — '+num_(p.amt)+'원'};
+}
+/* ── 가져오기 (붙여넣기) ── */
+function importPreview(text){
+  const map=amap_(), rows=[];
+  String(text||'').split(/\r?\n/).forEach(line=&gt;{
+    if(!line.trim()) return;
+    const c=line.indexOf('\t')&gt;=0?line.split('\t'):line.split(',');
+    if(c.length&lt;5) return;
+    const date=str_(c[0]), memo=str_(c[1]), acctTxt=str_(c[2]), p=str_(c[3]), d=num_(c[4]), cr=num_(c[5]);
+    if(!date&amp;&amp;!d&amp;&amp;!cr) return;
+    let code=0, how='';
+    if(/^\d+$/.test(acctTxt)&amp;&amp;map[+acctTxt]){ code=+acctTxt; how='코드 일치'; }
+    else{
+      const hit=Object.values(map).find(a=&gt;a.name===acctTxt);
+      if(hit){ code=hit.code; how='이름 일치'; }
+      else{
+        const inc=Object.values(map).find(a=&gt;acctTxt&amp;&amp;a.name.indexOf(acctTxt)&gt;=0);
+        if(inc){ code=inc.code; how='이름 포함(확인)'; }
+        else how='미매칭';
+      }
+    }
+    rows.push({date:date,memo:memo,acctTxt:acctTxt,code:code,how:how,p:p,d:d,c:cr});
+  });
+  return {ok:true,rows:rows};
+}
+function importCommit(rows){
+  const lock=LockService.getScriptLock(); lock.waitLock(10000);
+  try{
+    const map=amap_(); let n=0;
+    (rows||[]).forEach(r=&gt;{
+      if(!r.code||!map[r.code]) return;
+      const L=[{acct:r.code,d:num_(r.d),c:num_(r.c),p:String(r.p||''),lm:String(r.memo||'')},
+               {acct:r.code,d:num_(r.d)?0:num_(r.c)?0:0,c:0}];
+      L.length=1;
+      L.push({acct:num_(r.offset)||101,d:num_(r.d)?0:num_(r.c),c:num_(r.d),p:String(r.p||'')});
+      saveVoucher({date:str_(r.date),memo:String(r.memo||'가져오기'),lines:L});
+      n++;
+    });
+    return {ok:true,msg:'✓ 가져오기 완료 — '+n+'전표'};
+  } finally{ lock.releaseLock(); }
+}
+
+/* ══════════ 보고서 엔진 ══════════ */
+function plBuckets_(vs,map,start,end){
+  const B={sales:[],cogs:[],sga:[],nr:[],nx:[],tax:[]};
+  const per={}, mk=()=&gt;({d:0,c:0});
+  vs.forEach(v=&gt;{
+    if(v.date&lt;start||v.date&gt;end) return;
+    const a=map[v.code]; if(!a) return;
+    const q=per[v.code]||(per[v.code]=mk()); q.d+=v.d; q.c+=v.c;
+  });
+  Object.keys(per).forEach(k=&gt;{
+    const a=map[+k], q=per[k];
+    if(a.type==='R'){ (a.code&lt;900?B.sales:B.nr).push({a:a,amt:q.c-q.d}); }
+    else if(a.type==='X'){
+      if(/법인세/.test(a.name)) B.tax.push({a:a,amt:q.d-q.c});
+      else if(a.code&lt;500||/원가/.test(a.name)) B.cogs.push({a:a,amt:q.d-q.c});
+      else if(a.code&gt;=900) B.nx.push({a:a,amt:q.d-q.c});
+      else B.sga.push({a:a,amt:q.d-q.c});
+    }
+  });
+  const T=arr=&gt;arr.reduce((s,x)=&gt;s+x.amt,0);
+  B.SA=T(B.sales); B.CO=T(B.cogs); B.SG=T(B.sga); B.NR=T(B.nr); B.NX=T(B.nx); B.TX=T(B.tax);
+  B.GP=B.SA-B.CO; B.OP=B.GP-B.SG; B.ORD=B.OP+B.NR-B.NX; B.NET=B.ORD-B.TX;
+  return B;
+}
+function bsBuckets_(map,end){
+  const op=opening_(), vs=vouchers_();
+  const bal={}, mk=()=&gt;({d:0,c:0});
+  Object.keys(op.tot).forEach(k=&gt;{ const c=+k, o=op.tot[k]; const q=bal[c]||(bal[c]=mk()); if(o&gt;0)q.d+=o; else q.c+=-o; });
+  let pnlBefore=0;
+  vs.forEach(v=&gt;{
+    if(!v.date||v.date&gt;end) return;
+    const a=map[v.code]; if(!a) return;
+    const q=bal[v.code]||(bal[v.code]=mk()); q.d+=v.d; q.c+=v.c;
+    if(v.date&lt;(period_()[0])&amp;&amp;(a.type==='R'||a.type==='X'))
+      pnlBefore+=a.type==='R'?(v.c-v.d):-(v.d-v.c);
+  });
+  const base=Number(settings_()['기초 이월이익'])||0;
+  const q375=bal[375]||(bal[375]=mk()); q375.c+=base+pnlBefore&gt;0?base+pnlBefore:0; q375.d+=base+pnlBefore&lt;0?-(base+pnlBefore):0;
+  const net=(c)=&gt;{ const q=bal[c]||mk(); return q.c-q.d; };
+  const val=(a)=&gt;{ const q=bal[a.code]||mk(); return (a.type==='A'||a.type==='X')?q.d-q.c:q.c-q.d; };
+  const ni=(function(){ let R=0,X=0; vs.forEach(v=&gt;{ if(!v.date||v.date&gt;end||v.date&lt;period_()[0])return; const a=map[v.code]; if(!a)return; if(a.type==='R')R+=v.c-v.d; if(a.type==='X')X+=v.d-v.c; }); return R-X; })();
+  return {bal:bal,val:val,ni:ni};
+}
+function report(kind,opt){
+  opt=opt||{};
+  const p=period_(), map=amap_();
+  const s=str_(opt.s)||p[0], e=str_(opt.e)||p[1];
+  const R={title:'',sub:'',headers:[],rows:[],tail:''};
+  const vs=vouchers_();
+  if(kind==='journal'){
+    const f=vs.filter(v=&gt;v.date&gt;=s&amp;&amp;v.date&lt;=e).sort((a,b)=&gt;a.date.localeCompare(b.date)||a.no-b.no);
+    let td=0,tc=0; f.forEach(v=&gt;{td+=v.d;tc+=v.c;});
+    R.title='분개장'; R.sub=s+' ~ '+e;
+    R.headers=['일자','전표번호','적요','계정코드','계정명','거래처','차변','대변','증빙','부서'];
+    R.rows=f.map(v=&gt;[v.date,v.no,v.memo,v.code,v.name,v.p,v.d,v.c,v.proof,v.dept]);
+    R.rows.push(['합계','','','','','','',td,tc,'']); R.dTot=td; R.cTot=tc;
+    R.tail=(Math.abs(td-tc)&lt;1?'✓ 차변·대변 일치 ('+td+'원)':'⚠ 차변·대변 불일치 — 차액 '+(td-tc)+'원');
+  }
+  else if(kind==='gl'){
+    const code=num_(opt.code)||101, a=map[code]||{name:'?'};
+    const bal=bsBuckets_(map,e).bal;
+    const op=opening_(); const dir=(a.type==='A'||a.type==='X')?1:-1;
+    let b0=dir*((op.tot[code]||0));
+    let bal0=b0;
+    const f=vs.filter(v=&gt;v.code===code&amp;&amp;v.date&gt;=s&amp;&amp;v.date&lt;=e).sort((x,y)=&gt;x.date.localeCompare(y.date)||x.no-y.no);
+    const rows=[['','',bal0,'','전기이월']]; let td=0,tc=0,run=bal0;
+    f.forEach(v=&gt;{ const dv=dir*(v.d-v.c); run+=dv; td+=v.d; tc+=v.c;
+      rows.push([v.date,v.no,v.memo,v.p,v.d,v.c,run,v.lm]); });
+    R.title='총계정원장 · '+code+' '+a.name; R.sub=s+' ~ '+e;
+    R.headers=['일자','전표번호','적요','거래처','차변','대변','잔액','라인적요'];
+    R.rows=rows; R.tail='기초이월 '+bal0+' · 차변 '+td+' · 대변 '+tc+' · 기말잔액 '+run;
+  }
+  else if(kind==='partner'){
+    const p2=String(opt.p||''); 
+    const f=vs.filter(v=&gt;v.p===p2&amp;&amp;v.date&gt;=s&amp;&amp;v.date&lt;=e).sort((x,y)=&gt;x.date.localeCompare(y.date)||x.no-y.no);
+    const op=opening_(); let run=0;
+    const rows=[];
+    Object.keys(op.per).forEach(k=&gt;{ const [c,pp]=k.split('|'); if(pp===p2&amp;&amp;PM_CODES.includes(+c)) run+=(+c===108||+c===120)?op.per[k]:-op.per[k]; });
+    rows.push(['','','','전기이월','','',run]);
+    let td=0,tc=0;
+    f.forEach(v=&gt;{ if(!PM_CODES.includes(v.code)) return;
+      const dv=(v.code===108||v.code===120)?(v.d-v.c):-(v.d-v.c); run+=dv; td+=v.d; tc+=v.c;
+      rows.push([v.date,v.no,v.memo,v.name+'('+v.code+')',v.d,v.c,run]); });
+    R.title='거래처원장 · '+(p2||'미지정'); R.sub=s+' ~ '+e+' · 채권·채무 계정 줄만 계산';
+    R.headers=['일자','전표번호','적요','계정','차변','대변','잔액'];
+    R.rows=rows; R.tail='기말잔액 '+run+' (＋=채권, −=채무)';
+  }
+  else if(kind==='cash'||kind==='bank'){
+    const banks=sh_(N_BANK)?readRows_(N_BANK).filter(r=&gt;String(r['사용']||'사용')!=='미사용').map(r=&gt;num_(r['연결계정코드'])||103):[103];
+    const codes=kind==='cash'?[101]:Array.from(new Set(banks));
+    const f=vs.filter(v=&gt;codes.includes(v.code)&amp;&amp;v.date&gt;=s&amp;&amp;v.date&lt;=e).sort((x,y)=&gt;x.date.localeCompare(y.date)||x.no-y.no);
+    const op=opening_(); let run=0;
+    codes.forEach(c=&gt;run+=(op.tot[c]||0));
+    const rows=[['','','','전기이월','','',run]]; let ti=0,to=0;
+    f.forEach(v=&gt;{ run+=v.d-v.c; ti+=v.d; to+=v.c;
+      rows.push([v.date,v.no,v.memo,v.name+'('+v.code+')',v.d,v.c,run,v.p]); });
+    R.title=(kind==='cash'?'현금출납장':'예금출납장'); R.sub=s+' ~ '+e+' · 계정 '+codes.join(', ');
+    R.headers=['일자','전표번호','적요','계정','입금','출금','잔액','거래처'];
+    R.rows=rows; R.tail='기초이월 포함 · 입금 '+ti+' · 출금 '+to+' · 기말잔액 '+run;
+  }
+  else if(kind==='fund'){
+    const banks=sh_(N_BANK)?readRows_(N_BANK).map(r=&gt;num_(r['연결계정코드'])||103):[103];
+    const codes=[101].concat(banks);
+    const byDate={};
+    vs.filter(v=&gt;codes.includes(v.code)&amp;&amp;v.date&gt;=s&amp;&amp;v.date&lt;=e).forEach(v=&gt;{
+      const d=byDate[v.date]||(byDate[v.date]={in:0,out:0}); d.in+=v.d; d.out+=v.c;
+    });
+    const op=opening_(); let run=0; codes.forEach(c=&gt;run+=(op.tot[c]||0));
+    const rows=[]; Object.keys(byDate).sort().forEach(d=&gt;{ run+=byDate[d].in-byDate[d].out;
+      rows.push([d,byDate[d].in,byDate[d].out,run]); });
+    R.title='자금일보'; R.sub=s+' ~ '+e+' · 현금+은행 합산';
+    R.headers=['일자','입금','출금','잔액'];
+    R.rows=rows; R.tail='기말 잔액 '+run+'원';
+  }
+  else if(kind==='stockledger'){
+    const f=readRows_(N_STK).filter(r=&gt;{ const d=str_(r['일자']); return d&gt;=s&amp;&amp;d&lt;=e; });
+    R.title='재고수불부'; R.sub=s+' ~ '+e;
+    R.headers=['일자','품목코드','품목명','구분','수량','단가','금액','잔량'];
+    R.rows=f.map(r=&gt;[str_(r['일자']),num_(r['품목코드']),String(r['품목명']),String(r['구분']),num_(r['수량']),num_(r['단가']),num_(r['금액']),num_(r['잔량'])]);
+    R.tail='이동평가 기준 · 출고 단가는 보유 평균으로 자동 계산됩니다.';
+  }
+  else if(kind==='assettledger'||kind==='assetledger'){
+    const f=readRows_(N_AS);
+    R.title='자산대장'; R.sub='전체 자산 · 정액법 월할 기준';
+    R.headers=['자산명','유형','취득일','취득금액','내용연수','잔존가치','상각누계','상태'];
+    R.rows=f.map(r=&gt;{ const life=num_(r['내용연수'])||5, amt=num_(r['취득금액']), sal=num_(r['잔존가치']);
+      return [String(r['자산명']),String(r['유형']),str_(r['취득일']),amt,life,sal,num_(r['상각누계']),String(r['상태'])]; });
+    R.tail='월 상각액 = (취득금액 − 잔존가치) ÷ (내용연수 × 12) · 상각 실행은 전표 탭에서';
+  }
+  else if(kind==='tb'){
+    const bal=bsBuckets_(map,e).bal; const op=opening_();
+    let td=0,tc=0,bd=0,bc=0; const rows=[];
+    accounts_().filter(a=&gt;bal[a.code]&amp;&amp;(bal[a.code].d||bal[a.code].c)).sort((a,b)=&gt;a.code-b.code).forEach(a=&gt;{
+      const q=bal[a.code], raw=q.d-q.c, dd=raw&gt;0?raw:0, cc=raw&lt;0?-raw:0;
+      td+=q.d; tc+=q.c; bd+=dd; bc+=cc;
+      rows.push([a.code,a.name,q.d,q.c,dd,cc]);
+    });
+    rows.push(['합계','',td,tc,bd,bc]);
+    R.title='합계잔액시산표'; R.sub='기준일 '+e+' · 최초잔액 + 누적 전표';
+    R.headers=['코드','계정명','차변합계','대변합계','차변잔액','대변잔액'];
+    R.rows=rows; R.dTot=td; R.cTot=tc;
+    R.tail=(Math.abs(td-tc)&lt;1&amp;&amp;Math.abs(bd-bc)&lt;1?'✓ 차변·대변 합계 일치':'⚠ 차변·대변 합계 불일치 — 전표를 검산하세요.');
+  }
+  else if(kind==='pnl'||kind==='pnlq'||kind==='plspec'){
+    const B=plBuckets_(vs,map,s,e);
+    if(kind==='pnl'){
+      const rows=[];
+      const sec=(label,arr,total)=&gt;{ rows.push([label,'',total]); arr.sort((x,y)=&gt;x.a.code-y.a.code).forEach(x=&gt;rows.push(['   '+x.a.code+' '+x.a.name,'',x.amt])); };
+      sec('Ⅰ. 매출액',B.sales,B.SA); sec('Ⅱ. 매출원가',B.cogs,B.CO);
+      rows.push(['Ⅲ. 매출총이익','',B.GP]); sec('Ⅳ. 판매비와 관리비',B.sga,B.SG);
+      rows.push(['Ⅴ. 영업이익','',B.OP]); sec('Ⅵ. 영업외수익',B.nr,B.NR); sec('Ⅶ. 영업외비용',B.nx,B.NX);
+      rows.push(['Ⅷ. 법인세비용차감전순손익','',B.ORD]); sec('Ⅸ. 법인세비용',B.tax,B.TX);
+      rows.push(['Ⅹ. 당기순손익','',B.NET]);
+      R.title='손익계산서'; R.sub=s+' ~ '+e; R.headers=['항목','코드','금액']; R.rows=rows;
+      R.tail='당기순손익 '+B.NET+'원';
+    }
+    else if(kind==='pnlq'){
+      const rows=[];
+      B.sales.concat(B.nr).sort((x,y)=&gt;x.a.code-y.a.code).forEach(x=&gt;rows.push([x.a.code,x.a.name,x.amt,'수익']));
+      B.cogs.concat(B.sga,B.nx,B.tax).sort((x,y)=&gt;x.a.code-y.a.code).forEach(x=&gt;rows.push([x.a.code,x.a.name,x.amt,'비용']));
+      R.title='약식 손익계산서'; R.sub=s+' ~ '+e+' · 금액이 있는 수익·비용 계정만 개별 나열';
+      R.headers=['코드','계정명','금액','구분']; R.rows=rows;
+      R.tail='수익 합계 '+(B.SA+B.NR)+' · 비용 합계 '+(B.CO+B.SG+B.NX+B.TX)+' · 당기순이익 '+B.NET;
+    }
+    else{
+      const rows=[];
+      rows.push(['① 매출액 및 매출원가 명세서','','']);
+      rows.push(['Ⅰ. 매출액','',B.SA]);
+      B.sales.sort((x,y)=&gt;x.a.code-y.a.code).forEach(x=&gt;rows.push(['   '+x.a.name,'',x.amt]));
+      rows.push(['Ⅱ. 매출원가','',B.CO]);
+      B.cogs.sort((x,y)=&gt;x.a.code-y.a.code).forEach(x=&gt;rows.push(['   '+x.a.name,'',x.amt]));
+      rows.push(['Ⅲ. 매출총손익','',B.GP]);
+      rows.push(['② 판매비와 관리비 명세서','','']);
+      B.sga.sort((x,y)=&gt;x.a.code-y.a.code).forEach(x=&gt;rows.push(['   '+x.a.name,'',x.amt]));
+      rows.push(['판매비와 관리비 합계','',B.SG]);
+      rows.push(['③ 영업외수익·비용 명세서','','']);
+      B.nr.concat(B.nx).sort((x,y)=&gt;x.a.code-y.a.code).forEach(x=&gt;rows.push(['   '+x.a.name,'',x.amt]));
+      rows.push(['영업외수익 합계','',B.NR]); rows.push(['영업외비용 합계','',B.NX]);
+      R.title='부속명세서(P/L)'; R.sub=s+' ~ '+e; R.headers=['항목','','금액']; R.rows=rows;
+      R.tail='매출총손익 '+B.GP+' · 판매비와 관리비 '+B.SG;
+    }
+  }
+  else if(kind==='bs'||kind==='bsq'||kind==='gbs'){
+    const bb=bsBuckets_(map,e);
+    if(kind==='gbs'){
+      const rows=[]; let d=0,c=0;
+      accounts_().sort((a,b)=&gt;a.code-b.code).forEach(a=&gt;{
+        const q=bb.bal[a.code]; if(!q||(!q.d&amp;&amp;!q.c)) return;
+        const signed=q.d-q.c; rows.push([a.code,a.name,q.d,q.c,Math.abs(signed),signed&gt;0?'차':signed&lt;0?'대':'']);
+        d+=q.d; c+=q.c;
+      });
+      rows.push(['합계','',d,c,'','']);
+      R.title='합계재무상태표'; R.sub='기준일 '+e; R.headers=['코드','계정명','차변합계','대변합계','순잔액','차/대'];
+      R.rows=rows; R.tail='전체 대차 차액 '+(d-c)+'원';
+    }
+    else{
+      const rows=[]; let A=0,L=0,E=0;
+      const sec=(ty,label)=&gt;{
+        rows.push([label,'','',null]);
+        accounts_().filter(a=&gt;a.type===ty&amp;&amp;bb.bal[a.code]&amp;&amp;(bb.bal[a.code].d||bb.bal[a.code].c)).sort((a,b)=&gt;a.code-b.code).forEach(a=&gt;{
+          const x=bb.val(a); rows.push(['   '+a.code+' '+a.name,'',x,null]);
+          if(ty==='A')A+=x; else if(ty==='L')L+=x; else E+=x;
+        });
+      };
+      sec('A','자산'); rows.push(['자산 총계','',A,null]);
+      sec('L','부채'); rows.push(['부채 총계','',L,null]);
+      sec('E','자본');
+      rows.push(['   당기순이익','',bb.ni,null]);
+      const eq=E+bb.ni; rows.push(['자본 총계','',eq,null]);
+      rows.push(['부채와 자본 총계','',L+eq,null]);
+      if(kind==='bs'){ R.title='재무상태표'; }
+      else{ R.title='약식 재무상태표'; R.sub=(R.sub||'')+' · 금액이 있는 계정만 표시'; }
+      R.sub='기준일 '+e+' · 자본에 당기순이익 가산'; R.headers=['항목','','금액','']; R.rows=rows;
+      R.tail=(Math.abs(A-(L+eq))&lt;1?'✓ 자산총계 = 부채+자본 총계 (일치)':'⚠ 자산 '+A+'원과 부채·자본 '+(L+eq)+'원이 '+(A-(L+eq))+'원 차이 — 검산하세요.');
+    }
+  }
+  else if(kind==='vat'){
+    const f=vs.filter(v=&gt;v.date&gt;=s&amp;&amp;v.date&lt;=e);
+    const by={};
+    f.forEach(v=&gt;{
+      const a=map[v.code]; if(!a) return;
+      if(a.type==='R'&amp;&amp;v.code&lt;900){ const k=v.proof||'증빙없음'; const q=by[k]||(by[k]={rs:0,rv:0,ps:0,pv:0}); q.rs+=v.c-v.d; }
+      if(v.code===255){ const k=(f.find(x=&gt;x.id===v.id&amp;&amp;map[x.code]&amp;&amp;map[x.code].type==='R')||{}).proof||'증빙없음'; (by[k]||(by[k]={rs:0,rv:0,ps:0,pv:0})).rv+=v.c-v.d; }
+      if(a.type==='X'||v.code===146||v.code===147||v.code===148){ if(v.d&gt;0){ const k=v.proof||'증빙없음'; (by[k]||(by[k]={rs:0,rv:0,ps:0,pv:0})).ps+=v.d; } }
+      if(v.code===135){ const k=(f.find(x=&gt;x.id===v.id&amp;&amp;map[x.code]&amp;&amp;(map[x.code].type==='X'||[146,147,148].includes(x.code)))||{}).proof||'증빙없음'; (by[k]||(by[k]={rs:0,rv:0,ps:0,pv:0})).pv+=v.d; }
+    });
+    const rows=[]; let trs=0,trv=0,tps=0,tpv=0;
+    Object.keys(by).sort().forEach(k=&gt;{ const q=by[k]; trs+=q.rs; trv+=q.rv; tps+=q.ps; tpv+=q.pv;
+      rows.push([k,q.rs,q.rv,q.ps,q.pv]); });
+    rows.push(['합계',trs,trv,tps,tpv]);
+    R.title='부가세 집계표'; R.sub=s+' ~ '+e+' · 증빙별 공급가액·세액 집계';
+    R.headers=['증빙','매출 공급가액','매출 세액','매입 공급가액','매입 세액'];
+    R.rows=rows; R.tail='매출 세액 '+trv+' − 매입 세액 '+tpv+' = 납부할 세액 '+(trv-tpv)+'원 (신고 전 확인하세요)';
+  }
+  else if(kind==='aging'){
+    const op=opening_(); const byP={};
+    Object.keys(op.per).forEach(k=&gt;{ const [c,pp]=k.split('|'); if(!PM_CODES.includes(+c)) return;
+      const q=byP[pp]||(byP[pp]={ar:0,ap:0}); if(+c===108||+c===120) q.ar+=op.per[k]; else q.ap+=op.per[k]; });
+    vs.forEach(v=&gt;{ if(!PM_CODES.includes(v.code)) return; if(v.date&gt;e) return;
+      const q=byP[v.p]||(byP[v.p]={ar:0,ap:0}); if(v.code===108||v.code===120) q.ar+=v.d-v.c; else q.ap+=v.c-v.d; });
+    const rows=[]; Object.keys(byP).sort().forEach(p2=&gt;{ const q=byP[p2];
+      rows.push([p2,q.ar,q.ap,q.ar-q.ap]); });
+    R.title='채권/채무 관리'; R.sub='기준일 '+e+' · 거래처별 외상매출금·외상매입금 잔액';
+    R.headers=['거래처','채권(받을 금액)','채무(줄 금액)','순잔액'];
+    R.rows=rows; R.tail='채권 합계 '+rows.reduce((s2,r)=&gt;s2+r[1],0)+' · 채무 합계 '+rows.reduce((s2,r)=&gt;s2+r[2],0);
+  }
+  else if(kind==='dept'){
+    const byD={};
+    vs.filter(v=&gt;v.date&gt;=s&amp;&amp;v.date&lt;=e).forEach(v=&gt;{
+      const a=map[v.code]; if(!a||(a.type!=='R'&amp;&amp;a.type!=='X')) return;
+      const k=v.dept||'미지정'; const q=byD[k]||(byD[k]={r:0,x:0});
+      if(a.type==='R') q.r+=v.c-v.d; else q.x+=v.d-v.c;
+    });
+    const rows=[]; Object.keys(byD).sort().forEach(k=&gt;{ rows.push([k,byD[k].r,byD[k].x,byD[k].r-byD[k].x]); });
+    R.title='부서손익'; R.sub=s+' ~ '+e+' · 전표 라인의 부서 기준';
+    R.headers=['부서','수익','비용','손익'];
+    R.rows=rows; R.tail='전체 손익 '+rows.reduce((s2,r)=&gt;s2+r[3],0)+'원';
+  }
+  else if(kind==='income'){
+    const B=plBuckets_(vs,map,s,e);
+    const rows=[['수입합계',B.SA+B.NR],['필요경비합계',B.CO+B.SG+B.NX],['소득금액',(B.SA+B.NR)-(B.CO+B.SG+B.NX)]];
+    B.sga.concat(B.cogs,B.nx).sort((x,y)=&gt;y.amt-x.amt).slice(0,10).forEach(x=&gt;rows.push(['경비 · '+x.a.name,x.amt]));
+    R.title='종합소득세 명세서(참고용)'; R.sub=s+' ~ '+e+' · 복식부식 장부 기준 집계';
+    R.headers=['항목','금액']; R.rows=rows;
+    R.tail='소득금액 '+rows[2][1]+'원 · 실제 신고 시 세무 기준과 대조하세요.';
+  }
+  else if(kind==='guide'){
+    const f=vs.filter(v=&gt;v.date&gt;=s&amp;&amp;v.date&lt;=e);
+    const noP=f.filter(v=&gt;!v.p&amp;&amp;PM_CODES.includes(v.code)).length;
+    const noD=f.filter(v=&gt;!v.dept).length;
+    const unposted=0;
+    const td=f.reduce((s2,v)=&gt;s2+v.d,0), tc=f.reduce((s2,v)=&gt;s2+v.c,0);
+    const steps=[
+      ['1','전표 검산','차변·대변 합계 '+(Math.abs(td-tc)&lt;1?'일치 (✓)':'불일치 (⚠ 차액 '+(td-tc)+')')],
+      ['2','거래처 미지정 확인','채권·채무 라인 중 미지정 '+noP+'건'],
+      ['3','부서 미지정 확인','미지정 라인 '+noD+'건 (부서손익 사용 시)'],
+      ['4','재고 매핑','재고수불 출고 기록을 매핑 전표로 반영 (재고매출원가 매핑 화면)'],
+      ['5','기말재고 평가','장부 잔액과 실사 수량 대조 (기말재고 평가 화면)'],
+      ['6','감가상각','자산 월할 상각 실행 (전표 탭 → 유·무형자산)'],
+      ['7','부가세 집계','증빙별 세액 집계 확인 (부가세 집계표)'],
+      ['8','재무제표 작성','시산표 → 손익계산서 → 재무상태표 순으로 작성·검산'],
+      ['9','시트 백업','파일 → 버전 기록 또는 사본 저장으로 백업'],
+      ['10','마감','설정 시트의 마감일을 입력해 이후 전표 입력을 잠급니다']
+    ];
+    R.title='결산 가이드'; R.sub=s+' ~ '+e+' · 단계별 점검';
+    R.headers=['단계','항목','상태/방법'];
+    R.rows=steps;
+    R.tail='10단계 모두 확인 후 마감일을 설정하세요.';
+  }
+  else if(kind==='mapping'){
+    const maps=readRows_(N_MAP).map(r=&gt;({from:num_(r['재고계정코드']),to:num_(r['원가계정코드'])}));
+    const bal=bsBuckets_(map,e).bal;
+    const rows=maps.map(m=&gt;{ const a=map[m.from], b=map[m.to];
+      const q=bal[m.from]||{d:0,c:0};
+      return [m.from,a?a.name:'?',m.to,b?b.name:'?',q.d-q.c]; });
+    R.title='재고매출원가 매핑'; R.sub='재고 계정 → 매출원가 계정 연결 · 현재 장부 잔액';
+    R.headers=['재고코드','재고계정','원가코드','원가계정','장부 잔액'];
+    R.rows=rows;
+    R.tail='출고 기록 반영은 재고수불 화면의 전표 생성(출고)으로 처리하거나, 아래 일괄 전표 생성을 사용하세요.';
+  }
+  else if(kind==='valuation'){
+    const st=stockBalances_(); const bal=bsBuckets_(map,e).bal;
+    const rows=[];
+    Object.keys(st).forEach(c=&gt;{ const p2=BOOT_PROD_()[c]; if(!p2) return;
+      const book=(bal[+c]?bal[+c].d-bal[+c].c:0);
+      rows.push([+c,p2.name,st[c].q,st[c].amt,book,st[c].amt-book]); });
+    R.title='기말재고 평가'; R.sub='기준일 '+e+' · 재고수불 잔액 vs 장부 잔액';
+    R.headers=['코드','품목','잔량','장부가액(수불)','장부 잔액(시트)','차액'];
+    R.rows=rows; R.tail='차액이 있으면 재고 차액 전표로 정리하세요.';
+  }
+  else if(kind==='prov'||kind==='prov_pl'||kind==='prov_bs'||kind==='prov_tb'){
+    const months=[];
+    const ymSet={};
+    vs.forEach(v=&gt;{ if(v.date&gt;=s&amp;&amp;v.date&lt;=e) ymSet[v.date.slice(0,7)]=1; });
+    Object.keys(ymSet).sort().forEach(m=&gt;months.push(m));
+    if(!months.length) months.push(s.slice(0,7));
+    const settings=settings_();
+    const stockIn=m=&gt;num_(settings['가결산 재고 '+m]);
+    const stockAccounts=accounts_().filter(a=&gt;[146,147,148].includes(a.code)).map(a=&gt;a.code);
+    let prevStock=stockAccounts.reduce((s2,c)=&gt;s2+(opening_().tot[c]||0),0);
+    if(kind==='prov'){
+      const rows=[];
+      months.forEach(m=&gt;{
+        const mm=vs.filter(v=&gt;v.date.slice(0,7)===m);
+        const sales=mm.reduce((s2,v)=&gt;s2+((map[v.code]||{}).type==='R'?(v.c-v.d):0),0);
+        const purch=mm.reduce((s2,v)=&gt;s2+(stockAccounts.includes(v.code)?v.d:0),0);
+        const opx=mm.reduce((s2,v)=&gt;{ const a=map[v.code]; return s2+((a&amp;&amp;a.type==='X'&amp;&amp;a.code&gt;=500&amp;&amp;a.code&lt;900)?(v.d-v.c):0); },0);
+        const endStock=stockIn(m);
+        const cogs=prevStock+purch-endStock;
+        rows.push([m,sales,prevStock,purch,endStock,cogs,sales-cogs,opx,sales-cogs-opx]);
+        prevStock=endStock;
+      });
+      R.title='가결산 관리 (월별)'; R.sub='기간 내 전표 실적 + 월별 기말재고 입력 기반 잠정 손익 · 신고용 아님';
+      R.headers=['월','매출','기초재고','당기매입','기말재고(입력)','잠정매출원가','잠정매출총이익','판매관리비','잠정영업이익'];
+      R.rows=rows;
+      R.tail='기말재고 입력은 가결산 화면에서 저장하세요. 잠정 영업이익 = 매출 − 잠정매출원가 − 판매관리비.';
+    }
+    else{
+      const last=months[months.length-1];
+      const mm=vs.filter(v=&gt;v.date&gt;=s&amp;&amp;v.date&lt;=last);
+      const B=plBuckets_(mm,map,s,last);
+      let purch=0, prevStock=stockAccounts.reduce((s2,c)=&gt;s2+(opening_().tot[c]||0),0);
+      months.forEach((m,i)=&gt;{
+        const mo=vs.filter(v=&gt;v.date.slice(0,7)===m&amp;&amp;v.date&gt;=s&amp;&amp;v.date&lt;=last);
+        purch+=mo.reduce((s2,v)=&gt;s2+(stockAccounts.includes(v.code)?v.d:0),0);
+        if(i&lt;months.length-1) prevStock=stockIn(m);
+      });
+      const endStock=stockIn(last);
+      const cogs=Math.max(prevStock+purch-endStock,0);
+      if(kind==='prov_pl'){
+        const rows=[];
+        rows.push(['Ⅰ. 매출액','',B.SA]);
+        B.sales.sort((x,y)=&gt;x.a.code-y.a.code).forEach(x=&gt;rows.push(['   '+x.a.code+' '+x.a.name,'',x.amt]));
+        rows.push(['Ⅱ. 잠정 매출원가','',cogs,'(기초재고 '+prevStock+' + 매입 '+purch+' − 기말재고 '+endStock+')']);
+        rows.push(['Ⅲ. 잠정 매출총이익','',B.SA-cogs]);
+        rows.push(['Ⅳ. 판매비와 관리비','',B.SG]);
+        B.sga.sort((x,y)=&gt;x.a.code-y.a.code).forEach(x=&gt;rows.push(['   '+x.a.code+' '+x.a.name,'',x.amt]));
+        rows.push(['Ⅴ. 잠정 영업이익','',B.SA-cogs-B.SG]);
+        rows.push(['Ⅵ. 영업외수익','',B.NR]); rows.push(['Ⅶ. 영업외비용','',B.NX]);
+        rows.push(['잠정 순손익(법인세 전)','',(B.SA-cogs-B.SG)+B.NR-B.NX]);
+        R.title='가결산 약식 손익계산서'; R.sub=s+' ~ '+last+' · 재고 입력 기반 잠정치 · 신고용 아님';
+        R.headers=['항목','','금액','비고']; R.rows=rows;
+      }
+      else{
+        const bb=bsBuckets_(map,last);
+        const rows=[]; let A=0,L=0;
+        accounts_().filter(a=&gt;a.type==='A'&amp;&amp;bb.bal[a.code]&amp;&amp;(bb.bal[a.code].d||bb.bal[a.code].c)).sort((a,b)=&gt;a.code-b.code).forEach(a=&gt;{
+          const x=bb.val(a); rows.push([a.code,a.name,x,'']); A+=x; });
+        rows.push(['자산 총계','',A,'']);
+        accounts_().filter(a=&gt;a.type==='L'&amp;&amp;bb.bal[a.code]&amp;&amp;(bb.bal[a.code].d||bb.bal[a.code].c)).sort((a,b)=&gt;a.code-b.code).forEach(a=&gt;{
+          const x=bb.val(a); rows.push([a.code,a.name,x,'']); L+=x; });
+        rows.push(['부채 총계','',L,'']);
+        const E=bb.ni+prevStock-((bal0=&gt;bal0)(0));
+        const provNi=rows.length?0:0;
+        const eqTotal=L+(A-L)+ (endStock-0);
+        rows.push(['순자산(자산−부채)','',A-L,'']);
+        rows.push(['기말재고(입력)','',endStock,'가결산 반영치']);
+        R.title='가결산 약식 재무상태표'; R.sub='기준일 '+last+' · 신고용 아님';
+        R.headers=['코드','계정명','금액','비고']; R.rows=rows;
+        R.tail='순자산 '+((A-L))+'원 · 잠정 순손익은 가결산 약식 손익계산서에서 확인하세요.';
+      }
+    }
+  }
+  else if(kind==='coverage'){
+    R.title='기능 적용 현황'; R.sub='구글 시트 실행 버전 · ' + '전 기능 통합';
+    R.headers=['화면','상태','비고'];
+    R.rows=[
+      ['전표 입력·수정·삭제·복제','구현','라인별 적요·세무·증빙·부서, 자동번호'],
+      ['매입·매출 / 간이 전표','구현','자동 분개, 부가세 자동'],
+      ['거래명세서·세금계산서','구현','발행 + 판매(매출 전표) 자동 연동, 전표 생성/되돌리기'],
+      ['자주 쓰는 분개','구현','템플릿 저장·실행'],
+      ['재고수불·재고수불부','구현','이동평가, 입출고 전표 생성'],
+      ['유·무형자산·자산대장','구현','취득·정액 월할 상각·매각·폐기'],
+      ['외화거래','구현','환율 환산 분개 + 외화 시트'],
+      ['장부 7종','구현','분개장·총계정원장·거래처원장·현금·예금출납장·자금일보·자산대장'],
+      ['재무제표 8종','구현','시산표·손익·재무상태표·합계재무상태표·부속명세서·약식 3종'],
+      ['결산 가이드·매핑·기말평가','구현','10단계 점검, 재고 매핑, 잔액 대조'],
+      ['가결산','구현','월별 재고 입력 기반 잠정 손익'],
+      ['부가세 집계표·종소세 명세','구현','증빙별 집계, 참고용 명세'],
+      ['채권/채무·부서손익','구현','거래처별 잔액, 부서별 손익'],
+      ['가져오기','구현','붙여넣기(CSV/TSV) → 계정 매칭 → 일괄 등록'],
+      ['마감 잠금','구현','설정 시트 마감일 이후 입력 차단'],
+      ['전자신고·공식 서식 1:1','미구현','참고용 집계이며 신고 전 세무 기준 대조 필요']
+    ];
+    R.tail='데이터는 이 스프레드시트에 저장됩니다. 파일 → 버전 기록으로 백업 이력을 관리하세요.';
+  }
+  else throw new Error('알 수 없는 보고서: '+kind);
+  return R;
+}
+function BOOT_PROD_(){
+  const m={}; readRows_(N_PROD).forEach(r=&gt;{ m[num_(r['코드'])]={name:String(r['품목명']||'')}; }); return m;
+}
+function writeReportSheet(kind,opt){
+  const R=report(kind,opt);
+  const ss=SpreadsheetApp.getActiveSpreadsheet();
+  const name=({journal:'분개장',gl:'총계정원장',partner:'거래처원장',cash:'현금출납장',bank:'예금출납장',
+    fund:'자금일보',stockledger:'재고수불부',assetledger:'자산대장',tb:'시산표',pnl:'손익계산서',
+    bs:'재무상태표',gbs:'합계재무상태표',plspec:'부속명세서',tbq:'약식시산표',pnlq:'약식손익계산서',
+    bsq:'약식재무상태표',vat:'부가세집계표',aging:'채권채무',dept:'부서손익',income:'종소세명세',
+    prov:'가결산현황',prov_pl:'가결산손익',prov_bs:'가결산재무상태표',mapping:'재고매핑',valuation:'기말평가',
+    guide:'결산가이드',coverage:'기능현황'})[kind]||('보고서_'+kind);
+  let sh=ss.getSheetByName(name); if(!sh) sh=ss.insertSheet(name); else sh.clear();
+  sh.getRange(1,1).setValue(R.title).setFontSize(14).setFontWeight('bold');
+  sh.getRange(2,1).setValue(R.sub).setFontColor('#666666');
+  sh.getRange(3,1,1,R.headers.length).setValues([R.headers]).setFontWeight('bold').setBackground('#e8eaed');
+  const clean=R.rows.map(r=&gt;r.map(c=&gt;c===null?'':c));
+  if(clean.length) sh.getRange(4,1,clean.length,R.headers.length).setValues(clean);
+  for(let i=0;i&lt;clean.length;i++){
+    if(String(clean[i][0])==='합계'||String(clean[i][0])==='자산 총계'||String(clean[i][0])==='부채 총계'||String(clean[i][0])==='자본 총계'||String(clean[i][0])==='부채와 자본 총계'){
+      sh.getRange(4+i,1,1,R.headers.length).setFontWeight('bold');
+    }
+  }
+  const numCols=[];
+  R.headers.forEach((h,j)=&gt;{ if(/금액|차변|대변|잔액|입금|출금|공급가액|세액|합계|수량|단가|취득금액|잔존가치|상각누계|수익|비용|손익|채권|채무|매출 |매입 /.test(h)) numCols.push(j+1); });
+  numCols.forEach(c=&gt;sh.getRange(4,c,Math.max(clean.length,1),1).setNumberFormat('#,##0'));
+  if(R.tail) sh.getRange(4+clean.length+1,1).setValue(R.tail).setFontColor('#2f6b4f');
+  sh.autoResizeColumns(1,R.headers.length);
+  sh.setFrozenRows(3);
+  ss.setActiveSheet(sh);
+  return {ok:true,msg:'✓ ['+name+'] 시트에 작성했습니다.',sheet:name};
+}
+function getVoucher(id){
+  const rows=vouchers_().filter(v=&gt;v.id===String(id));
+  if(!rows.length) throw new Error('전표를 찾을 수 없습니다.');
+  return {ok:true,date:rows[0].date,memo:rows[0].memo,id:id,
+    lines:rows.map(r=&gt;({acct:r.code,p:r.p,d:r.d,c:r.c,proof:r.proof,tax:r.tax,dept:r.dept,lm:r.lm}))};
+}
+function getOpening(){
+  return {ok:true,rows:readRows_(N_OPEN).map(r=&gt;[num_(r['계정코드']),num_(r['금액']),String(r['거래처']||'')])};
+}
+function listFx(){
+  return {ok:true,rows:readRows_(N_FX).map(r=&gt;[str_(r['일자']),String(r['통화']||''),num_(r['외화금액']),num_(r['환율']),num_(r['원화금액']),String(r['메모']||'')])};
+}
+</code></pre>
+</section>
+
+<section>
+  <h2>UI.html</h2>
+  <p class="sub">Apps Script에서 <b>파일 → 새로 만들기 → HTML</b>, 파일 이름을 <b>UI</b>로 만들고 전체를 붙여넣으세요.</p>
+  <button class="copybtn" data-src="c2">코드 복사</button>
+  <pre id="c2"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;base target="_top"&gt;
+&lt;style&gt;
+:root{--ink:#1b2330;--sub:#5b6675;--line:#dfe3ea;--card:#fff;--blue:#285eb5;--deep:#1d4487;--ok:#1c7a43;--bad:#b3392f;--bg:#f3f5f8}
+body{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;margin:0;padding:14px;background:var(--bg);color:var(--ink);font-size:13px}
+header{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+header h1{font-size:15px;margin:0 10px 0 0;color:var(--deep)}
+header h1 small{font-weight:400;color:var(--sub)}
+nav{display:flex;gap:2px;flex-wrap:wrap}
+nav button{border:1px solid var(--line);background:var(--card);border-radius:7px;padding:5px 10px;cursor:pointer;font-size:12px;color:var(--ink)}
+nav button.on{background:var(--deep);border-color:var(--deep);color:#fff;font-weight:700}
+.subbar{display:flex;gap:2px;flex-wrap:wrap;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.subbar button{border:none;background:none;padding:5px 9px;border-radius:7px;cursor:pointer;font-size:12.5px;color:var(--sub)}
+.subbar button.on{background:rgba(40,94,181,.1);color:var(--deep);font-weight:700}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:12px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.row:last-child{margin-bottom:0}
+label{font-size:12px;color:var(--sub);display:flex;flex-direction:column;gap:3px}
+input,select{padding:5px 8px;border:1px solid #ccc;border-radius:6px;font-size:12.5px;font-family:inherit}
+input[type=number]{text-align:right;width:110px}
+button.b{padding:7px 14px;border:1px solid var(--ccc,#ccc);border-radius:7px;background:var(--card);cursor:pointer;font-size:12.5px}
+button.p{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:700}
+button.d{border-color:#dcb0ab;color:var(--bad)}
+button.x{padding:3px 9px;border:1px solid #ddd;border-radius:6px;background:#fff;cursor:pointer}
+.tw{overflow:auto;max-height:52vh;border:1px solid var(--line);border-radius:8px}
+table{width:100%;border-collapse:collapse;font-size:12.5px;background:var(--card)}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;white-space:nowrap}
+th{background:#eef1f6;font-weight:700;text-align:center;position:sticky;top:0}
+td.n{text-align:right}
+tr.t td{font-weight:700;background:#f6f7f9}
+.mute{color:var(--sub)}.ok{color:var(--ok);font-weight:700}.bad{color:var(--bad);font-weight:700}
+.h3t{text-align:center;font-size:15px;font-weight:800;letter-spacing:.3em;margin:2px 0 10px}
+.msg{font-size:12.5px}.msg.ok{color:var(--ok)}.msg.bad{color:var(--bad)}
+.note{background:rgba(40,94,181,.06);border:1px solid rgba(40,94,181,.25);border-radius:8px;padding:8px 12px;font-size:12px;color:var(--sub);margin-bottom:10px;line-height:1.5}
+.kpis{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.kpi{flex:1;min-width:130px;background:var(--card);border:1px solid var(--line);border-radius:9px;padding:9px 12px}
+.kpi small{display:block;color:var(--sub);font-size:11px}
+.kpi b{font-size:16px;letter-spacing:-.02em}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media(max-width:820px){.grid2,.grid3{grid-template-columns:1fr}}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;header&gt;
+  &lt;h1&gt;큐알장부 &lt;small id="coname"&gt;&lt;/small&gt;&lt;/h1&gt;
+  &lt;nav id="nav"&gt;&lt;/nav&gt;
+&lt;/header&gt;
+&lt;div class="subbar" id="subbar"&gt;&lt;/div&gt;
+&lt;div id="content"&gt;&lt;/div&gt;
+&lt;div class="row" style="margin-top:4px"&gt;&lt;span class="msg" id="msg"&gt;&lt;/span&gt;&lt;span class="mute" id="status"&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;script&gt;
+let BOOT=null,TAB='전표',SUB='전표 입력',MSG='';
+let ED={id:null,date:'',memo:'',lines:[]},QY={},DC=null,PRV={};
+const TABS={
+ '전표':['전표 입력','매입·매출','간이 전표','전표검색','거래명세서','세금계산서','자주 쓰는 분개','재고수불','유·무형자산','외화거래'],
+ '장부':['분개장','총계정원장','거래처원장','현금출납장','예금출납장','자금일보','재고수불부','자산대장'],
+ '재무제표':['합계잔액시산표','손익계산서','재무상태표','합계재무상태표','부속명세서(P/L)','약식 시산표','약식 손익계산서','약식 재무상태표'],
+ '결산':['결산 가이드','재고매출원가 매핑','기말재고 평가'],
+ '가결산':['가결산 관리','가결산 약식 손익계산서','가결산 약식 재무상태표'],
+ '부가세/세무':['부가세 집계표','종합소득세 명세서'],
+ '분석':['채권/채무 관리','부서손익'],
+ '업로드':['가져오기'],
+ '기준정보':['회사 설정','계정과목','거래처','은행계좌','최초잔액','최초재고'],
+ '설정':['정보','기능 적용 현황']
+};
+const REP={'분개장':'journal','총계정원장':'gl','거래처원장':'partner','현금출납장':'cash','예금출납장':'bank','자금일보':'fund','재고수불부':'stockledger','자산대장':'assetledger','합계잔액시산표':'tb','손익계산서':'pnl','재무상태표':'bs','합계재무상태표':'gbs','부속명세서(P/L)':'plspec','약식 시산표':'tbq','약식 손익계산서':'pnlq','약식 재무상태표':'bsq','부가세 집계표':'vat','채권/채무 관리':'aging','부서손익':'dept','종합소득세 명세서':'income','가결산 관리':'prov','가결산 약식 손익계산서':'prov_pl','가결산 약식 재무상태표':'prov_bs','결산 가이드':'guide','재고매출원가 매핑':'mapping','기말재고 평가':'valuation','기능 적용 현황':'coverage'};
+const g=id=&gt;document.getElementById(id);
+const esc=s=&gt;String(s??'').replace(/[&amp;&lt;&gt;"']/g,c=&gt;({'&amp;':'&amp;amp;','&lt;':'&amp;lt;','&gt;':'&amp;gt;','"':'&amp;quot;',"'":'&amp;#39;'}[c]));
+const f=n=&gt;(Number(n)||0).toLocaleString('ko-KR');
+function srv(fn){const args=[].slice.call(arguments,1);return new Promise(function(res,rej){const r=google.script.run.withSuccessHandler(res).withFailureHandler(function(e){rej(e)});r[fn].apply(r,args)})}
+function msg(t,ok){const el=g('msg');el.textContent=t||'';el.className='msg '+(ok===false?'bad':ok===true?'ok':'')}
+function tbl(h,rows,raw){
+  const body=rows.length?rows.map(r=&gt;'&lt;tr&gt;'+r.map((c,j)=&gt;'&lt;td'+(/금액|차변|대변|잔액|입금|출금|공급가액|세액|합계|수량|단가|수익|비용|손익|채권|채무|매출|매입/.test(h[j])&amp;&amp;j&gt;0?' class="n"':'')+'&gt;'+(raw?c:esc(c))+'&lt;/td&gt;').join('')+'&lt;/tr&gt;').join(''):'&lt;tr&gt;&lt;td colspan="'+h.length+'" class="mute"&gt;조회된 내역이 없습니다.&lt;/td&gt;&lt;/tr&gt;';
+  return '&lt;div class="tw"&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;'+h.map(x=&gt;'&lt;th&gt;'+esc(x)+'&lt;/th&gt;').join('')+'&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;'+body+'&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;';
+}
+function accOpts(val,types){return '&lt;option value=""&gt;선택&lt;/option&gt;'+BOOT.accounts.filter(a=&gt;a.use&amp;&amp;(!types||types.includes(a.type))).map(a=&gt;'&lt;option value="'+a.code+'"'+(a.code==val?' selected':'')+'&gt;'+a.code+' '+esc(a.name)+'&lt;/option&gt;').join('')}
+function partOpts(val){return '&lt;option value=""&gt;미지정&lt;/option&gt;'+BOOT.partners.filter(p=&gt;p.use).map(p=&gt;'&lt;option'+(p.name===val?' selected':'')+'&gt;'+esc(p.name)+'&lt;/option&gt;').join('')}
+function deptOpts(val){return '&lt;option value=""&gt;미지정&lt;/option&gt;'+BOOT.depts.map(d=&gt;'&lt;option'+(d===val?' selected':'')+'&gt;'+esc(d)+'&lt;/option&gt;').join('')}
+function nav(){
+  g('coname').textContent=BOOT.settings.name+' · '+BOOT.settings.s+' ~ '+BOOT.settings.e;
+  g('nav').innerHTML=Object.keys(TABS).map(t=&gt;'&lt;button class="'+(t===TAB?'on':'')+'" onclick="go(\''+t+'\')"&gt;'+t+'&lt;/button&gt;').join('');
+  g('subbar').innerHTML=TABS[TAB].map(s=&gt;'&lt;button class="'+(s===SUB?'on':'')+'" onclick="go(\''+TAB+'\',\''+s.replace(/'/g,"\\'")+'\')"&gt;'+s+'&lt;/button&gt;').join('');
+}
+function go(t,s){TAB=t;SUB=s||TABS[t][0];draw()}
+function draw(){nav();const v=VIEWS[TAB+'/'+SUB];g('content').innerHTML=v?v():'&lt;div class="note"&gt;준비 중인 화면입니다.&lt;/div&gt;';if(v&amp;&amp;v.after)try{v.after()}catch(e){msg(e.message,false)}}
+/* ═══ 전표 탭 ═══ */
+function edReset(){ED={id:null,auto:true,arows:[{k:'지출',amt:'',acct:firstAcc('X'),pay:103,p:'',proof:''}],date:BOOT.today,memo:'',lines:[]}}
+function firstAcc(t){const a=BOOT.accounts.filter(x=&gt;x.type===t&amp;&amp;x.use!==false);return a.length?a[0].code:0}
+function accOptsT(sel,types){return BOOT.accounts.filter(a=&gt;a.use!==false&amp;&amp;(!types||types.indexOf(a.type)&gt;=0)).map(a=&gt;'&lt;option value="'+a.code+'"'+(+a.code===+sel?' selected':'')+'&gt;'+a.code+' '+esc(a.name)+'&lt;/option&gt;').join('')}
+function edEnsureA(){if(!ED.arows||!ED.arows.length)ED.arows=[{k:'지출',amt:'',acct:firstAcc('X'),pay:103,p:'',proof:''}]}
+function edAdd(){ED.lines.push({acct:101,d:'',c:'',p:'',lm:'',tax:'',proof:'',dept:''});draw()}
+function edDel(i){ED.lines.splice(i,1);draw()}
+function edRead(){const ls=[];document.querySelectorAll('#edt tr[data-i]').forEach(tr=&gt;{const i=+tr.dataset.i;ED.lines[i]={acct:g('ea'+i).value,p:g('ep'+i).value,d:g('ed'+i).value,c:g('ec'+i).value,lm:g('em'+i).value,tax:g('et'+i).value,proof:g('eb'+i).value,dept:g('ey'+i).value}})}
+function edSum(){let d=0,c=0;ED.lines.forEach(l=&gt;{d+=Number(l.d)||0;c+=Number(l.c)||0});return[d,c]}
+const VIEWS={};
+VIEWS['전표/전표 입력']=function(){
+  if(!ED.lines.length&amp;&amp;!ED.arows)edReset();
+  if(ED.auto)return edViewA();
+  const rows=ED.lines.map((l,i)=&gt;'&lt;tr data-i="'+i+'"&gt;&lt;td&gt;&lt;select id="ea'+i+'" style="width:150px" onchange="edRead();draw()"&gt;'+accOpts(l.acct)+'&lt;/select&gt;&lt;/td&gt;'
+    +'&lt;td&gt;&lt;select id="ep'+i+'" onchange="edRead()"&gt;'+partOpts(l.p)+'&lt;/select&gt;&lt;/td&gt;'
+    +'&lt;td&gt;&lt;input type="number" min="0" id="ed'+i+'" value="'+esc(l.d)+'" oninput="edRead();edSumUI()"&gt;&lt;/td&gt;'
+    +'&lt;td&gt;&lt;input type="number" min="0" id="ec'+i+'" value="'+esc(l.c)+'" oninput="edRead();edSumUI()"&gt;&lt;/td&gt;'
+    +'&lt;td&gt;&lt;input id="em'+i+'" size="14" value="'+esc(l.lm)+'" oninput="edRead()"&gt;&lt;/td&gt;'
+    +'&lt;td&gt;&lt;select id="et'+i+'" onchange="edRead()"'+([135,255].includes(+l.acct)?' disabled':'')+'&gt;'+'&lt;option value=""&gt;&lt;/option&gt;&lt;option'+(l.tax==='과세'?' selected':'')+'&gt;과세&lt;/option&gt;&lt;option'+(l.tax==='불공제'?' selected':'')+'&gt;불공제&lt;/option&gt;&lt;option'+(l.tax==='면세'?' selected':'')+'&gt;면세&lt;/option&gt;&lt;option'+(l.tax==='영세율'?' selected':'')+'&gt;영세율&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;'
+    +'&lt;td&gt;&lt;select id="eb'+i+'" onchange="edRead()"&gt;'+'&lt;option value=""&gt;&lt;/option&gt;&lt;option&gt;세금계산서&lt;/option&gt;&lt;option&gt;계산서&lt;/option&gt;&lt;option&gt;신용카드&lt;/option&gt;&lt;option&gt;현금영수증&lt;/option&gt;&lt;option&gt;기타&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;'
+    +'&lt;td&gt;&lt;select id="ey'+i+'" onchange="edRead()"&gt;'+deptOpts(l.dept)+'&lt;/select&gt;&lt;/td&gt;'
+    +'&lt;td&gt;&lt;button class="x" onclick="edRead();edDel('+i+')"&gt;✕&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;').join('');
+  const [d,c]=edSum();
+  return '&lt;div class="card"&gt;&lt;div class="row"&gt;&lt;b&gt;'+(ED.id?'전표 수정':'전표 입력')+'&lt;/b&gt;'
+    +'&lt;label&gt;일자 &lt;input type="date" id="edate" value="'+ED.date+'" onchange="ED.date=this.value"&gt;&lt;/label&gt;'
+    +'&lt;label&gt;적요 &lt;input id="ememo" size="24" value="'+esc(ED.memo)+'" oninput="ED.memo=this.value"&gt;&lt;/label&gt;&lt;/div&gt;'
+    +'&lt;div class="tw"&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;계정과목&lt;/th&gt;&lt;th&gt;거래처&lt;/th&gt;&lt;th&gt;차변&lt;/th&gt;&lt;th&gt;대변&lt;/th&gt;&lt;th&gt;라인 적요&lt;/th&gt;&lt;th&gt;세무구분&lt;/th&gt;&lt;th&gt;증빙&lt;/th&gt;&lt;th&gt;부서&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody id="edt"&gt;'+rows+'&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;'
+    +'&lt;p class="'+(d===c&amp;&amp;d?'ok':'bad')+'"&gt;차변 '+f(d)+' · 대변 '+f(c)+' · 차액 '+f(d-c)+'&lt;/p&gt;'
+    +'&lt;div class="row"&gt;&lt;button class="b" onclick="edRead();edAdd()"&gt;+ 행 추가&lt;/button&gt;'
+    +'&lt;button class="b p" onclick="edSave()"&gt;저장 (Ctrl+S)&lt;/button&gt;'
+    +'&lt;button class="b" onclick="edReset();draw()"&gt;내용삭제&lt;/button&gt;'
+    +(ED.id?'':'&lt;button class="b" onclick="tplSaveAsk()"&gt;반복분개로 저장&lt;/button&gt;')
+    +'&lt;button class="b" onclick="ED.auto=true;edEnsureA();draw()"&gt;자동 분개&lt;/button&gt;'
+    +'&lt;span class="mute"&gt;일반 전표에서 부가세 라인은 세무구분 기준 자동 생성 버튼 또는 직접 입력하세요.&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;';
+};
+function edSumUI(){let d=0,c=0;ED.lines.forEach(l=&gt;{d+=Number(l.d)||0;c+=Number(l.c)||0});const el=document.querySelector('#content p');if(el)el.className=(d===c&amp;&amp;d?'ok':'bad'),el.textContent='차변 '+f(d)+' · 대변 '+f(c)+' · 차액 '+f(d-c)}
+function edViewA(){
+  const rows=ED.arows.map((l,i)=&gt;'&lt;tr&gt;&lt;td&gt;&lt;select onchange="edARead();ED.arows['+i+'].k=this.value;ED.arows['+i+'].acct=firstAcc(this.value==\'수입\'?\'R\':\'X\');draw()"&gt;&lt;option'+(l.k==='수입'?'':' selected')+'&gt;지출&lt;/option&gt;&lt;option'+(l.k==='수입'?' selected':'')+'&gt;수입&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;'
+    +'&lt;td&gt;&lt;input type="number" min="0" id="av'+i+'" value="'+esc(l.amt)+'" style="width:110px;text-align:right" oninput="edARead()"&gt;&lt;/td&gt;'
+    +'&lt;td&gt;&lt;select id="aa'+i+'"&gt;'+accOptsT(l.acct,l.k==='수입'?'R':'X')+'&lt;/select&gt;&lt;/td&gt;'
+    +'&lt;td&gt;&lt;select id="ay'+i+'"&gt;'+accOptsT(l.pay,'AL')+'&lt;/select&gt;&lt;/td&gt;'
+    +'&lt;td&gt;&lt;select id="ab'+i+'"&gt;'+partOpts(l.p)+'&lt;/select&gt;&lt;/td&gt;'
+    +'&lt;td&gt;&lt;select id="ar'+i+'"&gt;&lt;option value=""&gt;&lt;/option&gt;&lt;option'+(l.proof==='세금계산서'?' selected':'')+'&gt;세금계산서&lt;/option&gt;&lt;option'+(l.proof==='계산서'?' selected':'')+'&gt;계산서&lt;/option&gt;&lt;option'+(l.proof==='신용카드'?' selected':'')+'&gt;신용카드&lt;/option&gt;&lt;option'+(l.proof==='현금영수증'?' selected':'')+'&gt;현금영수증&lt;/option&gt;&lt;option'+(l.proof==='기타'?' selected':'')+'&gt;기타&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;'
+    +'&lt;td&gt;&lt;button class="x" onclick="edARead();ED.arows.splice('+i+',1);draw()"&gt;✕&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;').join('');
+  const tot=ED.arows.reduce((s,l)=&gt;s+(Number(l.amt)||0),0),n=ED.arows.filter(l=&gt;Number(l.amt)&gt;0).length;
+  return '&lt;div class="card"&gt;&lt;div class="row"&gt;&lt;b&gt;'+(ED.id?'전표 수정':'전표 입력 · 자동 분개')+'&lt;/b&gt;'
+    +'&lt;label&gt;일자 &lt;input type="date" id="edate" value="'+ED.date+'" onchange="ED.date=this.value"&gt;&lt;/label&gt;'
+    +'&lt;label&gt;적요 &lt;input id="ememo" size="24" value="'+esc(ED.memo)+'" oninput="ED.memo=this.value"&gt;&lt;/label&gt;&lt;/div&gt;'
+    +'&lt;div class="note"&gt;금액을 한 번만 입력하면 차변·대변 분개가 자동 생성됩니다 — 지출: 계정 차변 / 결제계정 대변 · 수입: 결제계정 차변 / 계정 대변. 각 줄이 하나의 전표로 저장되고, 수입(매출) 줄은 거래명세서·세금계산서와 자동 연동됩니다. 부가세 포함 거래는 [매입·매출]이나 [직접 입력]을 이용하세요.&lt;/div&gt;'
+    +'&lt;div class="tw"&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;구분&lt;/th&gt;&lt;th&gt;금액&lt;/th&gt;&lt;th&gt;계정과목&lt;/th&gt;&lt;th&gt;결제계정&lt;/th&gt;&lt;th&gt;거래처&lt;/th&gt;&lt;th&gt;증빙&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;'+rows+'&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;'
+    +'&lt;p class="'+(n?'ok':'bad')+'"&gt;분개 '+n+'건 · 합계 '+f(tot)+'원 · 자동 균형 (차액 0)&lt;/p&gt;'
+    +'&lt;div class="row"&gt;&lt;button class="b" onclick="edAAdd()"&gt;+ 행 추가&lt;/button&gt;'
+    +'&lt;button class="b p" onclick="edSave()"&gt;저장 (Ctrl+S)&lt;/button&gt;'
+    +'&lt;button class="b" onclick="edARead();ED.auto=false;ED.lines=[{acct:101,d:\'\',c:\'\',p:\'\',lm:\'\',tax:\'\',proof:\'\',dept:\'\'},{acct:401,d:\'\',c:\'\',p:\'\',lm:\'\',tax:\'\',proof:\'\',dept:\'\'}];draw()"&gt;직접 입력&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;';
+}
+function edAAdd(){edARead();ED.arows.push({k:'지출',amt:'',acct:firstAcc('X'),pay:103,p:'',proof:''});draw()}
+function edARead(){ED.arows.forEach(function(l,i){var v=g('av'+i),a=g('aa'+i),y=g('ay'+i),b=g('ab'+i),r=g('ar'+i);if(v)l.amt=v.value;if(a)l.acct=a.value;if(y)l.pay=y.value;if(b)l.p=b.value;if(r)l.proof=r.value})}
+async function edAutoSave(){
+  edARead();ED.date=g('edate').value;ED.memo=g('ememo').value;
+  const rows=ED.arows.filter(l=&gt;Number(l.amt)&gt;0);
+  if(!rows.length){msg('저장할 금액을 입력하세요.',false);return}
+  try{msg('저장 중...');let done=0,tot=0;
+    for(const l of rows){
+      const amt=Number(l.amt),P=l.p||'';
+      const lines=l.k==='수입'
+        ?[{acct:l.pay,p:P,d:amt,c:0},{acct:l.acct,p:P,d:0,c:amt}]
+        :[{acct:l.acct,p:P,d:amt,c:0},{acct:l.pay,p:P,d:0,c:amt}];
+      await srv('saveVoucher',{date:ED.date,memo:ED.memo,lines:lines});done++;tot+=amt;
+    }
+    BOOT=await srv('getBoot');
+    msg('✓ 자동 분개 '+done+'건 저장 완료 (합계 '+f(tot)+'원 · 차대변 자동 균형)',true);edReset();draw();
+  }catch(e){msg(e.message,false)}}
+async function edSave(){if(ED.auto)return edAutoSave();edRead();ED.date=g('edate').value;ED.memo=g('ememo').value;
+  try{msg('저장 중...');const r=await srv('saveVoucher',{date:ED.date,memo:ED.memo,lines:ED.lines});msg(r.msg,true);edReset();draw()}
+  catch(e){msg(e.message,false)}}
+function tplSaveAsk(){edRead();const n=prompt('템플릿 이름을 입력하세요.');if(!n)return;
+  srv('saveTemplate',{name:n,lines:ED.lines}).then(r=&gt;msg(r.msg,true)).catch(e=&gt;msg(e.message,false))}
+VIEWS['전표/전표검색']=function(){
+  const s=QY.s||BOOT.settings.s,e=QY.e||BOOT.settings.e;
+  return '&lt;div class="card"&gt;&lt;div class="row"&gt;&lt;label&gt;시작일 &lt;input type="date" value="'+s+'" onchange="QY.s=this.value;draw()"&gt;&lt;/label&gt;'
+    +'&lt;label&gt;종료일 &lt;input type="date" value="'+e+'" onchange="QY.e=this.value;draw()"&gt;&lt;/label&gt;'
+    +'&lt;label&gt;계정 &lt;select onchange="QY.acct=this.value;draw()"&gt;&lt;option value=""&gt;전체&lt;/option&gt;'+BOOT.accounts.filter(a=&gt;a.use).map(a=&gt;'&lt;option value="'+a.code+'"'+(QY.acct==a.code?' selected':'')+'&gt;'+a.code+' '+esc(a.name)+'&lt;/option&gt;').join('')+'&lt;/select&gt;&lt;/label&gt;'
+    +'&lt;label&gt;거래처 &lt;select onchange="QY.p=this.value;draw()"&gt;&lt;option value=""&gt;전체&lt;/option&gt;'+BOOT.partners.map(p=&gt;'&lt;option'+(QY.p===p.name?' selected':'')+'&gt;'+esc(p.name)+'&lt;/option&gt;').join('')+'&lt;/select&gt;&lt;/label&gt;'
+    +'&lt;label&gt;검색어 &lt;input value="'+esc(QY.q||'')+'" onchange="QY.q=this.value;draw()"&gt;&lt;/label&gt;&lt;/div&gt;'
+    +'&lt;div id="srch"&gt;&lt;/div&gt;&lt;/div&gt;';
+};
+VIEWS['전표/전표검색'].after=function(){
+  const s=QY.s||BOOT.settings.s,e=QY.e||BOOT.settings.e;
+  srv('listVouchers',{s:s,e:e,acct:QY.acct||'',p:QY.p||'',q:QY.q||''}).then(r=&gt;{
+    const rows=r.rows.map(v=&gt;[v.date,v.no,v.memo,v.code,v.name,v.p,v.d,v.c,v.proof,v.dept,
+      '&lt;button class="x" onclick="vEdit(\''+v.id+'\')"&gt;수정&lt;/button&gt; &lt;button class="x" onclick="vDel(\''+v.id+'\')"&gt;삭제&lt;/button&gt;']);
+    rows.push(['합계','','','','','','',r.dTot,r.cTot,'']);
+    g('srch').innerHTML=tbl(['일자','번호','적요','코드','계정명','거래처','차변','대변','증빙','부서','작업'],rows,true)
+      +'&lt;p class="'+(Math.abs(r.dTot-r.cTot)&lt;1?'ok':'bad')+'"&gt;차변 '+f(r.dTot)+' · 대변 '+f(r.cTot)+' · 차액 '+f(r.dTot-r.cTot)+' · '+r.rows.length+'라인&lt;/p&gt;';
+  }).catch(e=&gt;msg(e.message,false));
+};
+async function vEdit(id){try{const r=await srv('getVoucher',id);ED={id:id,date:r.date,memo:r.memo,lines:r.lines};go('전표','전표 입력')}catch(e){msg(e.message,false)}}
+async function vDel(id){if(!confirm('이 전표를 삭제할까요? (연결 문서의 전표 링크도 해제됩니다)'))return;try{const r=await srv('delVoucher',id);msg(r.msg,true);draw()}catch(e){msg(e.message,false)}}
+VIEWS['전표/매입·매출']=function(){
+  return '&lt;div class="card"&gt;&lt;b&gt;매입·매출 간단 입력&lt;/b&gt;&lt;div class="row"&gt;'
+    +'&lt;label&gt;구분 &lt;select id="bs_side"&gt;&lt;option&gt;매출&lt;/option&gt;&lt;option&gt;매입&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;'
+    +'&lt;label&gt;일자 &lt;input type="date" id="bs_date" value="'+BOOT.today+'"&gt;&lt;/label&gt;'
+    +'&lt;label&gt;금액(공급가액) &lt;input type="number" id="bs_amt" oninput="bsSum()"&gt;&lt;/label&gt;'
+    +'&lt;label&gt;부가세 &lt;select id="bs_vatOn" onchange="bsSum()"&gt;&lt;option value="1"&gt;과세 (자동 10%)&lt;/option&gt;&lt;option value="0"&gt;없음&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;'
+    +'&lt;label&gt;증빙 &lt;select id="bs_proof"&gt;&lt;option value="세금계산서"&gt;세금계산서&lt;/option&gt;&lt;option&gt;계산서&lt;/option&gt;&lt;option&gt;신용카드&lt;/option&gt;&lt;option&gt;현금영수증&lt;/option&gt;&lt;option value=""&gt;없음&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;'
+    +'&lt;label&gt;거래처 &lt;select id="bs_p"&gt;'+partOpts()+'&lt;/select&gt;&lt;/label&gt;'
+    +'&lt;label&gt;'+(BOOT.accounts.filter(a=&gt;a.type==='A'&amp;&amp;a.code&gt;=140&amp;&amp;a.code&lt;150).length?'계정':'계정')+' &lt;select id="bs_acct"&gt;'+accOpts(401,'RX')+'&lt;/select&gt;&lt;/label&gt;'
+    +'&lt;label&gt;결제 &lt;select id="bs_pay"&gt;'+accOpts(108,'ALX')+'&lt;/select&gt;&lt;/label&gt;'
+    +'&lt;label&gt;적요 &lt;input id="bs_memo" size="16"&gt;&lt;/label&gt;&lt;/div&gt;'
+    +'&lt;p id="bs_sum" class="mute"&gt;합계 금액 0원&lt;/p&gt;'
+    +'&lt;div class="row"&gt;&lt;button class="b p" onclick="bsSave()"&gt;전표 저장&lt;/button&gt;&lt;span class="mute"&gt;매출: 결제계정 차변 / 매출계정·부가세예수금 대변 · 매입: 매입계정·부가세대급금 차변 / 결제계정 대변&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;';
+};
+function bsSum(){const n=Number(g('bs_amt').value)||0;const v=g('bs_vatOn').value==='1'?Math.floor(n*0.1):0;g('bs_sum').textContent='공급가액 '+f(n)+'원 · 부가세 '+f(v)+'원 · 합계 '+f(n+v)+'원'}
+async function bsSave(){try{msg('저장 중...');const r=await srv('saveBuySell',{side:g('bs_side').value,date:g('bs_date').value,amt:g('bs_amt').value,vatOn:g('bs_vatOn').value==='1',vat:'',proof:g('bs_proof').value,p:g('bs_p').value,acct:g('bs_acct').value,pay:g('bs_pay').value,memo:g('bs_memo').value});msg(r.msg,true)}catch(e){msg(e.message,false)}}
+VIEWS['전표/간이 전표']=function(){
+  return '&lt;div class="card"&gt;&lt;b&gt;간이 전표&lt;/b&gt;&lt;div class="row"&gt;'
+    +'&lt;label&gt;방향 &lt;select id="q_dir"&gt;&lt;option&gt;입금&lt;/option&gt;&lt;option&gt;출금&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;'
+    +'&lt;label&gt;일자 &lt;input type="date" id="q_date" value="'+BOOT.today+'"&gt;&lt;/label&gt;'
+    +'&lt;label&gt;결제계정 &lt;select id="q_pay"&gt;'+accOpts(103,'AL')+'&lt;/select&gt;&lt;/label&gt;'
+    +'&lt;label&gt;수익/비용/자산 계정 &lt;select id="q_acct"&gt;'+accOpts(401,'RXA')+'&lt;/select&gt;&lt;/label&gt;'
+    +'&lt;label&gt;거래처 &lt;select id="q_p"&gt;'+partOpts()+'&lt;/select&gt;&lt;/label&gt;'
+    +'&lt;label&gt;금액 &lt;input type="number" id="q_amt"&gt;&lt;/label&gt;'
+    +'&lt;label&gt;세무구분 &lt;select id="q_tax"&gt;&lt;option&gt;과세&lt;/option&gt;&lt;option&gt;불공제&lt;/option&gt;&lt;option&gt;면세&lt;/option&gt;&lt;option&gt;영세율&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;'
+    +'&lt;label&gt;부가세(빈칸=자동) &lt;input type="number" id="q_vat"&gt;&lt;/label&gt;'
+    +'&lt;label&gt;증빙 &lt;select id="q_proof"&gt;&lt;option value=""&gt;&lt;/option&gt;&lt;option&gt;세금계산서&lt;/option&gt;&lt;option&gt;계산서&lt;/option&gt;&lt;option&gt;신용카드&lt;/option&gt;&lt;option&gt;현금영수증&lt;/option&gt;&lt;option&gt;기타&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;'
+    +'&lt;label&gt;부서 &lt;select id="q_dept"&gt;'+deptOpts()+'&lt;/select&gt;&lt;/label&gt;'
+    +'&lt;label&gt;적요 &lt;input id="q_memo" size="14"&gt;&lt;/label&gt;&lt;/div&gt;'
+    +'&lt;div class="row"&gt;&lt;button class="b p" onclick="qSave()"&gt;자동 분개 저장&lt;/button&gt;&lt;span class="mute"&gt;입금=수익 · 출금=비용/자산 · 불공제는 금액에 포함&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;';
+};
+async function qSave(){try{msg('저장 중...');const r=await srv('saveSimple',{dir:g('q_dir').value,date:g('q_date').value,pay:g('q_pay').value,acct:g('q_acct').value,p:g('q_p').value,amt:g('q_amt').value,tax:g('q_tax').value,taxamt:g('q_vat').value,proof:g('q_proof').value,dept:g('q_dept').value,memo:g('q_memo').value});msg(r.msg,true)}catch(e){msg(e.message,false)}}
+/* ═══ 문서: 거래명세서·세금계산서 ═══ */
+function docNoAuto(kind){const n=BOOT.docs.filter(d=&gt;d.kind===kind).length+1;return (kind==='세금계산서'?'TX-':'TR-')+String(n).padStart(4,'0')}
+function docNew(kind){DC={kind:kind,side:'매출',date:BOOT.today,partner:'',acct:401,note:'',view:null,items:[{name:'',qty:'',price:''},{name:'',qty:'',price:''},{name:'',qty:'',price:''}]};draw()}
+function docRead(){if(!DC)return;const gv=k=&gt;{const el=g('qx_'+k);return el?el.value:''};DC.side=gv('dside')||DC.side;DC.date=gv('ddate')||DC.date;DC.partner=gv('dpart')||'';DC.acct=gv('dacct')||DC.acct;DC.note=gv('dnote');DC.items=DC.items.map((r,i)=&gt;({name:gv('in'+i),qty:gv('iq'+i),price:gv('ip'+i)}))}
+function docCalc(items){const list=(items||[]).filter(r=&gt;(r.name||'').trim()&amp;&amp;((Number(r.qty)||0)||(Number(r.price)||0))).map(r=&gt;({name:(r.name||'').trim(),qty:Number(r.qty)||0,price:Number(r.price)||0,amt:(Number(r.qty)||0)*(Number(r.price)||0)}));const supply=list.reduce((s,r)=&gt;s+r.amt,0);const vat=BOOT.settings.vat==='반올림'?Math.round(supply*0.1):Math.floor(supply*0.1);return{list:list,supply:supply,vat:vat}}
+function docScr(kind){
+  if(DC&amp;&amp;DC.kind===kind&amp;&amp;!DC.view)return docForm();
+  if(DC&amp;&amp;DC.kind===kind&amp;&amp;DC.view)return docView();
+  const docs=BOOT.docs.filter(d=&gt;d.kind===kind).slice().sort((a,b)=&gt;b.no.localeCompare(a.no));
+  const rows=docs.map(d=&gt;[d.no,d.side,d.date,d.p,f(d.supply),f(d.vat),f(d.total),d.vch?'생성 완료':'미생성',
+    (d.vch?'&lt;button class="x" onclick="docUndoId(\''+d.id+'\')"&gt;전표 되돌리기&lt;/button&gt; ':'&lt;button class="x" onclick="docVchId(\''+d.id+'\')"&gt;전표 생성&lt;/button&gt; ')
+    +'&lt;button class="x" onclick="docViewId(\''+d.id+'\')"&gt;보기&lt;/button&gt; &lt;button class="x d" onclick="docDelId(\''+d.id+'\')"&gt;삭제&lt;/button&gt;']);
+  return '&lt;div class="note"&gt;발행한 문서는 [문서] 시트에 저장됩니다. 매출 전표 저장 시 '+kind+'이(가) 자동 발행되고 전표와 연결됩니다 (판매 연동).&lt;/div&gt;'
+   +'&lt;div class="card"&gt;&lt;div class="row"&gt;&lt;b&gt;'+kind+' 발행 목록&lt;/b&gt;&lt;span class="mute"&gt;'+docs.length+'건&lt;/span&gt;&lt;button class="b p" onclick="docNew(\''+kind+'\')"&gt;+ 발행하기&lt;/button&gt;&lt;/div&gt;'
+   +tbl(['문서번호','구분','발행일','거래처','공급가액','세액','합계','전표','작업'],rows,true)+'&lt;/div&gt;';
+}
+function docForm(){
+  const c=docCalc(DC.items);
+  const itemRows=DC.items.map((r,i)=&gt;{const amt=(Number(r.qty)||0)*(Number(r.price)||0);
+    return '&lt;tr&gt;&lt;td&gt;&lt;input id="qx_in'+i+'" value="'+esc(r.name)+'" placeholder="품목명" style="width:100%" oninput="docRead();docSumUI()"&gt;&lt;/td&gt;&lt;td class="n"&gt;&lt;input type="number" min="0" id="qx_iq'+i+'" value="'+esc(r.qty)+'" style="width:80px" oninput="docRead();docSumUI()"&gt;&lt;/td&gt;&lt;td class="n"&gt;&lt;input type="number" min="0" id="qx_ip'+i+'" value="'+esc(r.price)+'" style="width:110px" oninput="docRead();docSumUI()"&gt;&lt;/td&gt;&lt;td class="n" id="da'+i+'"&gt;'+f(amt)+'&lt;/td&gt;&lt;td&gt;&lt;button class="x" onclick="docRead();DC.items.splice('+i+',1);draw()"&gt;✕&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;';}).join('');
+  return '&lt;div class="card"&gt;&lt;h3 class="h3t"&gt;'+(DC.kind==='세금계산서'?'세 금 계 산 서':'거 래 명 세 서')+'&lt;/h3&gt;'
+   +'&lt;div class="row"&gt;&lt;label&gt;구분 &lt;select id="qx_dside" onchange="docRead();DC.acct=DC.side===\'매출\'?401:451;draw()"&gt;&lt;option value="매출"'+(DC.side==='매출'?' selected':'')+'&gt;매출 (공급자)&lt;/option&gt;&lt;option value="매입"'+(DC.side==='매입'?' selected':'')+'&gt;매입 (공급받는자)&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;'
+   +'&lt;label&gt;발행일자 &lt;input type="date" id="qx_ddate" value="'+DC.date+'" onchange="docRead()"&gt;&lt;/label&gt;'
+   +'&lt;label&gt;문서번호(자동) &lt;input value="'+docNoAuto(DC.kind)+'" disabled&gt;&lt;/label&gt;'
+   +'&lt;label&gt;공급받는자(거래처) &lt;select id="qx_dpart" onchange="docRead();draw()"&gt;&lt;option value=""&gt;직접 입력&lt;/option&gt;'+BOOT.partners.map(p=&gt;'&lt;option'+(p.name===DC.partner?' selected':'')+'&gt;'+esc(p.name)+'&lt;/option&gt;').join('')+'&lt;/select&gt;&lt;/label&gt;&lt;/div&gt;'
+   +'&lt;table style="margin-bottom:10px"&gt;&lt;tr&gt;&lt;th style="width:110px"&gt;공급자 상호&lt;/th&gt;&lt;td&gt;&lt;b&gt;'+esc(BOOT.settings.name)+'&lt;/b&gt;&lt;/td&gt;&lt;th style="width:110px"&gt;공급받는자&lt;/th&gt;&lt;td&gt;&lt;b&gt;'+esc(DC.partner||'(미입력)')+'&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;'
+   +'&lt;tr&gt;&lt;th&gt;공급자 등록번호&lt;/th&gt;&lt;td&gt;'+esc(BOOT.settings.no)+'&lt;/td&gt;&lt;th&gt;등록번호&lt;/th&gt;&lt;td id="dp_no"&gt;'+esc(partInfo(DC.partner).no)+'&lt;/td&gt;&lt;/tr&gt;'
+   +'&lt;tr&gt;&lt;th&gt;공급자 대표자&lt;/th&gt;&lt;td&gt;'+esc(BOOT.settings.ceo)+'&lt;/td&gt;&lt;th&gt;대표자&lt;/th&gt;&lt;td&gt;'+esc(partInfo(DC.partner).ceo)+'&lt;/td&gt;&lt;/tr&gt;'
+   +'&lt;tr&gt;&lt;th&gt;공급자 주소&lt;/th&gt;&lt;td&gt;'+esc(BOOT.settings.addr)+'&lt;/td&gt;&lt;th&gt;주소&lt;/th&gt;&lt;td&gt;'+esc(partInfo(DC.partner).addr)+'&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;'
+   +'&lt;div class="tw"&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;품목&lt;/th&gt;&lt;th&gt;수량&lt;/th&gt;&lt;th&gt;단가&lt;/th&gt;&lt;th&gt;공급가액&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;'+itemRows+'&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;'
+   +'&lt;div class="row"&gt;&lt;button class="b" onclick="docRead();DC.items.push({name:\'\',qty:\'\',price:\'\'});draw()"&gt;+ 품목 행 추가&lt;/button&gt;'
+   +'&lt;label&gt;'+(DC.side==='매출'?'매출 계정':'매입·비용 계정')+' &lt;select id="qx_dacct" onchange="docRead()"&gt;'+accOpts(DC.acct,DC.side==='매출'?'R':'XA')+'&lt;/select&gt;&lt;/label&gt;'
+   +'&lt;label&gt;비고 &lt;input id="qx_dnote" value="'+esc(DC.note)+'" oninput="docRead()"&gt;&lt;/label&gt;&lt;/div&gt;'
+   +'&lt;p id="doc_sum" class="ok"&gt;공급가액 '+f(c.supply)+'원 · 세액 '+f(c.vat)+'원 · 합계 '+f(c.supply+c.vat)+'원&lt;/p&gt;'
+   +'&lt;div class="row"&gt;&lt;button class="b p" onclick="docSave()"&gt;발행 저장&lt;/button&gt;&lt;button class="b" onclick="DC=null;draw()"&gt;취소&lt;/button&gt;&lt;button class="b" onclick="window.print()"&gt;인쇄 / PDF&lt;/button&gt;'
+   +'&lt;span class="mute"&gt;저장 후 목록에서 전표 생성·인쇄를 할 수 있습니다&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;';
+}
+function partInfo(name){const p=BOOT.partners.find(x=&gt;x.name===name)||{};return {no:p.no||'',ceo:p.ceo||'',addr:p.addr||''}}
+function docSumUI(){const c=docCalc(DC.items);const el=g('doc_sum');if(el)el.textContent='공급가액 '+f(c.supply)+'원 · 세액 '+f(c.vat)+'원 · 합계 '+f(c.supply+c.vat)+'원'}
+async function docSave(){docRead();const c=docCalc(DC.items);
+  if(!c.list.length)return msg('품목명과 금액이 있는 품목을 1개 이상 입력하세요.',false);
+  try{msg('저장 중...');const r=await srv('saveDoc',{kind:DC.kind,side:DC.side,date:DC.date,p:DC.partner,acct:DC.acct,supply:c.supply,vat:c.vat,items:c.list.map(x=&gt;x.name+'×'+x.qty+'@'+f(x.price)).join(', '),note:DC.note});msg(r.msg,true);BOOT=await srv('getBoot');DC=null;draw()}catch(e){msg(e.message,false)}}
+function docViewId(id){DC.view=id;draw()}
+function docView(){const d=BOOT.docs.find(x=&gt;x.id===DC.view);if(!d){DC=null;return docScr('거래명세서')}
+  const pi=partInfo(d.p);
+  return '&lt;div class="card"&gt;&lt;h3 class="h3t"&gt;'+(d.kind==='세금계산서'?'세 금 계 산 서':'거 래 명 세 서')+'&lt;/h3&gt;'
+   +'&lt;table style="margin-bottom:10px"&gt;&lt;tr&gt;&lt;th style="width:110px"&gt;문서번호&lt;/th&gt;&lt;td&gt;'+esc(d.no)+'&lt;/td&gt;&lt;th style="width:110px"&gt;'+(d.side==='매출'?'작성일자':'발행일자')+'&lt;/th&gt;&lt;td&gt;'+esc(d.date)+'&lt;/td&gt;&lt;/tr&gt;'
+   +'&lt;tr&gt;&lt;th&gt;구분&lt;/th&gt;&lt;td&gt;'+esc(d.side)+'&lt;/td&gt;&lt;th&gt;연결 전표&lt;/th&gt;&lt;td&gt;'+(d.vch?'생성됨':'미생성')+'&lt;/td&gt;&lt;/tr&gt;'
+   +'&lt;tr&gt;&lt;th&gt;공급자 상호&lt;/th&gt;&lt;td&gt;&lt;b&gt;'+esc(BOOT.settings.name)+'&lt;/b&gt;&lt;/td&gt;&lt;th&gt;공급받는자 상호&lt;/th&gt;&lt;td&gt;&lt;b&gt;'+esc(d.p)+'&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;'
+   +'&lt;tr&gt;&lt;th&gt;공급자 등록번호&lt;/th&gt;&lt;td&gt;'+esc(BOOT.settings.no)+'&lt;/td&gt;&lt;th&gt;등록번호&lt;/th&gt;&lt;td&gt;'+esc(pi.no)+'&lt;/td&gt;&lt;/tr&gt;'
+   +'&lt;tr&gt;&lt;th&gt;공급자 대표자&lt;/th&gt;&lt;td&gt;'+esc(BOOT.settings.ceo)+'&lt;/td&gt;&lt;th&gt;대표자&lt;/th&gt;&lt;td&gt;'+esc(pi.ceo)+'&lt;/td&gt;&lt;/tr&gt;'
+   +'&lt;tr&gt;&lt;th&gt;공급자 주소&lt;/th&gt;&lt;td&gt;'+esc(BOOT.settings.addr)+'&lt;/td&gt;&lt;th&gt;주소&lt;/th&gt;&lt;td&gt;'+esc(pi.addr)+'&lt;/td&gt;&lt;/tr&gt;'
+   +'&lt;tr&gt;&lt;th&gt;업태 / 종목&lt;/th&gt;&lt;td&gt;'+esc((BOOT.settings.upte+' / '+BOOT.settings.jong).trim())+'&lt;/td&gt;&lt;th&gt;비고&lt;/th&gt;&lt;td&gt;'+esc(d.note)+'&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;'
+   +'&lt;p class="mute"&gt;'+esc(d.items)+'&lt;/p&gt;'
+   +'&lt;div class="tw"&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;합계 구분&lt;/th&gt;&lt;th&gt;금액&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;'
+   +'&lt;tr&gt;&lt;td&gt;공급가액&lt;/td&gt;&lt;td class="n"&gt;'+f(d.supply)+'&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;세액&lt;/td&gt;&lt;td class="n"&gt;'+f(d.vat)+'&lt;/td&gt;&lt;/tr&gt;&lt;tr class="t"&gt;&lt;td&gt;합계 금액&lt;/td&gt;&lt;td class="n"&gt;'+f(d.total)+'&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;'
+   +(d.vch?'':'&lt;p class="bad"&gt;전표가 아직 생성되지 않았습니다.&lt;/p&gt;')
+   +'&lt;div class="row"&gt;&lt;button class="b" onclick="window.print()"&gt;인쇄 / PDF&lt;/button&gt;&lt;button class="b" onclick="DC=null;draw()"&gt;목록으로&lt;/button&gt;'
+   +(d.vch?'&lt;button class="b" onclick="docUndoId(\''+d.id+'\')"&gt;전표 되돌리기&lt;/button&gt;':'&lt;button class="b p" onclick="docVchId(\''+d.id+'\')"&gt;'+d.side+' 전표 생성&lt;/button&gt;')+'&lt;/div&gt;&lt;/div&gt;';
+}
+async function docVchId(id){try{msg('생성 중...');const r=await srv('docVch',id);msg(r.msg,true);BOOT=await srv('getBoot');draw()}catch(e){msg(e.message,false)}}
+async function docUndoId(id){try{msg('처리 중...');const r=await srv('docUndo',id);msg(r.msg,true);BOOT=await srv('getBoot');draw()}catch(e){msg(e.message,false)}}
+async function docDelId(id){if(!confirm('문서를 삭제할까요? 연결 전표도 함께 삭제됩니다.'))return;try{const r=await srv('delDoc',id);msg(r.msg,true);BOOT=await srv('getBoot');draw()}catch(e){msg(e.message,false)}}
+VIEWS['전표/거래명세서']=function(){return docScr('거래명세서')};
+VIEWS['전표/세금계산서']=function(){return docScr('세금계산서')};
+/* ═══ 템플릿 · 재고 · 자산 · 외화 ═══ */
+VIEWS['전표/자주 쓰는 분개']=function(){
+  const rows=BOOT.templates.map(t=&gt;[esc(t.name),t.lines.length+'라인',
+    t.lines.map(l=&gt;{const a=BOOT.accounts.find(x=&gt;x.code==l.acct);return esc((a?a.name:l.acct)+(Number(l.d)?' 차'+f(l.d):Number(l.c)?' 대'+f(l.c):''))}).join(' / '),
+    '&lt;button class="x" onclick="tplRun(\''+esc(t.name)+'\',true)"&gt;바로 저장&lt;/button&gt; &lt;button class="x" onclick="tplRun(\''+esc(t.name)+'\',false)"&gt;불러오기&lt;/button&gt; &lt;button class="x d" onclick="tplDel(\''+esc(t.name)+'\')"&gt;삭제&lt;/button&gt;']);
+  return '&lt;div class="card"&gt;&lt;div class="row"&gt;&lt;b&gt;자주 쓰는 분개&lt;/b&gt;&lt;span class="mute"&gt;전표 입력 화면의 [반복분개로 저장]으로 만듭니다&lt;/span&gt;&lt;/div&gt;'+tbl(['이름','라인','내용','작업'],rows,false)+'&lt;/div&gt;';
+};
+async function tplRun(n,post){try{const r=await srv('runTemplate',n,BOOT.today,post);if(post){msg(r.msg,true)}else{ED={id:null,date:BOOT.today,memo:n,lines:r.lines};go('전표','전표 입력')}}catch(e){msg(e.message,false)}}
+async function tplDel(n){if(!confirm('템플릿 ['+n+']을(를) 삭제할까요?'))return;try{const r=await srv('delTemplate',n);msg(r.msg,true);BOOT=await srv('getBoot');draw()}catch(e){msg(e.message,false)}}
+VIEWS['전표/재고수불']=function(){
+  const rows=BOOT.products.filter(p=&gt;p.use).map(p=&gt;{const b=BOOT.prodBal[p.code]||{q:0,amt:0};return [p.code,p.name,p.spec,f(b.q),f(b.amt),b.q?Math.round(b.amt/b.q):0]});
+  return '&lt;div class="card"&gt;&lt;div class="row"&gt;&lt;b&gt;재고수불&lt;/b&gt;&lt;span class="mute"&gt;이동평가 · 출고 단가는 보유 평균 자동 계산 · 품목 등록은 기준정보 → 최초재고&lt;/span&gt;&lt;/div&gt;'+tbl(['코드','품목','규격','잔량','장부가액','평균단가'],rows,true)+'&lt;/div&gt;'
+  +'&lt;div class="card"&gt;&lt;b&gt;입출고 기록&lt;/b&gt;&lt;div class="row"&gt;&lt;label&gt;품목 &lt;select id="st_code"&gt;'+BOOT.products.map(p=&gt;'&lt;option value="'+p.code+'"&gt;'+p.code+' '+esc(p.name)+'&lt;/option&gt;').join('')+'&lt;/select&gt;&lt;/label&gt;'
+  +'&lt;label&gt;구분 &lt;select id="st_type"&gt;&lt;option&gt;입고&lt;/option&gt;&lt;option&gt;출고&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;label&gt;일자 &lt;input type="date" id="st_date" value="'+BOOT.today+'"&gt;&lt;/label&gt;'
+  +'&lt;label&gt;수량 &lt;input type="number" id="st_qty"&gt;&lt;/label&gt;&lt;label&gt;단가(빈칸=자동) &lt;input type="number" id="st_price"&gt;&lt;/label&gt;&lt;label&gt;금액(빈칸=자동) &lt;input type="number" id="st_amt"&gt;&lt;/label&gt;'
+  +'&lt;label&gt;거래처 &lt;select id="st_p"&gt;'+partOpts()+'&lt;/select&gt;&lt;/label&gt;&lt;label&gt;입고 결제 &lt;select id="st_pay"&gt;'+accOpts(251,'AL')+'&lt;/select&gt;&lt;/label&gt;'
+  +'&lt;label&gt;출고 원가계정 &lt;select id="st_cogs"&gt;'+accOpts(451,'X')+'&lt;/select&gt;&lt;/label&gt;&lt;label&gt;&lt;input type="checkbox" id="st_post" checked&gt; 전표 생성&lt;/label&gt;&lt;/div&gt;'
+  +'&lt;div class="row"&gt;&lt;button class="b p" onclick="stSave()"&gt;기록 저장&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;';
+};
+async function stSave(){try{msg('저장 중...');const r=await srv('saveMove',{code:g('st_code').value,type:g('st_type').value,date:g('st_date').value,qty:g('st_qty').value,price:g('st_price').value,amt:g('st_amt').value,p:g('st_p').value,pay:g('st_pay').value,cogs:g('st_cogs').value,post:g('st_post').checked});msg(r.msg,true);BOOT=await srv('getBoot');draw()}catch(e){msg(e.message,false)}}
+VIEWS['전표/유·무형자산']=function(){
+  return '&lt;div class="card"&gt;&lt;b&gt;자산 등록 · 상각 · 처리&lt;/b&gt;'
+  +'&lt;div class="row"&gt;&lt;label&gt;자산명 &lt;input id="as_name" size="12"&gt;&lt;/label&gt;&lt;label&gt;유형 &lt;select id="as_kind"&gt;&lt;option&gt;유형&lt;/option&gt;&lt;option&gt;무형&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;label&gt;취득일 &lt;input type="date" id="as_date" value="'+BOOT.today+'"&gt;&lt;/label&gt;'
+  +'&lt;label&gt;취득금액 &lt;input type="number" id="as_amt"&gt;&lt;/label&gt;&lt;label&gt;내용연수(년) &lt;input type="number" id="as_yrs" value="5"&gt;&lt;/label&gt;&lt;label&gt;잔존가치 &lt;input type="number" id="as_sal" value="0"&gt;&lt;/label&gt;'
+  +'&lt;label&gt;자산계정 &lt;select id="as_acct"&gt;'+accOpts(212,'A')+'&lt;/select&gt;&lt;/label&gt;&lt;label&gt;결제계정 &lt;select id="as_pay"&gt;'+accOpts(103,'AL')+'&lt;/select&gt;&lt;/label&gt;'
+  +'&lt;button class="b p" onclick="asSave()"&gt;등록 (취득 전표 생성)&lt;/button&gt;&lt;/div&gt;'
+  +'&lt;div class="row"&gt;&lt;label&gt;상각 연월 &lt;input id="as_ym" value="'+BOOT.today.slice(0,7)+'"&gt;&lt;/label&gt;&lt;button class="b" onclick="asDepr()"&gt;월할 감가상각 실행&lt;/button&gt;'
+  +'&lt;label&gt;처리 &lt;select id="as_mode"&gt;&lt;option&gt;매각&lt;/option&gt;&lt;option&gt;폐기&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;label&gt;일자 &lt;input type="date" id="as_ddate" value="'+BOOT.today+'"&gt;&lt;/label&gt;'
+  +'&lt;label&gt;매각금액 &lt;input type="number" id="as_amt2"&gt;&lt;/label&gt;&lt;button class="b" onclick="asDispose()"&gt;매각·폐기 처리&lt;/button&gt;'
+  +'&lt;span class="mute"&gt;처리 대상 자산ID는 아래 대장의 마지막 열에서 확인&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;'
+  +'&lt;div class="card" id="as_rpt"&gt;&lt;p class="mute"&gt;자산대장을 불러오는 중...&lt;/p&gt;&lt;/div&gt;';
+};
+VIEWS['전표/유·무형자산'].after=function(){srv('report','assetledger',{}).then(r=&gt;{g('as_rpt').innerHTML='&lt;h3 class="h3t"&gt;자 산 대 장&lt;/h3&gt;'+tbl(r.headers,r.rows.map(x=&gt;x.map(c=&gt;c===null?'':c)),true)+'&lt;p class="mute"&gt;'+esc(r.tail)+'&lt;/p&gt;'}).catch(e=&gt;msg(e.message,false))};
+async function asSave(){try{msg('저장 중...');const r=await srv('saveAsset',{name:g('as_name').value,kind:g('as_kind').value,date:g('as_date').value,amt:g('as_amt').value,yrs:g('as_yrs').value,salvage:g('as_sal').value,acct:g('as_acct').value,pay:g('as_pay').value});msg(r.msg,true);draw()}catch(e){msg(e.message,false)}}
+async function asDepr(){try{msg('실행 중...');const r=await srv('depreciateAssets',g('as_ym').value);msg(r.msg,true);draw()}catch(e){msg(e.message,false)}}
+async function asDispose(){const id=prompt('자산ID를 입력하세요 (대장 마지막 열).');if(!id)return;try{msg('처리 중...');const r=await srv('disposeAsset',{id:id,mode:g('as_mode').value,date:g('as_ddate').value,amount:g('as_amt2').value});msg(r.msg,true);draw()}catch(e){msg(e.message,false)}}
+VIEWS['전표/외화거래']=function(){
+  return '&lt;div class="card"&gt;&lt;b&gt;외화거래&lt;/b&gt;&lt;div class="row"&gt;&lt;label&gt;일자 &lt;input type="date" id="fx_date" value="'+BOOT.today+'"&gt;&lt;/label&gt;'
+  +'&lt;label&gt;통화 &lt;select id="fx_cur"&gt;&lt;option&gt;USD&lt;/option&gt;&lt;option&gt;EUR&lt;/option&gt;&lt;option&gt;JPY&lt;/option&gt;&lt;option&gt;CNY&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;'
+  +'&lt;label&gt;방향 &lt;select id="fx_dir"&gt;&lt;option&gt;유입&lt;/option&gt;&lt;option&gt;유출&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;'
+  +'&lt;label&gt;외화금액 &lt;input type="number" id="fx_famt"&gt;&lt;/label&gt;&lt;label&gt;환율 &lt;input type="number" id="fx_rate"&gt;&lt;/label&gt;'
+  +'&lt;label&gt;계정 &lt;select id="fx_acct"&gt;'+accOpts(401,'RXA')+'&lt;/select&gt;&lt;/label&gt;&lt;label&gt;결제계정 &lt;select id="fx_pay"&gt;'+accOpts(103,'AL')+'&lt;/select&gt;&lt;/label&gt;'
+  +'&lt;label&gt;메모 &lt;input id="fx_memo" size="12"&gt;&lt;/label&gt;&lt;button class="b p" onclick="fxSave()"&gt;기록 저장&lt;/button&gt;'
+  +'&lt;span class="mute"&gt;원화 = 외화금액 × 환율 (반올림)&lt;/span&gt;&lt;/div&gt;&lt;div id="fx_hist"&gt;&lt;/div&gt;&lt;/div&gt;';
+};
+VIEWS['전표/외화거래'].after=function(){srv('listFx',{}).then(r=&gt;{g('fx_hist').innerHTML='&lt;div class="row"&gt;&lt;b&gt;외화 기록&lt;/b&gt;&lt;/div&gt;'+tbl(['일자','통화','외화금액','환율','원화금액','메모'],r.rows.map(x=&gt;[x[0],x[1],f(x[2]),f(x[3]),f(x[4]),x[5]]),true)}).catch(e=&gt;{})};
+async function fxSave(){try{msg('저장 중...');const r=await srv('saveForex',{date:g('fx_date').value,cur:g('fx_cur').value,dir:g('fx_dir').value,famt:g('fx_famt').value,rate:g('fx_rate').value,acct:g('fx_acct').value,pay:g('fx_pay').value,memo:g('fx_memo').value});msg(r.msg,true);draw()}catch(e){msg(e.message,false)}}
+/* ═══ 보고서 공통 뷰 ═══ */
+function repView(kind,ctlFn){
+  QY.R=QY.R||{};QY.R[kind]=QY.R[kind]||{s:BOOT.settings.s,e:BOOT.settings.e};
+  const o=QY.R[kind];
+  return '&lt;div class="card"&gt;&lt;div class="row"&gt;&lt;label&gt;시작일 &lt;input type="date" value="'+o.s+'" onchange="rSet(\''+kind+'\',\'s\',this.value)"&gt;&lt;/label&gt;'
+   +'&lt;label&gt;종료일 &lt;input type="date" value="'+o.e+'" onchange="rSet(\''+kind+'\',\'e\',this.value)"&gt;&lt;/label&gt;'
+   +(ctlFn?ctlFn():'')
+   +'&lt;button class="b p" onclick="repLoad(\''+kind+'\')"&gt;보기&lt;/button&gt;&lt;button class="b" onclick="repSheet(\''+kind+'\')"&gt;시트로 저장&lt;/button&gt;&lt;/div&gt;'
+   +'&lt;div id="rpt_'+kind+'"&gt;&lt;p class="mute"&gt;조회 중...&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;';
+}
+function rSet(kind,k,v){QY.R[kind][k]=v;draw()}
+function repRender(kind,r){const rows=r.rows.map(x=&gt;x.map(c=&gt;c===null?'':c));g('rpt_'+kind).innerHTML='&lt;h3 class="h3t"&gt;'+esc(r.title)+'&lt;/h3&gt;&lt;div class="mute" style="text-align:center;margin-bottom:8px"&gt;'+esc(r.sub)+'&lt;/div&gt;'+tbl(r.headers,rows,true)+(r.tail?'&lt;p class="ok" style="font-size:12.5px"&gt;'+esc(r.tail)+'&lt;/p&gt;':'')}
+async function repLoad(kind){try{const r=await srv('report',kind,QY.R[kind]||{});repRender(kind,r)}catch(e){msg(e.message,false)}}
+async function repSheet(kind){try{msg('시트 작성 중...');const r=await srv('writeReportSheet',kind,QY.R[kind]||{});msg(r.msg,true)}catch(e){msg(e.message,false)}}
+const CTL={
+  gl:function(){return '&lt;label&gt;계정 &lt;select onchange="rSet(\'gl\',\'code\',this.value)"&gt;'+accOpts((QY.R&amp;&amp;QY.R.gl&amp;&amp;QY.R.gl.code)||101)+'&lt;/select&gt;&lt;/label&gt;'},
+  partner:function(){return '&lt;label&gt;거래처 &lt;select onchange="rSet(\'partner\',\'p\',this.value)"&gt;'+partOpts((QY.R&amp;&amp;QY.R.partner&amp;&amp;QY.R.partner.p)||'')+'&lt;/select&gt;&lt;/label&gt;'}
+};
+const REPS=[['장부','분개장','journal'],['장부','총계정원장','gl'],['장부','거래처원장','partner'],['장부','현금출납장','cash'],['장부','예금출납장','bank'],['장부','자금일보','fund'],['장부','재고수불부','stockledger'],['장부','자산대장','assetledger'],['재무제표','합계잔액시산표','tb'],['재무제표','손익계산서','pnl'],['재무제표','재무상태표','bs'],['재무제표','합계재무상태표','gbs'],['재무제표','부속명세서(P/L)','plspec'],['재무제표','약식 시산표','tbq'],['재무제표','약식 손익계산서','pnlq'],['재무제표','약식 재무상태표','bsq'],['부가세/세무','부가세 집계표','vat'],['부가세/세무','종합소득세 명세서','income'],['분석','채권/채무 관리','aging'],['분석','부서손익','dept'],['가결산','가결산 약식 손익계산서','prov_pl'],['가결산','가결산 약식 재무상태표','prov_bs'],['설정','기능 적용 현황','coverage']];
+REPS.forEach(function(x){const t=x[0],s=x[1],k=x[2];VIEWS[t+'/'+s]=function(){return repView(k,CTL[k])};VIEWS[t+'/'+s].after=function(){repLoad(k)}});
+VIEWS['결산/결산 가이드']=function(){return repView('guide')};
+VIEWS['결산/기말재고 평가']=function(){return repView('valuation')};
+let MP2=null;
+VIEWS['결산/재고매출원가 매핑']=function(){
+  if(!MP2)MP2=BOOT.mappings.map(m=&gt;({from:String(m.from),to:String(m.to)}));
+  const rows=MP2.map((m,i)=&gt;'&lt;tr&gt;&lt;td&gt;&lt;select onchange="MP2['+i+'].from=this.value"&gt;'+accOpts(m.from,'A')+'&lt;/select&gt;&lt;/td&gt;&lt;td&gt;&lt;select onchange="MP2['+i+'].to=this.value"&gt;'+accOpts(m.to,'X')+'&lt;/select&gt;&lt;/td&gt;&lt;td&gt;&lt;button class="x" onclick="MP2.splice('+i+',1);draw()"&gt;✕&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;').join('');
+  return '&lt;div class="card"&gt;&lt;div class="row"&gt;&lt;b&gt;재고 → 매출원가 매핑&lt;/b&gt;&lt;button class="b" onclick="MP2.push({from:\'146\',to:\'451\'});draw()"&gt;+ 행 추가&lt;/button&gt;&lt;button class="b p" onclick="mpSave()"&gt;매핑 저장&lt;/button&gt;&lt;span class="mute"&gt;출고 기록은 재고수불 화면의 전표 생성(출고)으로 반영됩니다&lt;/span&gt;&lt;/div&gt;&lt;div class="tw"&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;재고계정&lt;/th&gt;&lt;th&gt;원가계정&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;'+rows+'&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/div&gt;'+repView('mapping');
+};
+async function mpSave(){try{const r=await srv('saveMasters',{mappings:MP2.map(m=&gt;[Number(m.from)||0,Number(m.to)||0])});msg(r.msg,true);BOOT=await srv('getBoot');MP2=null;draw()}catch(e){msg(e.message,false)}}
+VIEWS['가결산/가결산 관리']=function(){
+  return repView('prov')+'&lt;div class="card"&gt;&lt;b&gt;월별 기말재고 입력&lt;/b&gt;&lt;div class="row"&gt;&lt;label&gt;월 &lt;input type="month" id="pv_m" value="'+BOOT.today.slice(0,7)+'"&gt;&lt;/label&gt;&lt;label&gt;기말재고 금액 &lt;input type="number" id="pv_a"&gt;&lt;/label&gt;&lt;button class="b p" onclick="pvSave()"&gt;저장&lt;/button&gt;&lt;span class="mute"&gt;입력한 기말재고로 잠정 매출원가·영업이익이 계산됩니다 (신고용 아님)&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;';
+};
+async function pvSave(){try{const r=await srv('saveProvStock',{month:g('pv_m').value,amt:g('pv_a').value});msg(r.msg,true);repLoad('prov')}catch(e){msg(e.message,false)}}
+/* ═══ 업로드: 가져오기 ═══ */
+let IMP=null;
+VIEWS['업로드/가져오기']=function(){
+  return '&lt;div class="note"&gt;엑셀/CSV에서 복사한 행을 붙여넣으세요. 열 순서: 일자, 적요, 계정(코드 또는 계정명), 거래처, 차변, 대변. 미매칭 계정은 미리보기 표에서 직접 선택하세요.&lt;/div&gt;'
+  +'&lt;div class="card"&gt;&lt;textarea id="im_text" rows="6" style="width:100%;font-family:inherit" placeholder="일자&amp;#9;적요&amp;#9;계정&amp;#9;거래처&amp;#9;차변&amp;#9;대변"&gt;&lt;/textarea&gt;'
+  +'&lt;div class="row"&gt;&lt;button class="b p" onclick="imPrev()"&gt;매칭 미리보기&lt;/button&gt;&lt;/div&gt;&lt;div id="im_box"&gt;&lt;/div&gt;&lt;/div&gt;';
+};
+async function imPrev(){try{const r=await srv('importPreview',g('im_text').value);IMP=r.rows;
+  const rows=IMP.map((x,i)=&gt;[x.date,x.memo,x.acctTxt,x.how,
+    '&lt;select id="im_a'+i+'" onchange="IMP['+i+'].code=this.value"&gt;'+accOpts(x.code)+'&lt;/select&gt;',
+    f(x.d),f(x.c),
+    '&lt;select id="im_o'+i+'" onchange="IMP['+i+'].offset=this.value"&gt;'+accOpts(101)+'&lt;/select&gt;']);
+  g('im_box').innerHTML=tbl(['일자','적요','파일 계정','매칭','우리 계정','차변','대변','상대계정'],rows,false)
+   +'&lt;div class="row"&gt;&lt;button class="b p" onclick="imCommit()"&gt;전표 일괄 등록&lt;/button&gt;&lt;span class="mute"&gt;상대계정 기본: 현금(101) — 외상 거래는 외상매출금·외상매입금으로 변경&lt;/span&gt;&lt;/div&gt;';
+}catch(e){msg(e.message,false)}}
+async function imCommit(){if(!IMP||!IMP.length)return msg('미리보기를 먼저 실행하세요.',false);if(!confirm('미리보기의 전표를 일괄 등록할까요?'))return;
+  try{msg('등록 중...');IMP.forEach(function(x,i){const a=g('im_a'+i);if(a)x.code=a.value;const o=g('im_o'+i);if(o)x.offset=o.value});
+  const r=await srv('importCommit',IMP);msg(r.msg,true);g('im_box').innerHTML='';g('im_text').value='';IMP=null}catch(e){msg(e.message,false)}}
+/* ═══ 기준정보 ═══ */
+let AC=null,PA2=null,BK2=null,OP2=null,PD2=null;
+function acState(){if(!AC)AC=BOOT.accounts.map(a=&gt;[a.code,a.name,a.type,a.use?'사용':'미사용']);return AC}
+VIEWS['기준정보/계정과목']=function(){
+  const ac=acState();
+  const rows=ac.map((r,i)=&gt;'&lt;tr&gt;&lt;td&gt;&lt;input value="'+esc(r[0])+'" style="width:70px" oninput="AC['+i+'][0]=this.value"&gt;&lt;/td&gt;&lt;td&gt;&lt;input value="'+esc(r[1])+'" oninput="AC['+i+'][1]=this.value"&gt;&lt;/td&gt;&lt;td&gt;&lt;select onchange="AC['+i+'][2]=this.value"&gt;'+['A','L','E','R','X'].map(function(t){return '&lt;option'+(r[2]===t?' selected':'')+'&gt;'+t+'&lt;/option&gt;'}).join('')+'&lt;/select&gt;&lt;/td&gt;&lt;td&gt;&lt;select onchange="AC['+i+'][3]=this.value"&gt;&lt;option'+(r[3]==='사용'?' selected':'')+'&gt;사용&lt;/option&gt;&lt;option'+(r[3]==='미사용'?' selected':'')+'&gt;미사용&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;&lt;td&gt;&lt;button class="x" onclick="AC.splice('+i+',1);draw()"&gt;✕&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;').join('');
+  return '&lt;div class="card"&gt;&lt;div class="row"&gt;&lt;b&gt;계정과목&lt;/b&gt;&lt;button class="b" onclick="AC.push([\'\',\'\',\'A\',\'사용\']);draw()"&gt;+ 행 추가&lt;/button&gt;&lt;button class="b p" onclick="saveAc()"&gt;전체 저장&lt;/button&gt;&lt;span class="mute"&gt;구분: A자산 L부채 E자본 R수익 X비용&lt;/span&gt;&lt;/div&gt;&lt;div class="tw"&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;코드&lt;/th&gt;&lt;th&gt;계정명&lt;/th&gt;&lt;th&gt;구분&lt;/th&gt;&lt;th&gt;사용&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;'+rows+'&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/div&gt;';
+};
+async function saveAc(){try{const r=await srv('saveMasters',{accounts:AC.map(function(r){return [Number(r[0])||0,String(r[1]||''),String(r[2]),String(r[3])]})});msg(r.msg,true);BOOT=await srv('getBoot');AC=null;draw()}catch(e){msg(e.message,false)}}
+function paState(){if(!PA2)PA2=BOOT.partners.map(p=&gt;[p.name,p.kind,p.no,p.ceo,p.tel,p.addr,p.memo,p.use?'사용':'미사용']);return PA2}
+VIEWS['기준정보/거래처']=function(){
+  const pa=paState();
+  const rows=pa.map((r,i)=&gt;'&lt;tr&gt;&lt;td&gt;&lt;input value="'+esc(r[0])+'" oninput="PA2['+i+'][0]=this.value"&gt;&lt;/td&gt;&lt;td&gt;&lt;select onchange="PA2['+i+'][1]=this.value"&gt;'+['겸용','매출처','매입처'].map(function(t){return '&lt;option'+(r[1]===t?' selected':'')+'&gt;'+t+'&lt;/option&gt;'}).join('')+'&lt;/select&gt;&lt;/td&gt;&lt;td&gt;&lt;input value="'+esc(r[2])+'" size="12" oninput="PA2['+i+'][2]=this.value"&gt;&lt;/td&gt;&lt;td&gt;&lt;input value="'+esc(r[3])+'" size="8" oninput="PA2['+i+'][3]=this.value"&gt;&lt;/td&gt;&lt;td&gt;&lt;input value="'+esc(r[4])+'" size="10" oninput="PA2['+i+'][4]=this.value"&gt;&lt;/td&gt;&lt;td&gt;&lt;input value="'+esc(r[5])+'" size="14" oninput="PA2['+i+'][5]=this.value"&gt;&lt;/td&gt;&lt;td&gt;&lt;select onchange="PA2['+i+'][7]=this.value"&gt;&lt;option'+(r[7]==='사용'?' selected':'')+'&gt;사용&lt;/option&gt;&lt;option'+(r[7]==='미사용'?' selected':'')+'&gt;미사용&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;&lt;td&gt;&lt;button class="x" onclick="PA2.splice('+i+',1);draw()"&gt;✕&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;').join('');
+  return '&lt;div class="card"&gt;&lt;div class="row"&gt;&lt;b&gt;거래처&lt;/b&gt;&lt;button class="b" onclick="PA2.push([\'\',\'겸용\',\'\',\'\',\'\',\'\',\'\',\'사용\']);draw()"&gt;+ 행 추가&lt;/button&gt;&lt;button class="b p" onclick="savePa()"&gt;전체 저장&lt;/button&gt;&lt;/div&gt;&lt;div class="tw"&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;거래처명&lt;/th&gt;&lt;th&gt;구분&lt;/th&gt;&lt;th&gt;사업자등록번호&lt;/th&gt;&lt;th&gt;대표자&lt;/th&gt;&lt;th&gt;전화&lt;/th&gt;&lt;th&gt;주소&lt;/th&gt;&lt;th&gt;사용&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;'+rows+'&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/div&gt;';
+};
+async function savePa(){try{const r=await srv('saveMasters',{partners:PA2.map(function(r){return [String(r[0]||''),String(r[1]),String(r[2]||''),String(r[3]||''),String(r[4]||''),String(r[5]||''),String(r[6]||''),String(r[7])]})});msg(r.msg,true);BOOT=await srv('getBoot');PA2=null;draw()}catch(e){msg(e.message,false)}}
+function bkState(){if(!BK2)BK2=BOOT.banks.map(b=&gt;[b.alias,b.bank,b.no,b.holder,String(b.acct),b.use?'사용':'미사용']);return BK2}
+VIEWS['기준정보/은행계좌']=function(){
+  const bk=bkState();
+  const rows=bk.map((r,i)=&gt;'&lt;tr&gt;&lt;td&gt;&lt;input value="'+esc(r[0])+'" oninput="BK2['+i+'][0]=this.value"&gt;&lt;/td&gt;&lt;td&gt;&lt;input value="'+esc(r[1])+'" oninput="BK2['+i+'][1]=this.value"&gt;&lt;/td&gt;&lt;td&gt;&lt;input value="'+esc(r[2])+'" size="14" oninput="BK2['+i+'][2]=this.value"&gt;&lt;/td&gt;&lt;td&gt;&lt;input value="'+esc(r[3])+'" size="8" oninput="BK2['+i+'][3]=this.value"&gt;&lt;/td&gt;&lt;td&gt;&lt;select onchange="BK2['+i+'][4]=this.value"&gt;'+accOpts(r[4],'A')+'&lt;/select&gt;&lt;/td&gt;&lt;td&gt;&lt;select onchange="BK2['+i+'][5]=this.value"&gt;&lt;option'+(r[5]==='사용'?' selected':'')+'&gt;사용&lt;/option&gt;&lt;option'+(r[5]==='미사용'?' selected':'')+'&gt;미사용&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;&lt;td&gt;&lt;button class="x" onclick="BK2.splice('+i+',1);draw()"&gt;✕&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;').join('');
+  return '&lt;div class="card"&gt;&lt;div class="row"&gt;&lt;b&gt;은행계좌&lt;/b&gt;&lt;button class="b" onclick="BK2.push([\'\',\'\',\'\',\'\',\'103\',\'사용\']);draw()"&gt;+ 행 추가&lt;/button&gt;&lt;button class="b p" onclick="saveBk()"&gt;전체 저장&lt;/button&gt;&lt;/div&gt;&lt;div class="tw"&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;계좌별칭&lt;/th&gt;&lt;th&gt;은행명&lt;/th&gt;&lt;th&gt;계좌번호&lt;/th&gt;&lt;th&gt;예금주&lt;/th&gt;&lt;th&gt;연결계정&lt;/th&gt;&lt;th&gt;사용&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;'+rows+'&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/div&gt;';
+};
+async function saveBk(){try{const r=await srv('saveMasters',{banks:BK2.map(function(r){return [String(r[0]||''),String(r[1]||''),String(r[2]||''),String(r[3]||''),Number(r[4])||103,String(r[5])]})});msg(r.msg,true);BOOT=await srv('getBoot');BK2=null;draw()}catch(e){msg(e.message,false)}}
+VIEWS['기준정보/최초잔액']=function(){
+  return '&lt;div class="note"&gt;각 계정의 최초(기초) 잔액을 입력하세요. 금액은 차변(자산·비용)이 ＋, 대변(부채·자본·수익)이 − 입니다. 거래처별 채권·채무 이월은 거래처를 함께 입력하세요.&lt;/div&gt;'
+  +'&lt;div class="card"&gt;&lt;div class="row"&gt;&lt;b&gt;최초잔액&lt;/b&gt;&lt;button class="b" onclick="OP2.push([\'\',\'\',\'\']);draw()"&gt;+ 행 추가&lt;/button&gt;&lt;button class="b p" onclick="saveOp()"&gt;전체 저장&lt;/button&gt;&lt;/div&gt;&lt;div id="op_box"&gt;&lt;p class="mute"&gt;불러오는 중...&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;';
+};
+VIEWS['기준정보/최초잔액'].after=function(){srv('getOpening',{}).then(function(r){OP2=r.rows.map(function(x){return [String(x[0]),String(x[1]),String(x[2]||'')]});
+  g('op_box').innerHTML='&lt;div class="tw"&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;계정&lt;/th&gt;&lt;th&gt;금액(＋차변/−대변)&lt;/th&gt;&lt;th&gt;거래처(빈칸=통합)&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;'+OP2.map(function(r,i){return '&lt;tr&gt;&lt;td&gt;&lt;select onchange="OP2['+i+'][0]=this.value"&gt;'+accOpts(r[0])+'&lt;/select&gt;&lt;/td&gt;&lt;td&gt;&lt;input type="number" value="'+esc(r[1])+'" style="width:130px" oninput="OP2['+i+'][1]=this.value"&gt;&lt;/td&gt;&lt;td&gt;&lt;select onchange="OP2['+i+'][2]=this.value"&gt;&lt;option value=""&gt;통합&lt;/option&gt;'+BOOT.partners.map(function(p){return '&lt;option'+(p.name===r[2]?' selected':'')+'&gt;'+esc(p.name)+'&lt;/option&gt;'}).join('')+'&lt;/select&gt;&lt;/td&gt;&lt;td&gt;&lt;button class="x" onclick="OP2.splice('+i+',1);draw()"&gt;✕&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;'}).join('')+'&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;'}).catch(function(e){msg(e.message,false)})};
+async function saveOp(){try{const r=await srv('saveMasters',{opening:OP2.map(function(r){return [Number(r[0])||0,Number(r[1])||0,String(r[2]||'')]})});msg(r.msg,true)}catch(e){msg(e.message,false)}}
+function pdState(){if(!PD2)PD2=BOOT.products.map(p=&gt;[p.code,p.name,p.spec,p.sp,p.pp,p.q0,p.p0,p.acct,p.use?'사용':'미사용']);return PD2}
+VIEWS['기준정보/최초재고']=function(){
+  const pd=pdState();
+  const rows=pd.map((r,i)=&gt;'&lt;tr&gt;&lt;td&gt;&lt;input value="'+esc(r[0])+'" style="width:60px" oninput="PD2['+i+'][0]=this.value"&gt;&lt;/td&gt;&lt;td&gt;&lt;input value="'+esc(r[1])+'" oninput="PD2['+i+'][1]=this.value"&gt;&lt;/td&gt;&lt;td&gt;&lt;input value="'+esc(r[2])+'" size="8" oninput="PD2['+i+'][2]=this.value"&gt;&lt;/td&gt;&lt;td&gt;&lt;input type="number" value="'+esc(r[3])+'" style="width:90px" oninput="PD2['+i+'][3]=this.value"&gt;&lt;/td&gt;&lt;td&gt;&lt;input type="number" value="'+esc(r[4])+'" style="width:90px" oninput="PD2['+i+'][4]=this.value"&gt;&lt;/td&gt;&lt;td&gt;&lt;input type="number" value="'+esc(r[5])+'" style="width:70px" oninput="PD2['+i+'][5]=this.value"&gt;&lt;/td&gt;&lt;td&gt;&lt;input type="number" value="'+esc(r[6])+'" style="width:80px" oninput="PD2['+i+'][6]=this.value"&gt;&lt;/td&gt;&lt;td&gt;&lt;select onchange="PD2['+i+'][7]=this.value"&gt;'+accOpts(r[7],'A')+'&lt;/select&gt;&lt;/td&gt;&lt;td&gt;&lt;button class="x" onclick="PD2.splice('+i+',1);draw()"&gt;✕&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;').join('');
+  return '&lt;div class="card"&gt;&lt;div class="row"&gt;&lt;b&gt;품목(재고) 등록&lt;/b&gt;&lt;button class="b" onclick="PD2.push([\'\',\'\',\'\',\'\',\'\',\'\',\'\',\'146\',\'사용\']);draw()"&gt;+ 행 추가&lt;/button&gt;&lt;button class="b p" onclick="savePd()"&gt;전체 저장&lt;/button&gt;&lt;span class="mute"&gt;기초수량·기초단가는 최초 재고이며, 입출고는 전표 탭 → 재고수불&lt;/span&gt;&lt;/div&gt;&lt;div class="tw"&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;코드&lt;/th&gt;&lt;th&gt;품목명&lt;/th&gt;&lt;th&gt;규격&lt;/th&gt;&lt;th&gt;매출단가&lt;/th&gt;&lt;th&gt;매입단가&lt;/th&gt;&lt;th&gt;기초수량&lt;/th&gt;&lt;th&gt;기초단가&lt;/th&gt;&lt;th&gt;재고계정&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;'+rows+'&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/div&gt;';
+};
+async function savePd(){try{const r=await srv('saveMasters',{products:PD2.map(function(r){return [Number(r[0])||0,String(r[1]||''),String(r[2]||''),Number(r[3])||0,Number(r[4])||0,Number(r[5])||0,Number(r[6])||0,Number(r[7])||146,String(r[8])]})});msg(r.msg,true);BOOT=await srv('getBoot');PD2=null;draw()}catch(e){msg(e.message,false)}}
+VIEWS['기준정보/회사 설정']=function(){
+  const s=BOOT.settings;
+  return '&lt;div class="card"&gt;&lt;b&gt;회사·기간 설정&lt;/b&gt;&lt;div class="grid3"&gt;&lt;div class="row" style="flex-direction:column;align-items:stretch"&gt;&lt;label&gt;회사명 &lt;input id="cs_name" value="'+esc(s.name)+'"&gt;&lt;/label&gt;&lt;label&gt;사업자등록번호 &lt;input id="cs_no" value="'+esc(s.no)+'"&gt;&lt;/label&gt;&lt;label&gt;대표자 &lt;input id="cs_ceo" value="'+esc(s.ceo)+'"&gt;&lt;/label&gt;&lt;/div&gt;'
+  +'&lt;div class="row" style="flex-direction:column;align-items:stretch"&gt;&lt;label&gt;주소 &lt;input id="cs_addr" value="'+esc(s.addr)+'"&gt;&lt;/label&gt;&lt;label&gt;업태 &lt;input id="cs_upte" value="'+esc(s.upte)+'"&gt;&lt;/label&gt;&lt;label&gt;종목 &lt;input id="cs_jong" value="'+esc(s.jong)+'"&gt;&lt;/label&gt;&lt;/div&gt;'
+  +'&lt;div class="row" style="flex-direction:column;align-items:stretch"&gt;&lt;label&gt;조회 시작일 &lt;input type="date" id="cs_s" value="'+s.s+'"&gt;&lt;/label&gt;&lt;label&gt;조회 종료일 &lt;input type="date" id="cs_e" value="'+s.e+'"&gt;&lt;/label&gt;&lt;label&gt;기초 이월이익 &lt;input type="number" id="cs_base" value="'+esc(s.base)+'"&gt;&lt;/label&gt;&lt;/div&gt;&lt;/div&gt;'
+  +'&lt;div class="row"&gt;&lt;label&gt;부가세 절사 &lt;select id="cs_vat"&gt;&lt;option'+(s.vat==='절사'?' selected':'')+'&gt;절사&lt;/option&gt;&lt;option'+(s.vat==='반올림'?' selected':'')+'&gt;반올림&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;label&gt;마감일(빈칸=잠금 없음) &lt;input type="date" id="cs_closing" value="'+esc(s.closing)+'"&gt;&lt;/label&gt;&lt;button class="b p" onclick="csSave()"&gt;저장&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;';
+};
+async function csSave(){try{const r=await srv('saveMasters',{settings:{'회사명':g('cs_name').value,'사업자등록번호':g('cs_no').value,'대표자':g('cs_ceo').value,'주소':g('cs_addr').value,'업태':g('cs_upte').value,'종목':g('cs_jong').value,'조회 시작일':g('cs_s').value,'조회 종료일':g('cs_e').value,'기초 이월이익':g('cs_base').value,'부가세 절사':g('cs_vat').value,'마감일':g('cs_closing').value}});msg(r.msg,true);BOOT=await srv('getBoot');draw()}catch(e){msg(e.message,false)}}
+VIEWS['설정/정보']=function(){
+  return '&lt;div class="card"&gt;&lt;b&gt;큐알장부 · 구글 시트 실행 버전&lt;/b&gt;&lt;p class="mute"&gt;데이터는 이 스프레드시트의 시트들(전표·문서·품목·자산 등)에 저장됩니다. 백업은 파일 메뉴의 버전 기록 또는 사본 만들기를 이용하세요. 매출 전표를 저장하면 거래명세서·세금계산서가 문서 시트에 자동 기록되고 전표와 연결됩니다.&lt;/p&gt;&lt;p class="mute"&gt;보고서는 [시트로 저장] 버튼으로 각 시트에 작성할 수 있습니다. 상단 메뉴의 합계잔액시산표·손익계산서·재무상태표도 동일하게 동작합니다.&lt;/p&gt;&lt;/div&gt;';
+};
+/* ═══ 초기화 ═══ */
+document.addEventListener('keydown',function(e){if((e.ctrlKey||e.metaKey)&amp;&amp;(e.key==='s'||e.key==='S')){e.preventDefault();if(TAB==='전표'&amp;&amp;SUB==='전표 입력')edSave()}});
+(async function(){
+  try{
+    BOOT=await srv('getBoot');
+    edReset();
+    if(window.__GOTO&amp;&amp;window.__GOTO[0]&amp;&amp;TABS[window.__GOTO[0]]){TAB=window.__GOTO[0];SUB=window.__GOTO[1]||TABS[TAB][0]}
+    draw();
+    g('status').textContent='구글 시트 실행 · 데이터는 이 스프레드시트에 저장';
+  }catch(e){document.body.insertAdjacentHTML('afterbegin','&lt;div class="bad"&gt;초기화 실패: '+esc(e.message)+'&lt;/div&gt;')}
+})();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</section>
+
+<section>
+  <h2>구글 시트 버전 기능 구성</h2>
+  <table class="cmp">
+    <tr><th>기능</th><th>탭 · 위치</th><th>저장되는 시트</th></tr>
+    <tr><td>전표 입력 (자동 분개 — 금액 1회 입력으로 차대변 자동 생성·매출 연동) · 간이 전표 · 전표 검색 · 회차 취소</td><td>전표</td><td>전표 · 문서</td></tr>
+    <tr><td>매입·매출 전표 (품목·수량·단가 → 자동 분개, 재고 반영)</td><td>전표 → 매입·매출</td><td>전표 · 품목 · 재고수불</td></tr>
+    <tr><td>거래명세서·세금계산서 발행 (전표 연동·보기·인쇄)</td><td>전표</td><td>문서</td></tr>
+    <tr><td>자주 쓰는 분개 (템플릿 3종)</td><td>전표</td><td>템플릿</td></tr>
+    <tr><td>재고 수불 (이동평가)</td><td>전표 → 재고수불</td><td>품목 · 재고수불</td></tr>
+    <tr><td>유·무형자산 등록 · 월할 감가상각 · 처리</td><td>전표 → 유·무형자산</td><td>자산</td></tr>
+    <tr><td>외화거래</td><td>전표 → 외화거래</td><td>외화</td></tr>
+    <tr><td>장부 7종 (분개장·총계정원장·거래처원장·현금출납장·예금출납장·자금일보·자산대장)</td><td>장부</td><td>[시트로 저장]</td></tr>
+    <tr><td>재무제표 8종 (합계잔액시산표·손익계산서·재무상태표·합계재무상태표·부속명세서(P/L)·약식 3종)</td><td>재무제표</td><td>[시트로 저장]</td></tr>
+    <tr><td>결산 · 가결산 · 부가세 · 분석</td><td>결산 · 가결산 · 부가세·세무 · 분석</td><td>[시트로 저장]</td></tr>
+    <tr><td>거래 가져오기 (미리보기 후 일괄 등록)</td><td>업로드</td><td>전표 등</td></tr>
+    <tr><td>기준정보 (회사 설정·계정과목 30계정·거래처·은행계좌·최초잔액)</td><td>기준정보</td><td>설정 · 계정과목 · 거래처 · 은행계좌 · 최초잔액</td></tr>
+    <tr><td>백업 파일 공유 — 크롬 버전 호환 qr-backup.json 내려받기·복원</td><td>설정 → 백업 공유</td><td>전 시트</td></tr>
+    <tr><td>백업·복원 등 데이터 관리</td><td>설정</td><td>전 시트</td></tr>
+  </table>
+</section>
+
+<section>
+  <div class="caution"><b>주의사항</b>
+    <ul>
+      <li>구글 시트 버전은 <b>시트 1개 = 회사 1개</b> 기준입니다. 회사가 여러 개면 시트를 나눠 각각 설치하세요.</li>
+      <li><b>설정</b> 시트에서 회사명·사업자등록번호·조회 기간·기초 이월이익을 바꿀 수 있고, 보고서는 설정 기간 기준으로 계산됩니다.</li>
+      <li><b>계정과목·거래처</b> 시트는 직접 편집해도 됩니다 (행 추가 시 코드·구분(A/L/E/R/X) 형식을 유지하세요).</li>
+      <li><b>전표</b> 시트를 손으로 고치면 보고서 계산에 그대로 반영됩니다 — 차변·대변 합계가 맞는지 유의하세요.</li>
+      <li>데이터 시트 15종과 기본 계정 30개는 초기 설정에서 자동 생성되고, 보고서·원장은 화면에 표시 후 필요 시 <b>[시트로 저장]</b>으로 새 시트에 기록됩니다.</li>
+      <li>크롬 실행 버전의 백업 폴더 자동 백업은 PC의 Chrome·Edge에서 동작합니다.</li>
+      <li>크롬 버전에서 [백업 내려받기]로 저장한 qr-backup.json을 구글 시트 [설정 → 백업 공유 → 복원 파일]에서 열면 데이터가 시트로 옮겨지고, 반대로 구글 시트에서 내려받은 파일을 크롬 버전 [복원]에서 열면 브라우저 장부로 복사됩니다. 복원은 기존 데이터를 교체하므로 먼저 현재 데이터를 백업하세요.</li>
+    </ul>
+  </div>
+</section>
+
+</div>
+<script>
+document.querySelectorAll('.copybtn').forEach(function(b){
+  b.addEventListener('click',function(){
+    var src=document.getElementById(b.dataset.src);
+    var text=src.innerText;
+    function done(){ b.textContent='복사됨'; b.classList.add('done'); setTimeout(function(){ b.textContent='코드 복사'; b.classList.remove('done'); },1600); }
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done).catch(function(){ fallback(text,done); }); }
+    else{ fallback(text,done); }
+  });
+});
+function fallback(text,done){
+  var ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta);
+  ta.select(); try{ document.execCommand('copy'); done(); }catch(e){} document.body.removeChild(ta);
+}
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","spa":2}' crossorigin="anonymous"></script>
+</body></html>
